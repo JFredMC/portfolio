@@ -20,7 +20,11 @@
           <div class="relative h-56 overflow-hidden">
             <div class="bg-gray-200 dark:bg-gray-700 w-full h-full flex items-center justify-center">
               <span class="text-gray-400 dark:text-gray-500 text-4xl">
-                🖼️
+                @if (project.image) {
+                 <img [src]="project.image" [alt]="project.title">
+                } @else {
+                  🖼️
+                }
               </span>
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-500"></div>

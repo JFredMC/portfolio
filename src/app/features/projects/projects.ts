@@ -11,12 +11,13 @@ import { CommonModule } from '@angular/common';
 export class Projects {
   projects: IProject[] = [
     {
-      title: 'E‑commerce Platform',
-      description: 'Plataforma completa de comercio electrónico con carrito de compras, pagos y panel de administración.',
-      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      codeLink: 'https://github.com/tuusuario/ecommerce',
-      demoLink: 'https://ecommerce-demo.com',
-      status: 'completed'
+      title: 'Point Editor',
+      description: 'Manage points of interest on the map',
+      tech: ['Angular', 'MapLibre GL JS', 'Boostrap'],
+      codeLink: 'https://github.com/JFredMC/point-editor',
+      demoLink: 'https://jfredmc.github.io/point-editor/',
+      status: 'completed',
+      image: 'projects/point-editor.png',
     },
     {
       title: 'Task Management App',
