@@ -1,0 +1,76 @@
+<!-- src/app/components/experience/experience.component.html -->
+<section id="experience" class="pt-20 pb-24 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-5xl mx-auto px-4">
+    <!-- Encabezado mejorado -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+        Trayectoria Profesional
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Mi recorrido profesional en el desarrollo de software
+      </p>
+      <div class="w-24 h-1 bg-indigo-500 dark:bg-indigo-400 mx-auto mt-6 rounded-full"></div>
+    </div>
+
+    <div class="relative">
+      <!-- Línea vertical central con efecto gradiente -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-400 to-indigo-600 dark:from-indigo-600 dark:to-indigo-800 z-0"></div>
+
+      <ul class="space-y-16 relative z-10">
+        @for(exp of experiences; track exp.date) {
+          <li class="flex flex-col md:flex-row items-start">
+            <!-- Contenedor de fecha con efecto -->
+            <div class="w-full md:w-1/2 mb-4 md:mb-0 md:pr-16 md:text-right">
+              <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg inline-block max-w-xs transform hover:-translate-y-1 transition-transform duration-300">
+                <p class="text-sm font-semibold text-indigo-500 dark:text-indigo-400">{{ exp.date }}</p>
+              </div>
+            </div>
+            
+            <!-- Punto central con animación -->
+            <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 mt-4">
+              <div class="w-6 h-6 rounded-full bg-indigo-500 dark:bg-indigo-600 border-4 border-white dark:border-gray-900 shadow-lg flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
+              </div>
+            </div>
+            
+            <!-- Contenido de la experiencia -->
+            <div class="w-full md:w-1/2 md:pl-16">
+              <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+                <!-- Elemento decorativo -->
+                <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-100 dark:bg-indigo-900/20 rounded-bl-full z-0"></div>
+                
+                <!-- Icono de empresa -->
+                <div class="relative z-10 flex items-center mb-4">
+                  <div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center mr-4">
+                    <img src="{{ exp.company_logo }}" alt="{{ exp.company }}" class="w-8 h-8 object-contain">
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">{{ exp.title }}</h3>
+                    <p class="text-lg font-medium text-gray-700 dark:text-gray-300">
+                      {{ exp.company }} <span class="text-sm text-gray-500 dark:text-gray-400">— {{ exp.location }}</span>
+                    </p>
+                  </div>
+                </div>
+                
+                <!-- Descripción -->
+                <div class="relative z-10 mt-4">
+                  <p class="text-gray-700 dark:text-gray-300 whitespace-pre-line mb-4">{{ exp.description }}</p>
+                  
+                  <!-- Tecnologías usadas -->
+                  <div class="mt-6">
+                    <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wider">Tecnologías utilizadas:</h4>
+                    <div class="flex flex-wrap gap-2">
+                      @for(tech of exp.technologies_used; track tech;) {
+                        <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm rounded-full">{{ tech }}</span>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

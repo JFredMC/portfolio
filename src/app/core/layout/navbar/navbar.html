@@ -1,0 +1,111 @@
+<header class="fixed top-0 left-0 w-full bg-white shadow-md z-50 h-16 dark:bg-gray-800 transition-colors duration-300">
+  <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+    <!-- Logo / Nombre -->
+    <div class="text-2xl font-bold text-black dark:text-white transition-colors duration-300">
+      <a (click)="scrollTo('about')" class="cursor-pointer">
+        JFredDev
+      </a>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <!-- Botón de tema para móvil -->
+      <button
+        (click)="themeService.toggleTheme()"
+        class="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors duration-300"
+        aria-label="Toggle dark mode"
+      >
+        @if(themeService.isDarkMode()) {
+          <!-- Icono de sol (modo claro) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+        } @else {
+          <!-- Icono de luna (modo oscuro) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        }
+      </button>
+
+      <!-- Botón móvil -->
+      <button
+        class="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
+        (click)="toggleMenu()"
+        aria-label="Toggle navigation menu"
+      >
+        @if(!isMenuOpen) {
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        }
+
+        @if(isMenuOpen) {
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        }
+      </button>
+    </div>
+
+    <!-- Menú desktop -->
+    <nav class="hidden md:flex space-x-6 items-center">
+      <a (click)="scrollTo('home')" class="text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors duration-300 cursor-pointer">Inicio</a>
+      <a (click)="scrollTo('about')" class="text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors duration-300 cursor-pointer">Sobre mí</a>
+      <a (click)="scrollTo('experience')" class="text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors duration-300 cursor-pointer">Experiencia</a>
+      <a (click)="scrollTo('services')" class="text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors duration-300 cursor-pointer">Servicios</a>
+      <a (click)="scrollTo('projects')" class="text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors duration-300 cursor-pointer">Proyectos</a>
+      <a (click)="scrollTo('contact')" class="text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors duration-300 cursor-pointer">Contacto</a>
+      
+      <!-- Botón de tema para desktop -->
+      <button 
+        (click)="themeService.toggleTheme()"
+        class="ml-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors duration-300"
+        aria-label="Toggle dark mode"
+      >
+        @if(themeService.isDarkMode()) {
+          <!-- Icono de sol (modo claro) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+        } @else {
+          <!-- Icono de luna (modo oscuro) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        }
+      </button>
+    </nav>
+
+    <!-- Menú móvil -->
+    @if(isMenuOpen) {
+      <nav class="md:hidden absolute top-16 left-0 w-full bg-white shadow-md dark:bg-gray-800 transition-colors duration-300">
+        <ul class="flex flex-col space-y-2 p-4">
+          <li><a (click)="scrollTo('home')" class="block text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 py-2 transition-colors duration-300 cursor-pointer" (click)="toggleMenu()">Inicio</a></li>
+          <li><a (click)="scrollTo('about')" class="block text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 py-2 transition-colors duration-300 cursor-pointer" (click)="toggleMenu()">Sobre mí</a></li>
+          <li><a (click)="scrollTo('experience')" class="block text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 py-2 transition-colors duration-300 cursor-pointer" (click)="toggleMenu()">Experiencia</a></li>
+          <li><a (click)="scrollTo('services')" class="block text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 py-2 transition-colors duration-300 cursor-pointer" (click)="toggleMenu()">Servicios</a></li>
+          <li><a (click)="scrollTo('projects')" class="block text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 py-2 transition-colors duration-300 cursor-pointer" (click)="toggleMenu()">Proyectos</a></li>
+          <li><a (click)="scrollTo('contact')" class="block text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 py-2 transition-colors duration-300 cursor-pointer" (click)="toggleMenu()">Contacto</a></li>
+          <li class="pt-4 border-t border-gray-200 dark:border-gray-700">
+            <button 
+              (click)="themeService.toggleTheme()"
+              class="flex items-center w-full p-2 text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors duration-300"
+            >
+              @if(themeService.isDarkMode()) {
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+                <span>Cambiar a modo claro</span>
+              } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700 dark:text-gray-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                </svg>
+                <span>Cambiar a modo oscuro</span>
+              }
+            </button>
+          </li>
+        </ul>
+      </nav>
+    }
+  </div>
+</header>

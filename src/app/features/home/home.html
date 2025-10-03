@@ -1,0 +1,120 @@
+<!-- src/app/features/home/home.component.html -->
+<section
+  id="home"
+  class="flex justify-center pt-20 pb-12 bg-white dark:bg-gray-900 min-h-[calc(100vh-20rem)] transition-colors duration-500"
+>
+  <div class="flex flex-col items-center text-center max-w-5xl mx-auto px-4">
+    <!-- Avatar con borde negro -->
+    <div class="w-32 h-32 mb-8 rounded-full border-4 border-black dark:border-white overflow-hidden transition-colors duration-500">
+      <img
+        src="images/avatar.png"
+        alt="Foto de perfil"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Título y subtítulo -->
+    <h1 class="text-4xl md:text-5xl font-extrabold text-black dark:text-white mb-4 transition-colors duration-300">
+      Hola, soy Jhon Maquilon
+    </h1>
+    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl transition-colors duration-300">
+      Desarrollador Full Stack especializado en crear experiencias web excepcionales
+    </p>
+
+    <!-- Botones -->
+    <div class="flex flex-wrap gap-4 mb-8">
+      <a
+        (click)="scrollTo('projects')"
+        class="bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl cursor-pointer"
+      >
+        Ver mis proyectos
+      </a>
+      <a
+        href="files/profile.pdf"
+        download
+        class="border border-black dark:border-white text-black dark:text-white px-6 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg"
+      >
+        Descargar CV
+      </a>
+    </div>
+
+    <!-- Iconos sociales -->
+    <div class="flex space-x-6">
+      <!-- GitHub -->
+      <a
+        href="https://github.com/JFredMC/"
+        target="_blank"
+        class="hover:opacity-80 transition duration-300 transform hover:scale-110"
+      >
+        <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+            <img
+                src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                alt="GitHub"
+                class="w-6 h-6"
+            />
+        </div>
+      </a>
+
+      <!-- LinkedIn -->
+      <a
+        href="https://www.linkedin.com/in/jfredmc/"
+        target="_blank"
+        class="hover:opacity-80 transition"
+      >
+        <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+            <img
+            src="https://cdn-icons-png.flaticon.com/128/174/174857.png"
+            alt="LinkedIn"
+            class="w-6 h-6"
+            />
+        </div>
+      </a>
+
+      <!-- Email -->
+      <a
+        href="mailto:maquiloncordoba@hotmail.com"
+        class="hover:opacity-80 transition"
+      >
+        <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 text-gray-700 dark:text-gray-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+            >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21.75 6.75v10.5a2.25 2.25 0 
+                0 1-2.25 2.25h-15a2.25 2.25 0 
+                0 1-2.25-2.25V6.75m19.5 0A2.25 
+                2.25 0 0 0 19.5 4.5h-15a2.25 
+                2.25 0 0 0-2.25 2.25m19.5 
+                0v.243a2.25 2.25 0 0 1-1.07 
+                1.916l-7.5 4.615a2.25 2.25 
+                0 0 1-2.36 0L3.32 8.91a2.25 
+                2.25 0 0 1-1.07-1.916V6.75"
+            />
+            </svg>
+        </div>
+      </a>
+
+      <!-- WhatsApp -->
+      <a
+        href="https://api.whatsapp.com/send?phone=573106643807"
+        target="_blank"
+        class="hover:opacity-80 transition"
+      >
+        <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+            <img
+                src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+                alt="WhatsApp"
+                class="w-6 h-6"
+            />
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
