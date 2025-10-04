@@ -20,12 +20,13 @@ export class Projects {
       image: 'projects/point-editor.png',
     },
     {
-      title: 'Task Management App',
-      description: 'Aplicación de gestión de tareas con funcionalidades de colaboración en tiempo real.',
-      tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Socket.io'],
-      codeLink: 'https://github.com/tuusuario/task-app',
-      demoLink: 'https://task-app-demo.com',
-      status: 'completed'
+      title: 'JfChat',
+      description: 'Aplicacion de Chat Web',
+      tech: ['Angular', 'NestJs', 'PostgreSQL', 'Socket.io'],
+      codeLink: 'https://github.com/JFredMC/jf-chat',
+      demoLink: 'https://jfredmc.github.io/jf-chat',
+      status: 'completed',
+      image: 'projects/jf-chat'
     },
     {
       title: 'Weather Dashboard',
