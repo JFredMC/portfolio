@@ -26,7 +26,7 @@ export class Projects {
       codeLink: 'https://github.com/JFredMC/jf-chat',
       demoLink: 'https://jfredmc.github.io/jf-chat',
       status: 'completed',
-      image: 'projects/jf-chat'
+      image: 'projects/jf-chat.png'
     },
     {
       title: 'Weather Dashboard',
