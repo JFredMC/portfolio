@@ -27,7 +27,7 @@ export class Experience {
       date: 'Oct 2021 – Abr 2022',
       description: `Apoyar en las tareas diarias del equipo, como escribir código, probar software, documentar procesos y colaborar en proyectos; 
       participar en la investigación de nuevas tecnologías y soluciones.`,
-      company_logo: 'https://iamstudio.co/src/assets/images/logo.png',
+      company_logo: 'https://iamstudio.co/iam-logo.png',
       technologies_used: ['SenchaJs', 'JavaScript']
     }
   ];

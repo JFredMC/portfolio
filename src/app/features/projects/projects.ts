@@ -12,7 +12,7 @@ export class Projects {
   projects: IProject[] = [
     {
       title: 'Point Editor',
-      description: 'Manage points of interest on the map',
+      description: 'Gestionar puntos de interés en el mapa',
       tech: ['Angular', 'MapLibre GL JS', 'Boostrap'],
       codeLink: 'https://github.com/JFredMC/point-editor',
       demoLink: 'https://jfredmc.github.io/point-editor/',
@@ -27,16 +27,6 @@ export class Projects {
       demoLink: 'https://jfredmc.github.io/jf-chat',
       status: 'completed',
       image: 'projects/jf-chat.png'
-    },
-    {
-      title: 'Weather Dashboard',
-      description: 'Dashboard meteorológico con visualización de datos y pronósticos detallados.',
-      tech: ['Vue.js', 'Chart.js', 'OpenWeather API'],
-      codeLink: 'https://github.com/tuusuario/weather-dashboard',
-      demoLink: 'https://weather-demo.com',
-      status: 'completed'
     }
   ];
-
-
 }
