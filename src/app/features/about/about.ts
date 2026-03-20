@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './about.scss'
 })
 export class About {
-
+skills: string[] = [
+  'Angular', 'NestJS', 'TypeScript', 'JavaScript', 'Git', 
+  'APIs REST', 'PostgreSQL', 'Ruby on Rails', 'Scrum', 'Tailwind'
+];
 }

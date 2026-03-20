@@ -1,99 +1,103 @@
-<!-- src/app/components/about/about.component.html -->
-<section id="about" class="pt-20 pb-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-  <div class="max-w-6xl mx-auto px-4">
-    <!-- Título con efecto decorativo -->
-    <div class="text-center mb-16 relative">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white mb-4 inline-block relative">
+<section 
+  id="about" 
+  class="pt-20 pb-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900 transition-colors duration-700 overflow-hidden"
+>
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <!-- Encabezado con animación -->
+    <div class="text-center mb-20 relative">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-5 animate-fade-in-up">
         Sobre mí
-        <span class="absolute bottom-0 left-0 w-full h-1 bg-indigo-500 dark:bg-indigo-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
       </h2>
-      <div class="w-24 h-1 bg-indigo-500 dark:bg-indigo-400 mx-auto mt-2 rounded-full"></div>
-      <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-        Conoce mi trayectoria profesional y experiencia en desarrollo de software
+      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 200ms;">
+        Ingeniero de Software apasionado por crear soluciones escalables y experiencias fluidas
       </p>
+      <div class="w-32 h-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mt-8 rounded-full animate-fade-in-up" style="animation-delay: 300ms;"></div>
     </div>
 
-    <div class="flex flex-col lg:flex-row items-center gap-12">
-      <!-- Contenedor de foto con efecto 3D -->
-      <div class="relative flex-shrink-0">
-        <div class="w-64 h-64 md:w-72 md:h-72 rounded-2xl overflow-hidden shadow-2xl transform transition-transform duration-500 hover:-translate-y-2">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Foto con efecto tilt + decoraciones -->
+      <div class="relative group animate-fade-in-up" style="animation-delay: 400ms;">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl transition-all duration-700 group-hover:shadow-3xl group-hover:scale-[1.02]">
           <img
             src="images/profile.png"
             alt="Jhon Maquilon - Desarrollador Full Stack"
-            class="w-full h-full object-cover"
+            class="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-110"
           />
+          <!-- Overlay sutil en hover -->
+          <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         </div>
-        <!-- Elemento decorativo -->
-        <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-indigo-500 dark:bg-indigo-600 rounded-full opacity-20 -z-10"></div>
-        <div class="absolute -top-6 -left-6 w-16 h-16 bg-indigo-300 dark:bg-indigo-700 rounded-full opacity-30 -z-10"></div>
+
+        <!-- Decoraciones geométricas trendy -->
+        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-indigo-500/20 dark:bg-indigo-600/20 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
+        <div class="absolute -top-10 -left-10 w-24 h-24 bg-purple-400/20 dark:bg-purple-500/20 rounded-full blur-2xl -z-10 animate-pulse-slow delay-1000"></div>
       </div>
 
-      <!-- Contenido textual y métricas -->
-      <div class="flex-1 space-y-6">
-        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl">
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-            <span class="text-indigo-500 font-bold">Ingeniero de Software</span> con más de 
-            <strong class="text-indigo-500 dark:text-indigo-400">4 años de experiencia</strong> 
-            en el diseño, desarrollo y despliegue de aplicaciones web de alto rendimiento. 
-            Especializado en arquitecturas basadas en Angular en el frontend y NestJS en el backend, 
-            dominio de JavaScript y TypeScript, y amplio manejo de APIs RESTful.
+      <!-- Contenido textual -->
+      <div class="space-y-10">
+        <!-- Bio principal (con glass card) -->
+        <div class="bg-white/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 
+                    transition-all duration-500 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 500ms;">
+          <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
+            Soy <span class="font-bold text-indigo-600 dark:text-indigo-400">Ingeniero de Software</span> con más de 
+            <span class="font-bold text-indigo-600 dark:text-indigo-400">4 años de experiencia</span> diseñando, desarrollando y desplegando 
+            aplicaciones web de alto rendimiento y escalables.
           </p>
-          
-          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-            Proactivo, orientado al logro y al trabajo en equipo, con capacidad de adaptación a metodologías 
-            ágiles (Scrum, Kanban) y pasión por aprender nuevas tecnologías para aportar valor inmediato al negocio.
+          <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            Me especializo en <strong class="text-purple-600 dark:text-purple-400">Angular</strong> para frontend robusto y 
+            <strong class="text-purple-600 dark:text-purple-400">NestJS</strong> para backends eficientes. Domino TypeScript, 
+            JavaScript moderno, APIs RESTful y arquitecturas limpias. Me adapto rápido a metodologías ágiles (Scrum/Kanban), 
+            trabajo en equipo y siempre busco aprender para entregar valor real al negocio desde el día uno.
           </p>
         </div>
 
-        <!-- Habilidades destacadas -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-          <div class="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg text-center">
-            <span class="text-indigo-700 dark:text-indigo-300 font-medium">Angular</span>
-          </div>
-          <div class="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg text-center">
-            <span class="text-indigo-700 dark:text-indigo-300 font-medium">NestJS</span>
-          </div>
-          <div class="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg text-center">
-            <span class="text-indigo-700 dark:text-indigo-300 font-medium">TypeScript</span>
-          </div>
-          <div class="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg text-center">
-            <span class="text-indigo-700 dark:text-indigo-300 font-medium">Ruby On Rails</span>
-          </div>
-          <div class="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg text-center">
-            <span class="text-indigo-700 dark:text-indigo-300 font-medium">APIs REST</span>
+        <!-- Skills destacadas (pills con hover glow) -->
+        <div class="animate-fade-in-up" style="animation-delay: 600ms;">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center lg:text-left">
+            Tecnologías principales
+          </h3>
+          <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+            @for (skill of skills; track skill) {
+              <span class="px-5 py-2.5 rounded-full text-sm font-medium bg-indigo-100/80 dark:bg-indigo-900/40 
+                           text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/50 
+                           transition-all duration-300 hover:bg-indigo-500 hover:text-white hover:scale-105 hover:shadow-md cursor-default">
+                {{ skill }}
+              </span>
+            }
           </div>
         </div>
 
-        <!-- Métricas -->
-        <!-- <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1">
+        <!-- Métricas (cards con iconos animados) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-fade-in-up" style="animation-delay: 700ms;">
+          <div class="bg-white/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 
+                      transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group">
             <div class="flex items-center">
-              <div class="mr-4 bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              <div class="p-4 bg-indigo-100 dark:bg-indigo-900/50 rounded-full mr-5 group-hover:rotate-12 transition-transform">
+                <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM6 5a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
               <div>
-                <h3 class="text-4xl font-bold text-gray-800 dark:text-white">50+</h3>
-                <p class="text-gray-600 dark:text-gray-300">Proyectos completados</p>
+                <h4 class="text-4xl font-bold text-gray-900 dark:text-white">50+</h4>
+                <p class="text-gray-600 dark:text-gray-400">Proyectos completados</p>
               </div>
             </div>
           </div>
-          
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1">
+
+          <div class="bg-white/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 
+                      transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group">
             <div class="flex items-center">
-              <div class="mr-4 bg-indigo-100 dark:bg-indigo-900/50 p-3 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div class="p-4 bg-purple-100 dark:bg-purple-900/50 rounded-full mr-5 group-hover:rotate-12 transition-transform">
+                <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div>
-                <h3 class="text-4xl font-bold text-gray-800 dark:text-white">4+</h3>
-                <p class="text-gray-600 dark:text-gray-300">Años de experiencia</p>
+                <h4 class="text-4xl font-bold text-gray-900 dark:text-white">4+</h4>
+                <p class="text-gray-600 dark:text-gray-400">Años de experiencia</p>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>

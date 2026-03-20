@@ -1,3 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+/* style.scss */
 @use "tailwindcss";
+
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Fuentes (ya las tienes bien) */
+  --font-family-display: "Playfair Display", serif;
+  --font-family-sans: "Inter", system-ui, sans-serif;
+
+  /* Colores personalizados (ejemplo) */
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-accent: #ec4899;
+
+  /* Animaciones personalizadas - aquí va todo lo que necesitas */
+  --animate-fade-in-up: fade-in-up 0.9s ease-out forwards;
+  --animate-float-slow: float-slow 7s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
+  --animate-draw-line: draw-line 2s ease-out forwards;
+
+  /* Definir los @keyframes dentro del mismo @theme */
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes shimmer {
+    0%, 100% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes draw-line {
+    0% {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    100% {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+  }
+
+  --animate-bounce-slow: bounce-slow 3s infinite;
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+  }
+
+  --animate-rotate-slow: rotate-slow 20s linear infinite;
+  @keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+}
+
+/* Scroll global (ya lo tienes bien) */
+@layer base {
+  html {
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Opcional: si quieres más control sobre dark mode o variantes */
+@supports (scroll-padding-top: 5rem) {
+  /* ... */
+}

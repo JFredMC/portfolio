@@ -22,10 +22,18 @@ export class Navbar {
   }
 
   scrollTo(sectionId: string) {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      // Desplazamiento suave al elemento con el ID dado
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    const navbarHeight = document.querySelector('header')?.getBoundingClientRect().height || 80;
+    const extraOffset = 16;
+
+    const yOffset = - (navbarHeight + extraOffset);
+    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
+    });
   }
 }
