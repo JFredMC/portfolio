@@ -28,6 +28,6 @@ export class App {
   ngAfterViewInit() {
     setTimeout(() => {
       this.preloader.hide();
-    }, 2600);
+    }, 3200);
   }
 }
