@@ -13,8 +13,8 @@ export class Experience {
     {
       title: 'Desarrollador Full Stack Semi Senior',
       company: 'MET GROUP SAS',
-      location: 'Remoto',
-      date: 'May 2022 – Presente',
+      location: 'Pereira · Remoto',
+      date: 'Mayo 2022 – Presente',
       description: [
         'Desarrollo full stack con Angular, TypeScript, NestJS, Ruby on Rails y PostgreSQL en sistemas para el transporte público, para clientes como Metrolínea, SI18/TransMilenio y Juárez Bus. Ascenso de Junior a Semi Senior en marzo de 2026.',
         '',
@@ -32,8 +32,8 @@ export class Experience {
     {
       title: 'Trainee',
       company: 'iAm Studio SAS',
-      location: 'Bogotá, Colombia',
-      date: 'Oct 2021 – Abr 2022',
+      location: 'Bogotá · Remoto',
+      date: 'Octubre 2021 – Abril 2022',
       description: 'Apoyar en las tareas diarias del equipo, como escribir código, probar software, documentar procesos y colaborar en proyectos; participar en la investigación de nuevas tecnologías y soluciones.',
       company_logo: 'https://iamstudio.co/iam-logo.png',
       technologies_used: ['SenchaJs', 'JavaScript']
