@@ -10,6 +10,13 @@ import { CommonModule } from '@angular/common';
 })
 export class Footer implements AfterViewInit {
   date = new Date();
+
+  readonly links = [
+    { id: 'home', label: 'Inicio' },
+    { id: 'about', label: 'Sobre mí' },
+    { id: 'experience', label: 'Experiencia' },
+    { id: 'projects', label: 'Proyectos' },
+  ];
   
   // Estado para saber si estamos "arriba" o no
   isAtTop = true;
@@ -31,6 +38,16 @@ export class Footer implements AfterViewInit {
   private checkScrollPosition() {
     const scrollPosition = window.scrollY || document.documentElement.scrollTop;
     this.isAtTop = scrollPosition < this.TOP_THRESHOLD;
+  }
+
+  scrollTo(sectionId: string, event?: Event) {
+    event?.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    const navbarHeight = document.querySelector('header')?.getBoundingClientRect().height || 80;
+    const y = element.getBoundingClientRect().top + window.scrollY - (navbarHeight + 16);
+    window.scrollTo({ top: y, behavior: 'smooth' });
   }
 
   // Acción del botón

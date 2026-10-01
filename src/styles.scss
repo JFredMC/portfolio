@@ -4,9 +4,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Fuentes (ya las tienes bien) */
-  --font-family-display: "Playfair Display", serif;
-  --font-family-sans: "Inter", system-ui, sans-serif;
+  /* Fuentes (Tailwind 4 usa --font-*) */
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
 
   /* Colores personalizados (ejemplo) */
   --color-primary-500: #6366f1;

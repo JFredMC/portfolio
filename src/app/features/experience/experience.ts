@@ -11,22 +11,30 @@ import { IExperience } from './interfaces/experience.interface';
 export class Experience {
   experiences: IExperience[] = [
     {
-      title: 'Ingeniero de Desarrollo',
-      company: 'Met Group S.A.S',
-      location: 'Pereira',
+      title: 'Desarrollador Full Stack Semi Senior',
+      company: 'MET GROUP SAS',
+      location: 'Remoto',
       date: 'May 2022 – Presente',
-      description: `Diseñar, desarrollar, probar, implementar y mantener sistemas de software. Esto incluye analizar los requisitos del cliente, 
-      elegir las tecnologías adecuadas, escribir código, realizar pruebas de calidad y documentar el software.`,
+      description: [
+        'Desarrollo full stack con Angular, TypeScript, NestJS, Ruby on Rails y PostgreSQL en sistemas para el transporte público, para clientes como Metrolínea, SI18/TransMilenio y Juárez Bus. Ascenso de Junior a Semi Senior en marzo de 2026.',
+        '',
+        'Sistemas en los que he trabajado:',
+        '• MET•PAY: sistema de recaudo para servicios de transporte.',
+        '• MET•VOA: sistema de gestión y control de flota.',
+        '• VOASI18: sistema de gestión y control de flota a la medida de SI18, operador de TransMilenio, hecho en Ruby on Rails.',
+        '• MDS: sistema de mesa de servicios.',
+        '• MET•SIU: sistema de información al usuario.',
+        '• MET•EOD: sistema de entretenimiento bajo demanda.'
+      ].join('\n'),
       company_logo: 'https://www.metgroupsas.com/wp-content/uploads/elementor/thumbs/SIn-Foto-qearrze6pwgdqz5gl12lv6ckoqblim18uwf39d2igk.webp',
-      technologies_used: ['Angular', 'Nestjs', 'Ruby On Rails', 'PostgreSQL']
+      technologies_used: ['Angular', 'TypeScript', 'NestJS', 'Ruby on Rails', 'PostgreSQL']
     },
     {
       title: 'Trainee',
       company: 'iAm Studio SAS',
       location: 'Bogotá, Colombia',
       date: 'Oct 2021 – Abr 2022',
-      description: `Apoyar en las tareas diarias del equipo, como escribir código, probar software, documentar procesos y colaborar en proyectos; 
-      participar en la investigación de nuevas tecnologías y soluciones.`,
+      description: 'Apoyar en las tareas diarias del equipo, como escribir código, probar software, documentar procesos y colaborar en proyectos; participar en la investigación de nuevas tecnologías y soluciones.',
       company_logo: 'https://iamstudio.co/iam-logo.png',
       technologies_used: ['SenchaJs', 'JavaScript']
     }
