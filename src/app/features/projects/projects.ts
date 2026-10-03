@@ -33,6 +33,24 @@ export class Projects {
       demoLink: 'https://jfredmc.github.io/jf-chat',
       status: 'completed',
       image: 'projects/jf-chat.png'
+    },
+    {
+      title: 'Billetera Digital',
+      description: 'Billetera digital con libro contable de doble partida: depósitos, transferencias entre usuarios con idempotencia e historial de movimientos',
+      tech: ['Angular', 'NestJS', 'PostgreSQL', 'Docker'],
+      codeLink: 'https://github.com/JFredMC/digital-wallet-ledger',
+      demoLink: 'https://jfredmc.github.io/digital-wallet-ledger/',
+      status: 'completed',
+      image: 'projects/digital-wallet-ledger.png',
+    },
+    {
+      title: 'Pasarela de Pagos',
+      description: 'Pasarela de pagos simulada: checkout con tarjetas, 3DS, PSE y Nequi, reembolsos, webhooks firmados con reintentos y panel para comercios',
+      tech: ['Angular', 'NestJS', 'PostgreSQL', 'Docker'],
+      codeLink: 'https://github.com/JFredMC/payment-gateway-sim',
+      demoLink: 'https://jfredmc.github.io/payment-gateway-sim/',
+      status: 'completed',
+      image: 'projects/payment-gateway-sim.png',
     }
   ];
 }
