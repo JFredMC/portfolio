@@ -36,7 +36,7 @@ export class Projects {
     },
     {
       title: 'Billetera Digital',
-      description: 'Billetera digital con libro contable de doble partida: depósitos, transferencias entre usuarios con idempotencia e historial de movimientos',
+      description: 'Billetera digital con libro contable de doble partida y transferencias idempotentes',
       tech: ['Angular', 'NestJS', 'PostgreSQL', 'Docker'],
       codeLink: 'https://github.com/JFredMC/digital-wallet-ledger',
       demoLink: 'https://jfredmc.github.io/digital-wallet-ledger/',
@@ -45,7 +45,7 @@ export class Projects {
     },
     {
       title: 'Pasarela de Pagos',
-      description: 'Pasarela de pagos simulada: checkout con tarjetas, 3DS, PSE y Nequi, reembolsos, webhooks firmados con reintentos y panel para comercios',
+      description: 'Pasarela de pagos simulada: checkout con 3DS, PSE y Nequi, reembolsos y webhooks',
       tech: ['Angular', 'NestJS', 'PostgreSQL', 'Docker'],
       codeLink: 'https://github.com/JFredMC/payment-gateway-sim',
       demoLink: 'https://jfredmc.github.io/payment-gateway-sim/',
