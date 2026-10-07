@@ -13,28 +13,27 @@ export class Experience {
     {
       title: 'Desarrollador Full Stack Semi Senior',
       company: 'MET GROUP SAS',
-      location: 'Pereira · Remoto',
-      date: 'Mayo 2022 – Presente',
-      description: [
-        'Desarrollo full stack con Angular, TypeScript, NestJS, Ruby on Rails y PostgreSQL en sistemas para el transporte público, para clientes como Metrolínea, SI18/TransMilenio y Juárez Bus. Ascenso de Junior a Semi Senior en marzo de 2026.',
-        '',
-        'Sistemas en los que he trabajado:',
-        '• MET•PAY: sistema de recaudo para servicios de transporte.',
-        '• MET•VOA: sistema de gestión y control de flota.',
-        '• VOASI18: sistema de gestión y control de flota a la medida de SI18, operador de TransMilenio, hecho en Ruby on Rails.',
-        '• MDS: sistema de mesa de servicios.',
-        '• MET•SIU: sistema de información al usuario.',
-        '• MET•EOD: sistema de entretenimiento bajo demanda.'
-      ].join('\n'),
+      location: 'Pereira · remoto',
+      date: 'Mayo 2022 – presente',
+      description: 'Ascenso de Junior a Semi Senior en marzo de 2026.',
+      clients: 'Metrolínea, SI18/TransMilenio y Juárez Bus',
+      systems: [
+        { name: 'MET•PAY', description: 'Recaudo del servicio de transporte: el dinero del viaje tiene que cuadrar desde la validación hasta el cierre.' },
+        { name: 'MET•VOA', description: 'Gestión y control de flota. Lo que pasa en la calle tiene que verse en el sistema, no en una hoja aparte.' },
+        { name: 'VOASI18', description: 'Flota a la medida de SI18, operador de TransMilenio. Hecho en Ruby on Rails, no en una plantilla genérica.' },
+        { name: 'MDS', description: 'Mesa de servicios. El incidente de operación llega, se asigna y se cierra con trazabilidad.' },
+        { name: 'MET•SIU', description: 'Información al usuario. Lo que el pasajero ve tiene que salir del mismo sistema que opera la flota.' },
+        { name: 'MET•EOD', description: 'Entretenimiento bajo demanda. Otro canal del mismo ecosistema, no un proyecto aislado.' }
+      ],
       company_logo: 'https://www.metgroupsas.com/wp-content/uploads/elementor/thumbs/SIn-Foto-qearrze6pwgdqz5gl12lv6ckoqblim18uwf39d2igk.webp',
       technologies_used: ['Angular', 'TypeScript', 'NestJS', 'Ruby on Rails', 'PostgreSQL']
     },
     {
       title: 'Trainee',
       company: 'iAm Studio SAS',
-      location: 'Bogotá · Remoto',
-      date: 'Octubre 2021 – Abril 2022',
-      description: 'Apoyar en las tareas diarias del equipo, como escribir código, probar software, documentar procesos y colaborar en proyectos; participar en la investigación de nuevas tecnologías y soluciones.',
+      location: 'Bogotá · remoto',
+      date: 'Octubre 2021 – abril 2022',
+      description: 'Código, pruebas, documentación e investigación de tecnologías con el equipo.',
       company_logo: 'https://iamstudio.co/iam-logo.png',
       technologies_used: ['SenchaJs', 'JavaScript']
     }

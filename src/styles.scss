@@ -5,13 +5,19 @@
 
 @theme {
   /* Fuentes (Tailwind 4 usa --font-*) */
-  --font-display: "Playfair Display", serif;
+  --font-display: "Sora", sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
 
   /* Colores personalizados (ejemplo) */
   --color-primary-500: #6366f1;
   --color-primary-600: #4f46e5;
-  --color-accent: #ec4899;
+  --color-brand-bg: #070d18;
+  --color-brand-surface: #10192b;
+  --color-brand-cyan: #22d3ee;
+  --color-brand-indigo: #818cf8;
+  --color-brand-text: #eef3fb;
+  --color-brand-muted: #9aabc4;
+  --color-accent: #22d3ee;
 
   /* Animaciones personalizadas - aquí va todo lo que necesitas */
   --animate-fade-in-up: fade-in-up 0.9s ease-out forwards;

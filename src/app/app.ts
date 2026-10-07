@@ -5,6 +5,7 @@ import { About } from "./features/about/about";
 import { Projects } from './features/projects/projects';
 import { Home } from './features/home/home';
 import { Experience } from './features/experience/experience';
+import { Contact } from './features/contact/contact';
 import { Preloader } from './core/preloader/preloader';
 
 @Component({
@@ -18,6 +19,7 @@ import { Preloader } from './core/preloader/preloader';
       About,
       Experience,
       Projects,
+      Contact,
       Preloader
     ],
 })
