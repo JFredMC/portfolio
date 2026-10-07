@@ -17,6 +17,15 @@ export class Projects {
 
   projects: IProject[] = [
     {
+      title: 'CENTINELA',
+      description: 'Detección de fraude en tiempo real con reglas, colas y alertas',
+      tech: ['Angular', 'NestJS', 'BullMQ', 'Socket.io'],
+      codeLink: 'https://github.com/JFredMC/centinela',
+      demoLink: 'https://jfredmc.github.io/centinela/',
+      status: 'completed',
+      image: 'projects/centinela.webp',
+    },
+    {
       title: 'Point Editor',
       description: 'Mapa interactivo con búsqueda, filtros, medición y GeoJSON/CSV',
       tech: ['Angular', 'MapLibre', 'TypeScript'],
