@@ -17,6 +17,15 @@ export class Projects {
 
   projects: IProject[] = [
     {
+      title: 'Velo',
+      description: 'Chat privado para parejas: se autodestruye en 24 h, con PIN y fotos protegidas',
+      tech: ['Angular', 'NestJS', 'Socket.io', 'Web Push'],
+      codeLink: 'https://github.com/JFredMC/jf-chat',
+      demoLink: 'https://jfredmc.github.io/jf-chat/demo/',
+      status: 'completed',
+      image: 'projects/velo.webp',
+    },
+    {
       title: 'Rumbo',
       description: 'Consola de flota en vivo: buses en el mapa, ETA e incidentes',
       tech: ['Angular', 'MapLibre', 'NestJS', 'Socket.io'],
@@ -42,15 +51,6 @@ export class Projects {
       demoLink: 'https://jfredmc.github.io/point-editor/',
       status: 'completed',
       image: 'projects/point-editor.webp',
-    },
-    {
-      title: 'JfChat',
-      description: 'Aplicación de chat web',
-      tech: ['Angular', 'NestJS', 'PostgreSQL', 'Socket.io'],
-      codeLink: 'https://github.com/JFredMC/jf-chat',
-      demoLink: 'https://jfredmc.github.io/jf-chat',
-      status: 'completed',
-      image: 'projects/jf-chat.png'
     },
     {
       title: 'Billetera Digital',
