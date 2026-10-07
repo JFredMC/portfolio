@@ -18,7 +18,7 @@ export class Projects {
   projects: IProject[] = [
     {
       title: 'Point Editor',
-      description: 'Editor de puntos sobre mapa: búsqueda de lugares, filtros por categoría, agrupación, medición de distancias e importación/exportación GeoJSON y CSV',
+      description: 'Mapa interactivo con búsqueda, filtros, medición y GeoJSON/CSV',
       tech: ['Angular', 'MapLibre', 'TypeScript'],
       codeLink: 'https://github.com/JFredMC/point-editor',
       demoLink: 'https://jfredmc.github.io/point-editor/',
