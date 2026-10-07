@@ -17,6 +17,15 @@ export class Projects {
 
   projects: IProject[] = [
     {
+      title: 'Rumbo',
+      description: 'Consola de flota en vivo: buses en el mapa, ETA e incidentes',
+      tech: ['Angular', 'MapLibre', 'NestJS', 'Socket.io'],
+      codeLink: 'https://github.com/JFredMC/rumbo',
+      demoLink: 'https://jfredmc.github.io/rumbo/',
+      status: 'completed',
+      image: 'projects/rumbo.webp',
+    },
+    {
       title: 'CENTINELA',
       description: 'Detección de fraude en tiempo real con reglas, colas y alertas',
       tech: ['Angular', 'NestJS', 'BullMQ', 'Socket.io'],
