@@ -3,10 +3,10 @@
     <!-- Encabezado mejorado -->
     <div class="text-center mb-16">
       <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
-        Trayectoria Profesional
+        Trayectoria
       </h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        Mi recorrido profesional en el desarrollo de software
+        Dónde construyo y qué queda operando
       </p>
       <div class="w-24 h-1 bg-indigo-500 dark:bg-indigo-400 mx-auto mt-6 rounded-full"></div>
     </div>
@@ -54,6 +54,9 @@
                 <!-- Descripción -->
                 <div class="relative z-10 mt-4">
                   <p class="text-gray-700 dark:text-gray-300 whitespace-pre-line mb-4">{{ exp.description }}</p>
+                  @if (exp.clients) {
+                    <p class="text-gray-700 dark:text-gray-300 mb-4"><span class="font-semibold">Clientes:</span> {{ exp.clients }}</p>
+                  }
                   
                   <!-- Tecnologías usadas -->
                   <div class="mt-6">
@@ -71,5 +74,24 @@
         }
       </ul>
     </div>
+
+    @for (exp of experiences; track exp.date) {
+      @if (exp.systems?.length) {
+        <div class="mt-20">
+          <div class="text-center mb-10">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-600 dark:text-brand-cyan mb-3">{{ exp.company }}</p>
+            <h3 class="text-2xl md:text-3xl font-display font-extrabold text-gray-900 dark:text-white">Sistemas en operación</h3>
+          </div>
+          <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-label="Sistemas en operación en MET">
+            @for (system of exp.systems; track system.name) {
+              <li class="system-card rounded-2xl p-6 bg-white dark:bg-brand-surface border border-gray-200 dark:border-cyan-400/20 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-cyan-400/60 transition-all duration-300">
+                <h4 class="text-xl font-display font-bold bg-gradient-to-r from-cyan-500 to-indigo-500 dark:from-brand-cyan dark:to-brand-indigo bg-clip-text text-transparent mb-3">{{ system.name }}</h4>
+                <p class="text-gray-700 dark:text-brand-muted leading-relaxed">{{ system.description }}</p>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    }
   </div>
 </section>

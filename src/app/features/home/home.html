@@ -1,34 +1,49 @@
 <section id="home" class="pt-20 pb-16 relative min-h-screen flex items-center justify-center overflow-hidden">
   <!-- Fondo con gradiente + partículas sutiles o efecto blur -->
-  <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-pink-50 dark:from-gray-950 dark:via-gray-900 dark:to-indigo-950 opacity-80"></div>
+  <div class="absolute inset-0 bg-gradient-to-br from-cyan-50 via-white to-indigo-50 dark:from-[#070d18] dark:via-[#070d18] dark:to-[#10192b] opacity-80"></div>
   
   <!-- Opcional: capa de partículas o efecto ruido con CSS -->
   <div class="relative z-10 text-center max-w-5xl px-6">
     <div class="relative inline-block mb-10">
-      <div class="w-40 h-40 md:w-52 md:h-52 rounded-full border-8 border-indigo-500/30 dark:border-indigo-400/30 animate-pulse-slow overflow-hidden shadow-2xl">
+      <div class="w-40 h-40 md:w-52 md:h-52 rounded-full border-8 border-cyan-400/30 animate-pulse-slow overflow-hidden shadow-2xl">
         <img src="images/avatar.png" alt="Jhon Maquilon" class="w-full h-full object-cover scale-110 transition-transform duration-700 group-hover:scale-100" />
       </div>
-      <!-- Badge flotante -->
-      <div class="absolute -bottom-4 -right-4 bg-indigo-600 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg animate-float">
+      <!-- Badge flotante: enlaza a contacto -->
+      <a href="#contact" (click)="$event.preventDefault(); scrollTo('contact')" class="absolute -bottom-4 -right-4 bg-cyan-500 hover:bg-cyan-400 text-[#070d18] text-sm font-bold px-4 py-2 rounded-full shadow-lg animate-float transition-colors" aria-label="Disponible: ir a contacto">
         Disponible
-      </div>
+      </a>
     </div>
 
-    <h1 class="text-5xl md:text-7xl font-display font-extrabold tracking-tight mb-6 animate-fade-in-up text-gray-600">
-      Hola, soy <span class="text-indigo-600 dark:text-indigo-400">Jhon Maquilon</span>
+    <p class="text-sm md:text-base font-semibold uppercase tracking-[0.2em] text-cyan-600 dark:text-brand-cyan mb-5 animate-fade-in-up">
+      JFredDev · Turbo, Antioquia · Remoto
+    </p>
+
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-display font-extrabold tracking-tight mb-6 animate-fade-in-up text-gray-900 dark:text-brand-text">
+      Sistemas que operan <span class="bg-gradient-to-r from-brand-cyan to-brand-indigo bg-clip-text text-transparent">todos los días.</span>
     </h1>
-    
-    <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
-      Desarrollador Full Stack Semi Senior creando experiencias digitales rápidas y escalables
+
+    <p class="text-xl md:text-2xl font-semibold text-gray-800 dark:text-brand-text mb-4 animate-fade-in-up">
+      Soy Jhon Maquilon, Full Stack Semi Senior.
+    </p>
+
+    <p class="text-lg md:text-xl text-gray-700 dark:text-brand-muted mb-5 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
+      En MET GROUP construyo software de recaudo, flota e información al usuario para Metrolínea, SI18/TransMilenio y Juárez Bus.
+    </p>
+
+    <p class="text-sm md:text-base font-medium text-gray-600 dark:text-brand-muted mb-10 animate-fade-in-up">
+      Angular · NestJS · Ruby on Rails · PostgreSQL · TypeScript
     </p>
 
     <div class="flex flex-wrap justify-center gap-5 animate-fade-in-up animation-delay-500">
-      <button (click)="scrollTo('projects')" class="group relative px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 transform hover:-translate-y-1.5">
-        <span class="relative z-10">Ver Proyectos</span>
-        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-      </button>
-      
-      <a href="files/profile.pdf" download target="_blank" rel="noopener noreferrer" class="px-8 py-4 border-2 border-indigo-500 text-indigo-600 dark:text-indigo-400 font-semibold rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/30 transition-all hover:-translate-y-1">
+      <a href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar." target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-[#070d18] font-semibold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 transform hover:-translate-y-1.5">
+        Escribir por WhatsApp
+      </a>
+
+      <a href="#projects" (click)="$event.preventDefault(); scrollTo('projects')" class="px-8 py-4 border-2 border-indigo-400 text-indigo-600 dark:text-brand-indigo font-semibold rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/30 transition-all hover:-translate-y-1">
+        Ver proyectos
+      </a>
+
+      <a href="files/profile.pdf" download target="_blank" rel="noopener noreferrer" class="px-8 py-4 text-gray-700 dark:text-brand-muted font-semibold rounded-xl hover:text-cyan-600 dark:hover:text-brand-cyan underline underline-offset-4 transition-all hover:-translate-y-1">
         Descargar CV
       </a>
     </div>
@@ -94,7 +109,7 @@
 
       <!-- WhatsApp -->
       <a
-        href="https://api.whatsapp.com/send?phone=573106643807"
+        href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar."
         target="_blank"
         rel="noopener noreferrer"
         class="group"
