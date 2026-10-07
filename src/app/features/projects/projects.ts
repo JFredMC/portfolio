@@ -18,12 +18,12 @@ export class Projects {
   projects: IProject[] = [
     {
       title: 'Point Editor',
-      description: 'Gestionar puntos de interés en el mapa',
-      tech: ['Angular', 'MapLibre GL JS', 'Bootstrap'],
+      description: 'Editor de puntos sobre mapa: búsqueda de lugares, filtros por categoría, agrupación, medición de distancias e importación/exportación GeoJSON y CSV',
+      tech: ['Angular', 'MapLibre', 'TypeScript'],
       codeLink: 'https://github.com/JFredMC/point-editor',
       demoLink: 'https://jfredmc.github.io/point-editor/',
       status: 'completed',
-      image: 'projects/point-editor.png',
+      image: 'projects/point-editor.webp',
     },
     {
       title: 'JfChat',
