@@ -17,6 +17,15 @@ export class Projects {
 
   projects: IProject[] = [
     {
+      title: 'Plazo',
+      description: 'Simulador de créditos y CDT: cuota, amortización, abonos, retención y 4×1000',
+      tech: ['Angular', 'TypeScript', 'Vitest', 'Playwright'],
+      codeLink: 'https://github.com/JFredMC/plazo',
+      demoLink: 'https://jfredmc.github.io/plazo/',
+      status: 'completed',
+      image: 'projects/plazo.webp',
+    },
+    {
       title: 'Velo',
       description: 'Chat privado para parejas: se autodestruye en 24 h, con PIN y fotos protegidas',
       tech: ['Angular', 'NestJS', 'Socket.io', 'Web Push'],
