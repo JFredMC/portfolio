@@ -17,6 +17,15 @@ export class Projects {
 
   projects: IProject[] = [
     {
+      title: 'Ñapa',
+      description: 'Ofertas en Colombia: detecta descuentos inflados, compara tiendas y arma tu mercado',
+      tech: ['Angular', 'NestJS', 'MapLibre', 'Playwright'],
+      codeLink: 'https://github.com/JFredMC/napa',
+      demoLink: 'https://jfredmc.github.io/napa/',
+      status: 'completed',
+      image: 'projects/napa.webp',
+    },
+    {
       title: 'Plazo',
       description: 'Simulador de créditos y CDT: cuota, amortización, abonos, retención y 4×1000',
       tech: ['Angular', 'TypeScript', 'Vitest', 'Playwright'],
