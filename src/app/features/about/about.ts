@@ -8,8 +8,19 @@ import { Component } from '@angular/core';
 })
 export class About {
 skills: string[] = [
-  'Angular', 'NestJS', 'TypeScript', 'JavaScript', 'Git', 
-  'APIs REST', 'PostgreSQL', 'Ruby on Rails', 'Scrum', 'Tailwind',
-  'AWS (S3, ECS, Amplify, RDS, IAM)', 'Bootstrap', 'Semantic UI', 'Syncfusion'
+  'Angular 13+',
+  'NestJS',
+  'TypeScript',
+  'JavaScript ES6+',
+  'Node.js',
+  'Ruby on Rails',
+  'PostgreSQL',
+  'APIs RESTful',
+  'Git',
+  'Scrum',
+  'Kanban',
+  'Testing/QA',
+  'Tailwind CSS',
+  'HTML5/CSS3'
 ];
 }
