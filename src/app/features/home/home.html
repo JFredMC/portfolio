@@ -1,69 +1,80 @@
 <section id="home" class="pt-20 pb-16 relative min-h-screen flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-br from-cyan-50 via-white to-indigo-50 dark:from-[#070d18] dark:via-[#070d18] dark:to-[#10192b] opacity-80"></div>
   
-  <div class="relative z-10 text-center max-w-5xl px-6">
-    <div class="relative inline-block mb-10">
-      <div class="w-40 h-40 md:w-52 md:h-52 rounded-full border-8 border-cyan-400/30 animate-pulse-slow overflow-hidden shadow-2xl">
+  <div class="relative z-10 text-center max-w-5xl px-5 sm:px-6">
+    <div class="relative inline-block mb-8 sm:mb-10">
+      <div class="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 rounded-full border-4 sm:border-8 border-cyan-400/30 animate-pulse-slow overflow-hidden shadow-2xl">
         <img src="images/avatar.png" alt="Jhon Maquilon" class="w-full h-full object-cover scale-110 transition-transform duration-700 group-hover:scale-100" />
       </div>
-      <a href="#contact" (click)="$event.preventDefault(); scrollTo('contact')" class="absolute -bottom-4 -right-4 bg-cyan-500 hover:bg-cyan-400 text-[#070d18] text-sm font-bold px-4 py-2 rounded-full shadow-lg transition-all hover:scale-110">
+      <a href="#contact" (click)="$event.preventDefault(); scrollTo('contact')" class="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 bg-cyan-500 hover:bg-cyan-400 text-[#070d18] text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-lg transition-all">
         Disponible
       </a>
     </div>
 
-    <p class="text-sm md:text-base font-semibold uppercase tracking-[0.2em] text-cyan-600 dark:text-brand-cyan mb-5 animate-fade-in-up">
+    <p class="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-[0.2em] text-cyan-600 dark:text-brand-cyan mb-4 sm:mb-5 animate-fade-in-up">
       JFredDev · Turbo, Antioquia · Remoto
     </p>
 
-    <h1 class="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight mb-6 animate-fade-in-up text-gray-900 dark:text-brand-text">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold tracking-tight mb-4 sm:mb-6 animate-fade-in-up text-gray-900 dark:text-brand-text">
       Sistemas que operan <span class="bg-gradient-to-r from-brand-cyan to-brand-indigo bg-clip-text text-transparent">todos los días.</span>
     </h1>
 
-    <p class="text-xl md:text-2xl font-semibold text-gray-800 dark:text-brand-text mb-4 animate-fade-in-up">
+    <p class="text-base sm:text-lg md:text-xl font-semibold text-gray-800 dark:text-brand-text mb-3 sm:mb-4 animate-fade-in-up">
       Full Stack Semi Senior · Angular · NestJS · TypeScript
     </p>
 
-    <p class="text-lg md:text-xl text-gray-700 dark:text-brand-muted mb-5 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
+    <p class="text-sm sm:text-base md:text-lg text-gray-700 dark:text-brand-muted mb-5 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
       En MET GROUP construyo software de recaudo, flota e información al usuario para Metrolínea, SI18/TransMilenio y Juárez Bus. Sistemas que operan en la calle, cada día, con miles de transacciones.
     </p>
 
-    <div class="flex flex-wrap justify-center gap-5 animate-fade-in-up animation-delay-500 mb-10">
-      <a href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar." target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-[#070d18] font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-        Escribir por WhatsApp
+    <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-5 animate-fade-in-up animation-delay-500 mb-10 sm:mb-12">
+      <a href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 text-sm sm:text-base">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.934 1.479c-.339.195-.659.475-.92.779-1.51 1.884-1.884 4.46-.477 6.744 1.407 2.284 3.88 3.685 6.514 3.685.955 0 1.888-.195 2.748-.56l.405-.163 3.958 1.037-1.06-3.9.195-.309a9.816 9.816 0 001.946-5.411c0-5.519-4.506-10.009-10.049-10.009z"></path>
+        </svg>
+        WhatsApp
       </a>
 
-      <a href="#projects" (click)="$event.preventDefault(); scrollTo('projects')" class="px-8 py-4 border-2 border-indigo-400 text-indigo-600 dark:text-brand-indigo font-semibold rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/20 transition-all">
+      <a href="#projects" (click)="$event.preventDefault(); scrollTo('projects')" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-indigo-400 text-indigo-600 dark:text-brand-indigo font-semibold rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/20 transition-all text-sm sm:text-base">
         Ver proyectos
       </a>
 
-      <a href="files/profile.pdf" download target="_blank" rel="noopener noreferrer" class="px-8 py-4 text-gray-700 dark:text-brand-muted font-semibold rounded-xl hover:text-cyan-600 dark:hover:text-brand-cyan transition-colors">
+      <a href="files/profile.pdf" download target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-gray-700 dark:text-brand-muted font-semibold rounded-xl hover:text-cyan-600 dark:hover:text-brand-cyan transition-colors text-sm sm:text-base">
         Descargar CV
       </a>
     </div>
 
-    <!-- Iconos sociales -->
-    <div class="flex justify-center gap-8 mt-12">
-      <a href="https://github.com/JFredMC" target="_blank" rel="noopener noreferrer" class="group" aria-label="GitHub">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
-          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="w-6 h-6" />
-        </div>
-      </a>
-      <a href="https://www.linkedin.com/in/jfredmc/" target="_blank" rel="noopener noreferrer" class="group" aria-label="LinkedIn">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
-          <img src="https://cdn-icons-png.flaticon.com/128/174/174857.png" alt="LinkedIn" class="w-6 h-6" />
-        </div>
-      </a>
-      <a href="mailto:maquiloncordoba@hotmail.com" class="group">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v-2.25a2.25 2.25 0 00-2.25-2.25h-15a2.25 2.25 0 00-2.25 2.25v2.25" />
+    <!-- Iconos sociales - MOBILE FRIENDLY -->
+    <div class="flex justify-center gap-4 sm:gap-6 md:gap-8 mt-10 sm:mt-12">
+      <!-- WhatsApp -->
+      <a href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar." target="_blank" rel="noopener noreferrer" class="group" aria-label="WhatsApp">
+        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
+          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.934 1.479c-.339.195-.659.475-.92.779-1.51 1.884-1.884 4.46-.477 6.744 1.407 2.284 3.88 3.685 6.514 3.685.955 0 1.888-.195 2.748-.56l.405-.163 3.958 1.037-1.06-3.9.195-.309a9.816 9.816 0 001.946-5.411c0-5.519-4.506-10.009-10.049-10.009z"></path>
           </svg>
         </div>
       </a>
-      <a href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar." target="_blank" rel="noopener noreferrer" class="group" aria-label="WhatsApp">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
-          <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.934 1.479c-.339.195-.659.475-.92.779-1.51 1.884-1.884 4.46-.477 6.744 1.407 2.284 3.88 3.685 6.514 3.685.955 0 1.888-.195 2.748-.56l.405-.163 3.958 1.037-1.06-3.9.195-.309a9.816 9.816 0 001.946-5.411c0-5.519-4.506-10.009-10.049-10.009z" />
+      <!-- GitHub -->
+      <a href="https://github.com/JFredMC" target="_blank" rel="noopener noreferrer" class="group" aria-label="GitHub">
+        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-gray-800 dark:bg-gray-700 hover:bg-gray-900 dark:hover:bg-gray-600 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
+          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+          </svg>
+        </div>
+      </a>
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/jfredmc/" target="_blank" rel="noopener noreferrer" class="group" aria-label="LinkedIn">
+        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-blue-600 hover:bg-blue-700 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
+          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.002 1.413-.103.249-.129.597-.129.946v5.446h-3.554s.05-8.833 0-9.749h3.554v1.381c.432-.666 1.202-1.608 2.923-1.608 2.135 0 3.735 1.39 3.735 4.38v5.596zM5.337 6.685c-1.144 0-1.915-.759-1.915-1.71 0-.956.77-1.71 1.958-1.71 1.187 0 1.914.754 1.939 1.71 0 .951-.752 1.71-1.982 1.71zm1.582 13.767H3.715V8.403h3.204v11.049zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path>
+          </svg>
+        </div>
+      </a>
+      <!-- Email -->
+      <a href="mailto:maquiloncordoba@hotmail.com" class="group" aria-label="Correo">
+        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-red-500 hover:bg-red-600 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
+          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
           </svg>
         </div>
       </a>
