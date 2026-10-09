@@ -14,9 +14,10 @@
       @for (method of methods; track method.id) {
         <button
           type="button"
-          (click)="openDonation(method)"
-          class="group text-left rounded-3xl border border-gray-200/80 bg-white/80 p-6 shadow-lg shadow-slate-200/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-900/70 dark:shadow-none"
-          aria-label="Donar con {{ method.title }}"
+          (click)="openDonationModal(method.id)"
+          [disabled]="!method.isAvailable"
+          class="group text-left rounded-3xl border border-gray-200/80 bg-white/80 p-6 shadow-lg shadow-slate-200/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-900/70 dark:shadow-none disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+          [attr.aria-label]="method.isAvailable ? 'Donar con ' + method.title : method.title + ' próximamente'"
         >
           <div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br {{ method.accent }} text-2xl shadow-lg shadow-slate-300/30 dark:shadow-none">
             {{ method.badge }}
@@ -24,21 +25,36 @@
 
           <div class="mb-3 flex items-center justify-between gap-3">
             <h3 class="text-2xl font-display font-bold text-gray-900 dark:text-white">{{ method.title }}</h3>
-            <span class="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
-              {{ method.currency }}
-            </span>
+            <div class="flex gap-2">
+              @if (method.recommended) {
+                <span class="rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-2.5 py-1 text-xs font-bold uppercase tracking-[0.12em] text-amber-900">
+                  Recomendado
+                </span>
+              }
+              @if (!method.isAvailable) {
+                <span class="rounded-full border border-slate-400 bg-slate-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300">
+                  Próximamente
+                </span>
+              } @else {
+                <span class="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  {{ method.currency }}
+                </span>
+              }
+            </div>
           </div>
 
           <p class="text-base leading-7 text-gray-700 dark:text-brand-muted">
             {{ method.description }}
           </p>
 
-          <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-amber-700 transition-colors group-hover:text-amber-600 dark:text-amber-300">
-            Donar con {{ method.title }}
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
+          @if (method.isAvailable) {
+            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-amber-700 transition-colors group-hover:text-amber-600 dark:text-amber-300">
+              Donar con {{ method.title }}
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          }
         </button>
       }
     </div>
@@ -47,4 +63,87 @@
       {{ note }}
     </div>
   </div>
+
+  <!-- Modal de donación -->
+  @if (showModal) {
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" (click)="closeDonationModal()">
+      <div class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-slate-900" (click)="$event.stopPropagation()">
+        <div class="mb-6">
+          <h3 class="text-2xl font-display font-bold text-gray-900 dark:text-white">Apoya con {{ selectedMethod.title }}</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-brand-muted">{{ selectedMethod.description }}</p>
+        </div>
+
+        <!-- Selector de moneda -->
+        <div class="mb-6">
+          <p class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">Selecciona una cantidad:</p>
+          <div class="grid grid-cols-2 gap-3">
+            @for (amount of selectedMethod.amountOptions; track amount) {
+              <button
+                type="button"
+                (click)="setPresetAmount(amount)"
+                [class.ring-2]="selectedAmount === amount"
+                [class.ring-amber-500]="selectedAmount === amount"
+                class="rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-100 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+              >
+                {{ selectedMethod.currency === 'COP' ? (amount | number: '1.0-0') : '$' + amount }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Monto personalizado -->
+        <div class="mb-6">
+          <label class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">O ingresa un monto personalizado:</label>
+          <div class="flex gap-2">
+            <input
+              type="number"
+              [(ngModel)]="customAmount"
+              [placeholder]="'Ej: ' + selectedMethod.amountOptions[1]"
+              class="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-white"
+              [attr.min]="selectedMethod.currency === 'COP' ? 1000 : 1"
+            />
+            <button
+              type="button"
+              (click)="applyCustomAmount()"
+              class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
+            >
+              Aplicar
+            </button>
+          </div>
+        </div>
+
+        <!-- Resumen -->
+        <div class="mb-6 rounded-xl bg-gray-50 p-4 dark:bg-slate-800">
+          <p class="text-xs text-gray-600 dark:text-gray-400">Monto a donar:</p>
+          <p class="text-2xl font-bold text-gray-900 dark:text-white">
+            {{ selectedMethod.currency === 'COP' ? (selectedAmount | number: '1.0-0') + ' COP' : '$' + selectedAmount + ' USD' }}
+          </p>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="flex gap-3">
+          <button
+            type="button"
+            (click)="closeDonationModal()"
+            class="flex-1 rounded-lg border border-gray-300 bg-white px-4 py-3 font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            (click)="donate()"
+            [disabled]="isProcessing"
+            class="flex-1 rounded-lg bg-gradient-to-r from-amber-400 to-yellow-500 px-4 py-3 font-semibold text-amber-900 transition-all hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            @if (isProcessing) {
+              <span class="inline-block animate-spin mr-2">⏳</span>
+              Procesando...
+            } @else {
+              Donar {{ selectedMethod.currency === 'COP' ? (selectedAmount | number: '1.0-0') + ' COP' : '$' + selectedAmount + ' USD' }}
+            }
+          </button>
+        </div>
+      </div>
+    </div>
+  }
 </section>

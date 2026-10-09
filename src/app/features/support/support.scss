@@ -1,3 +1,35 @@
 section {
   scroll-margin-top: 7rem;
 }
+
+// Animación de fade-in para el modal
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInBg {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+// Aplicar animación al modal
+:host ::ng-deep {
+  .fixed.inset-0 {
+    animation: fadeInBg 0.3s ease-out;
+  }
+
+  .fixed.inset-0 > div {
+    animation: fadeIn 0.3s ease-out;
+  }
+}

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { WompiService } from '../../shared/services/wompi.service';
 
 type DonationMethod = {
   id: string;
@@ -7,10 +8,10 @@ type DonationMethod = {
   description: string;
   badge: string;
   currency: 'COP' | 'USD';
-  link: string;
   accent: string;
   recommended?: boolean;
   amountOptions: number[];
+  isAvailable: boolean;
 };
 
 @Component({
@@ -21,6 +22,8 @@ type DonationMethod = {
   styleUrl: './support.scss',
 })
 export class Support {
+  private wompiService = inject(WompiService);
+
   readonly methods: DonationMethod[] = [
     {
       id: 'wompi',
@@ -28,10 +31,10 @@ export class Support {
       description: 'La mejor opción para apoyar desde Colombia con pagos locales y transferencias seguras.',
       badge: '🇨🇴',
       currency: 'COP',
-      link: 'https://www.wompi.co/',
       accent: 'from-amber-400 to-yellow-500',
       recommended: true,
       amountOptions: [10000, 25000, 50000, 100000],
+      isAvailable: true,
     },
     {
       id: 'stripe',
@@ -39,9 +42,9 @@ export class Support {
       description: 'Ideal para donaciones internacionales con tarjeta de crédito y pagos globales.',
       badge: '🌍',
       currency: 'USD',
-      link: 'https://donate.stripe.com/',
       accent: 'from-cyan-400 to-indigo-500',
       amountOptions: [5, 10, 25, 50],
+      isAvailable: false,
     },
     {
       id: 'paypal',
@@ -49,20 +52,35 @@ export class Support {
       description: 'Alternativa rápida para quienes prefieren PayPal o están fuera de Colombia.',
       badge: '💳',
       currency: 'USD',
-      link: 'https://www.paypal.com/donate',
       accent: 'from-blue-500 to-indigo-600',
       amountOptions: [5, 10, 25, 50],
+      isAvailable: false,
     },
   ];
 
-  readonly note = 'Recomendación: usa Wompi para Colombia y Stripe para apoyar desde fuera del país.';
+  readonly note = 'Wompi está activo. Stripe y PayPal se configurarán próximamente.';
 
   selectedMethodId = 'wompi';
   selectedAmount = 25000;
   customAmount = '';
+  showModal = false;
+  isProcessing = false;
 
   get selectedMethod(): DonationMethod {
     return this.methods.find((method) => method.id === this.selectedMethodId) ?? this.methods[0];
+  }
+
+  openDonationModal(methodId: string): void {
+    this.selectedMethodId = methodId;
+    const method = this.selectedMethod;
+    this.selectedAmount = method.amountOptions[1] ?? 0;
+    this.customAmount = '';
+    this.showModal = true;
+  }
+
+  closeDonationModal(): void {
+    this.showModal = false;
+    this.customAmount = '';
   }
 
   selectMethod(methodId: string): void {
@@ -89,25 +107,32 @@ export class Support {
 
   donate(): void {
     const method = this.selectedMethod;
-    const amount = this.selectedAmount;
-    const amountLabel = method.currency === 'COP' ? `${amount.toLocaleString('es-CO')} COP` : `$${amount} USD`;
-    const message = encodeURIComponent(`Hola, quiero apoyar a JFredDev con ${amountLabel} via ${method.title}.`);
 
-    const baseUrl = method.link;
-    const donationUrl =
-      method.id === 'paypal'
-        ? `${baseUrl}?amount=${amount}&currency=USD&no_shipping=1`
-        : method.id === 'stripe'
-          ? `${baseUrl}?amount=${amount}`
-          : `${baseUrl}?amount=${amount}`;
+    if (!method.isAvailable) {
+      alert(`${method.title} aún no está disponible. Por favor, usa Wompi o contáctame por WhatsApp.`);
+      return;
+    }
 
-    const fallbackUrl = `https://wa.me/573106643807?text=${message}`;
-    window.open(donationUrl, '_blank', 'noopener,noreferrer');
+    this.isProcessing = true;
 
-    if (baseUrl.includes('donate') || baseUrl.includes('stripe.com')) {
+    if (method.id === 'wompi') {
+      this.wompiService.openCheckout(this.selectedAmount, method.currency);
       setTimeout(() => {
-        window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
-      }, 250);
+        this.closeDonationModal();
+        this.isProcessing = false;
+      }, 500);
+    } else {
+      // Fallback para otros métodos
+      const amountLabel =
+        method.currency === 'COP'
+          ? `${this.selectedAmount.toLocaleString('es-CO')} COP`
+          : `$${this.selectedAmount} USD`;
+      const message = encodeURIComponent(
+        `Hola Jhon, quiero apoyar a JFredDev con ${amountLabel} via ${method.title}.`
+      );
+      window.open(`https://wa.me/573106643807?text=${message}`, '_blank', 'noopener,noreferrer');
+      this.closeDonationModal();
+      this.isProcessing = false;
     }
   }
 }
