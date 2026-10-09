@@ -1,0 +1,34 @@
+<img
+  class="absolute inset-0 w-full h-full object-cover blur-md scale-105 transition-opacity duration-500"
+  [class.opacity-0]="loaded() || failed()"
+  [src]="placeholder"
+  alt=""
+  aria-hidden="true"
+/>
+
+@if (failed()) {
+  <div class="absolute inset-0 flex items-center justify-center text-sm text-gray-500 dark:text-gray-300" role="img" [attr.aria-label]="alt()">
+    Imagen no disponible
+  </div>
+} @else if (inView()) {
+  <picture>
+    @if (sources().useWebp) {
+      <source type="image/webp" [attr.srcset]="sources().webpSrcset" [attr.sizes]="sizes()" />
+    }
+    <img
+      [src]="sources().src"
+      [attr.srcset]="sources().srcset || null"
+      [attr.sizes]="sources().srcset ? sizes() : null"
+      [alt]="alt()"
+      [attr.title]="imgTitle() || null"
+      [attr.width]="width()"
+      [attr.height]="height()"
+      [attr.loading]="useLazyAttribute() ? 'lazy' : 'eager'"
+      [attr.fetchpriority]="priority() ? 'high' : null"
+      decoding="async"
+      [class]="imgClass() + ' image-fade ' + (loaded() ? 'image-fade-in' : '')"
+      (load)="onLoad($event)"
+      (error)="onError()"
+    />
+  </picture>
+}
