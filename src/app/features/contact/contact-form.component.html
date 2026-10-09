@@ -8,7 +8,7 @@
       formControlName="name"
       type="text" autocomplete="name" autocapitalize="words" spellcheck="false" placeholder="Tu nombre completo"
       class="w-full px-4 py-3 text-base min-h-11 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
-      [class.border-red-500]="showError('name')"
+      [class.!border-red-500]="showError('name')"
       required
       aria-required="true"
       [attr.aria-invalid]="showError('name')"
@@ -29,7 +29,7 @@
       formControlName="email"
       type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="tu.email@example.com"
       class="w-full px-4 py-3 text-base min-h-11 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
-      [class.border-red-500]="showError('email')"
+      [class.!border-red-500]="showError('email')"
       required
       aria-required="true"
       [attr.aria-invalid]="showError('email')"
@@ -60,7 +60,7 @@
       formControlName="message"
       rows="5" autocapitalize="sentences" spellcheck="true" placeholder="Cuéntame sobre tu proyecto o pregunta..."
       class="w-full px-4 py-3 text-base min-h-11 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
-      [class.border-red-500]="showError('message')"
+      [class.!border-red-500]="showError('message')"
       required
       aria-required="true"
       [attr.aria-invalid]="showError('message')"

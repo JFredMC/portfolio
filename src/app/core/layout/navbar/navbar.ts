@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
 import { ThemeService } from '../../../shared/services/theme.service';
 import { exitDuration, scrollBehavior } from '../../../shared/utils/animation.util';
 
@@ -13,8 +13,13 @@ export class Navbar {
   public themeService = inject(ThemeService);
   @ViewChild('menuButton') menuButton?: ElementRef<HTMLButtonElement>;
   isMenuOpen = false;
-  darkMode = false;
   isMenuClosing = signal(false);
+  themeLabel = computed(() => {
+    const mode = this.themeService.mode();
+    if (mode === 'light') return 'Tema claro activo. Cambiar al tema oscuro';
+    if (mode === 'dark') return 'Tema oscuro activo. Cambiar al tema del sistema';
+    return 'Tema del sistema activo. Cambiar al tema claro';
+  });
   private closeTimer: ReturnType<typeof setTimeout> | null = null;
 
   toggleMenu() {
@@ -52,7 +57,7 @@ export class Navbar {
   }
 
   toggleTheme() {
-    this.themeService.toggleTheme();
+    this.themeService.cycleTheme();
   }
 
   scrollTo(sectionId: string) {

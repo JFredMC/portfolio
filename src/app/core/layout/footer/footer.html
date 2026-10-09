@@ -70,10 +70,8 @@
     <!-- Botón volver arriba -->
     <button 
       (click)="toggleScroll()"
-      class="footer-fab fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-40 sm:z-50 min-h-11 min-w-11 bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-      [ngClass]="{
-        'bg-purple-600 hover:bg-purple-700': !isAtTop
-      }"
+      class="footer-fab fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-40 sm:z-50 min-h-11 min-w-11 text-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      [ngClass]="isAtTop ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-purple-600 hover:bg-purple-700'"
       [attr.aria-label]="isAtTop ? 'Ir al final' : 'Volver arriba'"
     >
       <!-- Ícono flecha arriba cuando NO estamos arriba -->
