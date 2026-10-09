@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Component, inject } from '@angular/core';
 import { WompiService } from '../../shared/services/wompi.service';
 
@@ -17,7 +18,7 @@ type DonationMethod = {
 @Component({
   selector: 'app-support',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './support.html',
   styleUrl: './support.scss',
 })
@@ -122,7 +123,6 @@ export class Support {
         this.isProcessing = false;
       }, 500);
     } else {
-      // Fallback para otros métodos
       const amountLabel =
         method.currency === 'COP'
           ? `${this.selectedAmount.toLocaleString('es-CO')} COP`
