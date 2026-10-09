@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, afterNextRender, computed, effect, inject, input, signal } from '@angular/core';
+import { TPipe } from '../i18n/t.pipe';
 import { ImageOptimizationService } from '../services/image-optimization.service';
 
 @Component({
   selector: 'app-image-optimized',
   templateUrl: './image-optimized.html',
   styleUrl: './image-optimized.scss',
+  imports: [TPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'block relative overflow-hidden', '[style.aspect-ratio]': 'aspectRatio()' },
 })

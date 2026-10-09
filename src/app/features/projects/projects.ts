@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ImageOptimized } from '../../shared/components/image-optimized';
+import { TPipe } from '../../shared/i18n/t.pipe';
 import { IProject } from './interfaces/project.interface';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
-  imports: [CommonModule, ImageOptimized],
+  imports: [CommonModule, ImageOptimized, TPipe],
 })
 export class Projects {
   readonly statusLabels: Record<IProject['status'], string> = {

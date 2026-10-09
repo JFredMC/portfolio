@@ -1,16 +1,19 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { I18nService } from '../../shared/i18n/i18n.service';
+import { TPipe } from '../../shared/i18n/t.pipe';
 import { EmailService } from '../../shared/services/email.service';
 
 @Component({
   selector: 'app-contact-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TPipe],
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.scss'
 })
 export class ContactFormComponent {
   private readonly fb = inject(FormBuilder);
   private readonly emailService = inject(EmailService);
+  private readonly i18n = inject(I18nService);
 
   readonly subjects = [
     'Consulta general',
@@ -71,9 +74,9 @@ export class ContactFormComponent {
     if (!field.errors || !field.touched) return '';
     const labels = { name: 'Nombre', email: 'Email', message: 'Mensaje' };
 
-    if (field.errors['required']) return `${labels[fieldName]} es requerido`;
-    if (field.errors['email']) return 'Email no válido';
-    if (field.errors['minlength']) return `Mínimo ${field.errors['minlength'].requiredLength} caracteres`;
-    return 'Campo inválido';
+    if (field.errors['required']) return this.i18n.t('{field} es requerido', { field: this.i18n.t(labels[fieldName]) });
+    if (field.errors['email']) return this.i18n.t('Email no válido');
+    if (field.errors['minlength']) return this.i18n.t('Mínimo {min} caracteres', { min: field.errors['minlength'].requiredLength });
+    return this.i18n.t('Campo inválido');
   }
 }

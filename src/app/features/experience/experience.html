@@ -3,10 +3,10 @@
     <!-- Encabezado mejorado -->
     <div class="text-center mb-16">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
-        Trayectoria
+        {{ 'Trayectoria' | t }}
       </h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        Dónde construyo y qué queda operando
+        {{ 'Dónde construyo y qué queda operando' | t }}
       </p>
       <div class="w-24 h-1 bg-indigo-500 dark:bg-indigo-400 mx-auto mt-6 rounded-full"></div>
     </div>
@@ -21,7 +21,7 @@
             <!-- Contenedor de fecha con efecto -->
             <div class="w-full md:w-1/2 mb-4 md:mb-0 md:pr-16 md:text-right">
               <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg inline-block max-w-xs transform hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-transform duration-300">
-                <p class="text-sm font-semibold text-indigo-500 dark:text-indigo-400">{{ exp.date }}</p>
+                <p class="text-sm font-semibold text-indigo-500 dark:text-indigo-400">{{ exp.date | t }}</p>
               </div>
             </div>
             
@@ -44,23 +44,23 @@
                     <img src="{{ exp.company_logo }}" alt="" aria-hidden="true" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8 object-contain">
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">{{ exp.title }}</h3>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">{{ exp.title | t }}</h3>
                     <p class="text-lg font-medium text-gray-700 dark:text-gray-300">
-                      {{ exp.company }} <span class="text-sm text-gray-500 dark:text-gray-400">— {{ exp.location }}</span>
+                      {{ exp.company }} <span class="text-sm text-gray-500 dark:text-gray-400">— {{ exp.location | t }}</span>
                     </p>
                   </div>
                 </div>
                 
                 <!-- Descripción -->
                 <div class="relative z-10 mt-4">
-                  <p class="text-gray-700 dark:text-gray-300 whitespace-pre-line mb-4">{{ exp.description }}</p>
+                  <p class="text-gray-700 dark:text-gray-300 whitespace-pre-line mb-4">{{ exp.description | t }}</p>
                   @if (exp.clients) {
-                    <p class="text-gray-700 dark:text-gray-300 mb-4"><span class="font-semibold">Clientes:</span> {{ exp.clients }}</p>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4"><span class="font-semibold">{{ 'Clientes:' | t }}</span> {{ exp.clients | t }}</p>
                   }
                   
                   <!-- Tecnologías usadas -->
                   <div class="mt-6">
-                    <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wider">Tecnologías utilizadas:</h4>
+                    <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wider">{{ 'Tecnologías utilizadas:' | t }}</h4>
                     <div class="flex flex-wrap gap-2">
                       @for(tech of exp.technologies_used; track tech;) {
                         <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm rounded-full">{{ tech }}</span>
@@ -80,13 +80,13 @@
         <div class="mt-20">
           <div class="text-center mb-10">
             <p class="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-700 dark:text-brand-cyan mb-3">{{ exp.company }}</p>
-            <h3 class="text-2xl md:text-3xl font-display font-extrabold text-gray-900 dark:text-white">Ámbitos de producto</h3>
+            <h3 class="text-2xl md:text-3xl font-display font-extrabold text-gray-900 dark:text-white">{{ 'Ámbitos de producto' | t }}</h3>
           </div>
-          <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-label="Ámbitos de producto en MET">
+          <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" [attr.aria-label]="'Ámbitos de producto en MET' | t">
             @for (system of exp.systems; track system.name) {
               <li class="system-card rounded-2xl p-6 bg-white dark:bg-brand-surface border border-gray-200 dark:border-cyan-400/20 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] hover:border-cyan-400/60 transition-[transform,box-shadow] duration-300">
                 <h4 class="text-xl font-display font-bold bg-gradient-to-r from-cyan-700 to-indigo-700 dark:from-brand-cyan dark:to-brand-indigo bg-clip-text text-transparent mb-3">{{ system.name }}</h4>
-                <p class="text-gray-700 dark:text-brand-muted leading-relaxed">{{ system.description }}</p>
+                <p class="text-gray-700 dark:text-brand-muted leading-relaxed">{{ system.description | t }}</p>
               </li>
             }
           </ul>

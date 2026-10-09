@@ -5,7 +5,7 @@
       href="#home"
       (click)="$event.preventDefault(); scrollTo('home')"
       class="flex items-center gap-3 hover:scale-105 active:scale-95 transition-transform duration-300 cursor-pointer"
-      aria-label="JFredDev, ir al inicio"
+      [attr.aria-label]="'JFredDev, ir al inicio' | t"
     >
       <img src="images/logo.svg" alt="" aria-hidden="true" width="36" height="36" class="w-9 h-9" />
       <span class="text-2xl md:text-3xl font-display font-extrabold bg-gradient-to-r from-brand-cyan to-brand-indigo bg-clip-text text-transparent">JFredDev</span>
@@ -18,7 +18,7 @@
         (click)="$event.preventDefault(); scrollTo('home')"
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 group cursor-pointer"
       >
-        Inicio
+        {{ 'Inicio' | t }}
         <span class="absolute -bottom-1 left-0 h-0.5 bg-indigo-500 dark:bg-indigo-400 w-full scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
       </a>
 
@@ -27,7 +27,7 @@
         (click)="$event.preventDefault(); scrollTo('about')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 group cursor-pointer"
       >
-        Sobre mí
+        {{ 'Sobre mí' | t }}
         <span class="absolute -bottom-1 left-0 h-0.5 bg-indigo-500 dark:bg-indigo-400 w-full scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
       </a>
 
@@ -36,7 +36,7 @@
         (click)="$event.preventDefault(); scrollTo('experience')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 group cursor-pointer"
       >
-        Experiencia
+        {{ 'Experiencia' | t }}
         <span class="absolute -bottom-1 left-0 h-0.5 bg-indigo-500 dark:bg-indigo-400 w-full scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
       </a>
 
@@ -45,7 +45,7 @@
         (click)="$event.preventDefault(); scrollTo('services')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 group cursor-pointer"
       >
-        Servicios
+        {{ 'Servicios' | t }}
         <span class="absolute -bottom-1 left-0 h-0.5 bg-indigo-500 dark:bg-indigo-400 w-full scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
       </a>
 
@@ -54,7 +54,7 @@
         (click)="$event.preventDefault(); scrollTo('projects')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 group cursor-pointer"
       >
-        Proyectos
+        {{ 'Proyectos' | t }}
         <span class="absolute -bottom-1 left-0 h-0.5 bg-indigo-500 dark:bg-indigo-400 w-full scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
       </a>
 
@@ -63,7 +63,7 @@
         (click)="$event.preventDefault(); scrollTo('support')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-amber-700 dark:hover:text-amber-300 transition-colors duration-300 group cursor-pointer"
       >
-        Apoya
+        {{ 'Apoya' | t }}
         <span class="absolute -bottom-1 left-0 h-0.5 bg-amber-500 dark:bg-amber-400 w-full scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
       </a>
 
@@ -72,14 +72,25 @@
         (click)="$event.preventDefault(); scrollTo('contact')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors duration-300 group cursor-pointer"
       >
-        Contacto
+        {{ 'Contacto' | t }}
         <span class="absolute -bottom-1 left-0 h-0.5 bg-cyan-500 dark:bg-cyan-400 w-full scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
       </a>
+
+      <!-- Selector de idioma en desktop -->
+      <button
+        type="button"
+        (click)="i18n.toggleLang()"
+        class="ml-4 px-3 min-h-11 min-w-11 inline-flex items-center justify-center rounded-full shadow-sm font-semibold text-sm text-gray-800 dark:text-gray-100 bg-gray-200/60 dark:bg-gray-700/50 hover:bg-gray-300/80 dark:hover:bg-gray-600/70 transition-colors duration-150 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+        [attr.aria-label]="languageLabel()"
+        [attr.lang]="i18n.lang() === 'es' ? 'en' : 'es'"
+      >
+        {{ i18n.lang() === 'es' ? 'EN' : 'ES' }}
+      </button>
 
       <!-- Theme toggle en desktop -->
       <button 
         (click)="themeService.cycleTheme()" 
-        class="ml-4 p-3 min-h-11 min-w-11 inline-flex items-center justify-center rounded-full bg-gray-200/60 dark:bg-gray-700/50 hover:bg-gray-300/80 dark:hover:bg-gray-600/70 transition-colors duration-150 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+        class="-ml-5 p-3 min-h-11 min-w-11 inline-flex items-center justify-center rounded-full bg-gray-200/60 dark:bg-gray-700/50 hover:bg-gray-300/80 dark:hover:bg-gray-600/70 transition-colors duration-150 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
         [attr.aria-label]="themeLabel()"
       >
         @if (themeService.mode() === 'system') {
@@ -100,6 +111,17 @@
 
     <!-- Controles móviles (theme + hamburguesa) -->
     <div class="flex items-center gap-3 md:hidden">
+      <!-- Selector de idioma móvil -->
+      <button
+        type="button"
+        (click)="i18n.toggleLang()"
+        class="px-3 min-h-11 min-w-11 inline-flex items-center justify-center rounded-full font-semibold text-sm text-gray-800 dark:text-gray-100 bg-gray-200/60 dark:bg-gray-700/50 hover:bg-gray-300/80 dark:hover:bg-gray-600/70 transition-colors duration-150 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+        [attr.aria-label]="languageLabel()"
+        [attr.lang]="i18n.lang() === 'es' ? 'en' : 'es'"
+      >
+        {{ i18n.lang() === 'es' ? 'EN' : 'ES' }}
+      </button>
+
       <!-- Theme toggle móvil -->
       <button 
         (click)="themeService.cycleTheme()" 
@@ -128,7 +150,7 @@
         (click)="toggleMenu()"
         [attr.aria-expanded]="isMenuOpen"
         aria-controls="mobile-navigation"
-        [attr.aria-label]="isMenuOpen ? 'Cerrar menú móvil' : 'Abrir menú móvil'"
+        [attr.aria-label]="(isMenuOpen ? 'Cerrar menú móvil' : 'Abrir menú móvil') | t"
       >
         @if (!isMenuOpen) {
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -145,7 +167,7 @@
 
   <!-- Menú móvil desplegable -->
   <div [class.hidden]="!isMenuOpen && !isMenuClosing()" [class.animate-fade-in-down]="isMenuOpen" [class.animate-fade-out-up]="isMenuClosing()" [attr.aria-hidden]="!isMenuOpen" [attr.inert]="isMenuOpen ? null : ''" class="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-gray-950/95 backdrop-blur-lg border-b border-gray-200/40 dark:border-gray-800/40 shadow-xl max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain">
-      <nav id="mobile-navigation" aria-label="Navegación móvil" class="max-w-7xl mx-auto px-5 py-4">
+      <nav id="mobile-navigation" [attr.aria-label]="'Navegación móvil' | t" class="max-w-7xl mx-auto px-5 py-4">
         <ul class="flex flex-col gap-3 text-lg font-medium">
           <li>
             <a 
@@ -153,7 +175,7 @@
               (click)="$event.preventDefault(); scrollTo('home'); closeMenu()"
               class="block min-h-11 py-3 px-4 active:bg-indigo-100 dark:active:bg-indigo-950 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors duration-150 cursor-pointer"
             >
-              Inicio
+              {{ 'Inicio' | t }}
             </a>
           </li>
           <li>
@@ -162,7 +184,7 @@
               (click)="$event.preventDefault(); scrollTo('about'); closeMenu()"
               class="block min-h-11 py-3 px-4 active:bg-indigo-100 dark:active:bg-indigo-950 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors duration-150 cursor-pointer"
             >
-              Sobre mí
+              {{ 'Sobre mí' | t }}
             </a>
           </li>
           <li>
@@ -171,7 +193,7 @@
               (click)="$event.preventDefault(); scrollTo('experience'); closeMenu()"
               class="block min-h-11 py-3 px-4 active:bg-indigo-100 dark:active:bg-indigo-950 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors duration-150 cursor-pointer"
             >
-              Experiencia
+              {{ 'Experiencia' | t }}
             </a>
           </li>
           <li>
@@ -180,7 +202,7 @@
               (click)="$event.preventDefault(); scrollTo('services'); closeMenu()"
               class="block min-h-11 py-3 px-4 active:bg-indigo-100 dark:active:bg-indigo-950 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors duration-150 cursor-pointer"
             >
-              Servicios
+              {{ 'Servicios' | t }}
             </a>
           </li>
           <li>
@@ -189,7 +211,7 @@
               (click)="$event.preventDefault(); scrollTo('projects'); closeMenu()"
               class="block min-h-11 py-3 px-4 active:bg-indigo-100 dark:active:bg-indigo-950 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors duration-150 cursor-pointer"
             >
-              Proyectos
+              {{ 'Proyectos' | t }}
             </a>
           </li>
           <li>
@@ -198,7 +220,7 @@
               (click)="$event.preventDefault(); scrollTo('support'); closeMenu()"
               class="block min-h-11 py-3 px-4 active:bg-amber-100 dark:active:bg-amber-950 text-amber-700 dark:text-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/30 rounded-xl transition-colors duration-150 cursor-pointer"
             >
-              Apoya
+              {{ 'Apoya' | t }}
             </a>
           </li>
           <li>
@@ -207,7 +229,7 @@
               (click)="$event.preventDefault(); scrollTo('contact'); closeMenu()"
               class="block min-h-11 py-3 px-4 active:bg-indigo-100 dark:active:bg-indigo-950 text-gray-800 dark:text-gray-100 hover:bg-cyan-50 dark:hover:bg-cyan-950/30 rounded-xl transition-colors duration-150 cursor-pointer"
             >
-              Contacto
+              {{ 'Contacto' | t }}
             </a>
           </li>
         </ul>

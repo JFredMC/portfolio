@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TPipe } from './shared/i18n/t.pipe';
 import { Navbar } from './core/layout/navbar/navbar';
 import { Footer } from './core/layout/footer/footer';
 import { About } from './features/about/about';
@@ -14,6 +15,7 @@ import { Services } from './features/services/services';
   templateUrl: './app.html',
   styleUrl: './app.scss',
   imports: [
+    TPipe,
     Navbar,
     Home,
     Footer,

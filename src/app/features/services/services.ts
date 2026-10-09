@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { TPipe } from '../../shared/i18n/t.pipe';
 import { scrollBehavior } from '../../shared/utils/animation.util';
 
 @Component({
   selector: 'app-services',
-  imports: [],
+  imports: [TPipe],
   templateUrl: './services.html',
   styleUrl: './services.scss'
 })

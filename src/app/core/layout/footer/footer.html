@@ -12,7 +12,7 @@
             JFredDev
           </h3>
         </div>
-        <p class="text-sm text-brand-muted mb-4">Sistemas que operan todos los días.</p>
+        <p class="text-sm text-brand-muted mb-4">{{ 'Sistemas que operan todos los días.' | t }}</p>
         <div class="flex gap-3">
           <a href="https://github.com/JFredMC" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center min-h-11 min-w-11 rounded-full" aria-label="GitHub">
             <svg aria-hidden="true" class="w-6 h-6 text-gray-300 group-hover:text-cyan-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -41,7 +41,7 @@
       </div>
 
       <!-- Columna 2: Enlaces rápidos -->
-      <nav class="text-center md:text-left" aria-label="Enlaces del pie de página">
+      <nav class="text-center md:text-left" [attr.aria-label]="'Enlaces del pie de página' | t">
         <ul class="flex flex-wrap justify-center md:justify-start gap-x-2 gap-y-1 text-sm">
           @for (link of links; track link.id) {
             <li>
@@ -50,7 +50,7 @@
                 (click)="scrollTo(link.id, $event)"
                 class="inline-flex items-center min-h-11 px-4 py-3 text-gray-300 underline underline-offset-4 hover:text-indigo-300 transition-colors cursor-pointer"
               >
-                {{ link.label }}
+                {{ link.label | t }}
               </a>
             </li>
           }
@@ -62,7 +62,7 @@
         <p class="text-sm text-gray-300">
           © {{ date | date:'yyyy' }} Jhon Maquilon. 
           <br class="sm:hidden" />
-          Turbo, Antioquia.
+          {{ 'Turbo, Antioquia.' | t }}
         </p>
       </div>
     </div>
@@ -72,7 +72,7 @@
       (click)="toggleScroll()"
       class="footer-fab fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-40 sm:z-50 min-h-11 min-w-11 text-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-400"
       [ngClass]="isAtTop ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-purple-600 hover:bg-purple-700'"
-      [attr.aria-label]="isAtTop ? 'Ir al final' : 'Volver arriba'"
+      [attr.aria-label]="(isAtTop ? 'Ir al final' : 'Volver arriba') | t"
     >
       <!-- Ícono flecha arriba cuando NO estamos arriba -->
       @if(!isAtTop) {

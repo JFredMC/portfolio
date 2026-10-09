@@ -2,12 +2,12 @@
 <section id="support" class="relative py-14 sm:py-20 md:py-24 bg-gradient-to-b from-white via-amber-50/60 to-cyan-50/60 dark:from-gray-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500">
   <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
     <div class="text-center mb-14">
-      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700 dark:text-amber-300 mb-4">Apoya mi trabajo</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700 dark:text-amber-300 mb-4">{{ 'Apoya mi trabajo' | t }}</p>
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-5">
-        Si este trabajo te sirve, puedes apoyar mi proceso.
+        {{ 'Si este trabajo te sirve, puedes apoyar mi proceso.' | t }}
       </h2>
       <p class="max-w-3xl mx-auto text-lg text-gray-700 dark:text-brand-muted">
-        Tu aporte me ayuda a mantener y seguir desarrollando proyectos personales y demos públicas.
+        {{ 'Tu aporte me ayuda a mantener y seguir desarrollando proyectos personales y demos públicas.' | t }}
       </p>
     </div>
 
@@ -18,7 +18,7 @@
           (click)="openDonationModal(method.id)"
           [disabled]="!method.isAvailable"
           class="group text-left rounded-3xl border border-gray-200/80 bg-white/80 p-6 shadow-lg shadow-slate-200/50 transition-[transform,box-shadow] duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-900/70 dark:shadow-none disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-          [attr.aria-label]="method.isAvailable ? 'Donar con ' + method.title : method.title + ' próximamente'"
+          [attr.aria-label]="(method.isAvailable ? 'Donar con {title}' : '{title} próximamente') | t: { title: method.title }"
         >
           <div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br {{ method.accent }} text-2xl shadow-lg shadow-slate-300/30 dark:shadow-none">
             {{ method.badge }}
@@ -29,12 +29,12 @@
             <div class="flex gap-2">
               @if (method.recommended) {
                 <span class="rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-2.5 py-1 text-xs font-bold uppercase tracking-[0.12em] text-amber-900">
-                  Recomendado
+                  {{ 'Recomendado' | t }}
                 </span>
               }
               @if (!method.isAvailable) {
                 <span class="rounded-full border border-slate-400 bg-slate-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                  Próximamente
+                  {{ 'Próximamente' | t }}
                 </span>
               } @else {
                 <span class="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
@@ -45,12 +45,12 @@
           </div>
 
           <p class="text-base leading-7 text-gray-700 dark:text-brand-muted">
-            {{ method.description }}
+            {{ method.description | t }}
           </p>
 
           @if (method.isAvailable) {
             <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-amber-700 transition-colors group-hover:text-amber-800 dark:text-amber-300">
-              Donar con {{ method.title }}
+              {{ 'Donar con {title}' | t: { title: method.title } }}
               <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="mt-10 rounded-2xl border border-dashed border-amber-300 bg-amber-50/80 px-5 py-4 text-center text-sm font-medium text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
-      {{ note }}
+      {{ note | t }}
     </div>
   </div>
 </section>
@@ -73,20 +73,20 @@
           type="button"
           (click)="closeDonationModal()"
           class="modal-close absolute right-2 top-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-slate-800"
-          aria-label="Cerrar"
+          [attr.aria-label]="'Cerrar' | t"
         >
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
         <div class="mb-6 pr-10">
-          <h3 id="donation-dialog-title" class="text-2xl font-display font-bold text-gray-900 dark:text-white">Apoya con {{ selectedMethod.title }}</h3>
-          <p id="donation-dialog-description" class="mt-2 text-sm text-gray-600 dark:text-brand-muted">{{ selectedMethod.description }}</p>
+          <h3 id="donation-dialog-title" class="text-2xl font-display font-bold text-gray-900 dark:text-white">{{ 'Apoya con {title}' | t: { title: selectedMethod.title } }}</h3>
+          <p id="donation-dialog-description" class="mt-2 text-sm text-gray-600 dark:text-brand-muted">{{ selectedMethod.description | t }}</p>
         </div>
 
         <form class="mb-6" novalidate (ngSubmit)="donate()">
         <div class="mb-6">
-          <p class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">Selecciona una cantidad:</p>
+          <p class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">{{ 'Selecciona una cantidad:' | t }}</p>
           <div class="grid grid-cols-2 gap-3">
             @for (amount of selectedMethod.amountOptions; track amount) {
               <button
@@ -105,7 +105,7 @@
         </div>
 
         <div class="mb-6">
-          <label for="donation-custom-amount" class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">O ingresa un monto personalizado:</label>
+          <label for="donation-custom-amount" class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ 'O ingresa un monto personalizado:' | t }}</label>
           <div class="flex gap-2">
             <input
               type="text"
@@ -126,11 +126,11 @@
               (click)="applyCustomAmount()"
               class="min-h-11 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
             >
-              Aplicar
+              {{ 'Aplicar' | t }}
             </button>
           </div>
           <p id="donation-amount-hint" class="mt-2 text-sm text-gray-700 dark:text-gray-300">
-            Ingresa un monto entero mínimo de {{ selectedMethod.currency === 'COP' ? '1.000 COP' : '1 USD' }}.
+            {{ 'Ingresa un monto entero mínimo de {amount}.' | t: { amount: selectedMethod.currency === 'COP' ? '1.000 COP' : '1 USD' } }}
           </p>
           @if (amountError) {
             <p id="donation-amount-error" class="mt-2 text-sm text-red-700 dark:text-red-300" role="alert">{{ amountError }}</p>
@@ -138,7 +138,7 @@
         </div>
 
         <div class="mb-6 rounded-xl bg-gray-50 p-4 dark:bg-slate-800">
-          <p class="text-xs text-gray-600 dark:text-gray-400">Monto a donar:</p>
+          <p class="text-xs text-gray-600 dark:text-gray-400">{{ 'Monto a donar:' | t }}</p>
           <p class="text-2xl font-bold text-gray-900 dark:text-white">
             {{ selectedMethod.currency === 'COP' ? (selectedAmount | number: '1.0-0') + ' COP' : '$' + selectedAmount + ' USD' }}
           </p>
@@ -150,7 +150,7 @@
             (click)="closeDonationModal()"
             class="flex-1 rounded-lg border border-gray-300 bg-white px-4 py-3 font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
           >
-            Cancelar
+            {{ 'Cancelar' | t }}
           </button>
           <button
             type="submit"
@@ -160,9 +160,9 @@
           >
             @if (isProcessing) {
               <span aria-hidden="true" class="inline-block animate-spin mr-2">⏳</span>
-              Procesando...
+              {{ 'Procesando...' | t }}
             } @else {
-              Donar {{ selectedMethod.currency === 'COP' ? (selectedAmount | number: '1.0-0') + ' COP' : '$' + selectedAmount + ' USD' }}
+              {{ 'Donar {amount}' | t: { amount: selectedMethod.currency === 'COP' ? (selectedAmount | number: '1.0-0') + ' COP' : '$' + selectedAmount + ' USD' } }}
             }
           </button>
         </div>
