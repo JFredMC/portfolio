@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { WompiService } from '../../shared/services/wompi.service';
 
 type DonationMethod = {
@@ -73,7 +73,6 @@ export class Support implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Verificar si hay una donación pendiente de confirmación
     const pending = this.wompiService.getPendingDonation();
     if (pending) {
       setTimeout(() => {
@@ -84,7 +83,6 @@ export class Support implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Limpiar al destruir componente
     this.wompiService.clearPendingDonation();
   }
 
@@ -138,14 +136,12 @@ export class Support implements OnInit, OnDestroy {
     this.isProcessing = true;
 
     if (method.id === 'wompi') {
-      // Usar Wompi Service para abrir checkout con monto correcto
       this.wompiService.openCheckout(this.selectedAmount, method.currency);
       setTimeout(() => {
         this.closeDonationModal();
         this.isProcessing = false;
       }, 500);
     } else {
-      // Fallback para otros métodos por WhatsApp
       const amountLabel =
         method.currency === 'COP'
           ? `${this.selectedAmount.toLocaleString('es-CO')} COP`
@@ -153,6 +149,7 @@ export class Support implements OnInit, OnDestroy {
       const message = encodeURIComponent(
         `Hola Jhon, quiero apoyar a JFredDev con ${amountLabel} via ${method.title}.`
       );
+
       window.open(`https://wa.me/573106643807?text=${message}`, '_blank', 'noopener,noreferrer');
       this.closeDonationModal();
       this.isProcessing = false;
