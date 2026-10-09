@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Navbar } from './core/layout/navbar/navbar';
 import { Footer } from './core/layout/footer/footer';
 import { About } from './features/about/about';
@@ -6,7 +6,6 @@ import { Projects } from './features/projects/projects';
 import { Home } from './features/home/home';
 import { Experience } from './features/experience/experience';
 import { Contact } from './features/contact/contact';
-import { Preloader } from './core/preloader/preloader';
 import { Support } from './features/support/support';
 
 @Component({
@@ -22,16 +21,8 @@ import { Support } from './features/support/support';
     Projects,
     Support,
     Contact,
-    Preloader
   ],
 })
 export class App {
-  @ViewChild('preloader') preloader!: Preloader;
   protected title = 'Portfolio';
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.preloader.hide();
-    }, 800);
-  }
 }

@@ -6,4 +6,5 @@ export interface IProject {
   codeLink: string;
   demoLink: string;
   status: 'completed' | 'in-progress' | 'planned';
+  featured?: boolean;
 }

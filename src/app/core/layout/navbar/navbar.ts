@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { ThemeService } from '../../../shared/services/theme.service';
 
 @Component({
@@ -15,6 +15,11 @@ export class Navbar {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  @HostListener('document:keydown.escape')
+  closeMenuOnEscape() {
+    this.isMenuOpen = false;
   }
 
   toggleTheme() {

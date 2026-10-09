@@ -6,7 +6,7 @@
         Si este trabajo te sirve, puedes apoyar mi proceso.
       </h2>
       <p class="max-w-3xl mx-auto text-lg text-gray-700 dark:text-brand-muted">
-        Construyo soluciones útiles para negocios, comunidades y proyectos que necesitan tecnología que funcione en la práctica.
+        Tu aporte me ayuda a mantener y seguir desarrollando proyectos personales y demos públicas.
       </p>
     </div>
 
@@ -65,11 +65,11 @@
   </div>
 
   @if (showModal) {
-    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" (click)="closeDonationModal()">
-      <div class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-slate-900" (click)="$event.stopPropagation()">
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" role="presentation" (click)="closeDonationModal()">
+      <div #donationDialog class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-slate-900" role="dialog" aria-modal="true" aria-labelledby="donation-dialog-title" aria-describedby="donation-dialog-description" tabindex="-1" (click)="$event.stopPropagation()">
         <div class="mb-6">
-          <h3 class="text-2xl font-display font-bold text-gray-900 dark:text-white">Apoya con {{ selectedMethod.title }}</h3>
-          <p class="mt-2 text-sm text-gray-600 dark:text-brand-muted">{{ selectedMethod.description }}</p>
+          <h3 id="donation-dialog-title" class="text-2xl font-display font-bold text-gray-900 dark:text-white">Apoya con {{ selectedMethod.title }}</h3>
+          <p id="donation-dialog-description" class="mt-2 text-sm text-gray-600 dark:text-brand-muted">{{ selectedMethod.description }}</p>
         </div>
 
         <div class="mb-6">
@@ -90,12 +90,17 @@
         </div>
 
         <div class="mb-6">
-          <label class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">O ingresa un monto personalizado:</label>
+          <label for="donation-custom-amount" class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">O ingresa un monto personalizado:</label>
           <div class="flex gap-2">
             <input
               type="number"
+              id="donation-custom-amount"
               [(ngModel)]="customAmount"
               [placeholder]="'Ej: ' + selectedMethod.amountOptions[1]"
+              step="1"
+              required
+              [attr.aria-invalid]="amountError ? 'true' : null"
+              [attr.aria-describedby]="amountError ? 'donation-amount-error' : null"
               class="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:placeholder-slate-400"
               [attr.min]="selectedMethod.currency === 'COP' ? 1000 : 1"
             />
@@ -107,6 +112,9 @@
               Aplicar
             </button>
           </div>
+          @if (amountError) {
+            <p id="donation-amount-error" class="mt-2 text-sm text-red-700 dark:text-red-300" role="alert">{{ amountError }}</p>
+          }
         </div>
 
         <div class="mb-6 rounded-xl bg-gray-50 p-4 dark:bg-slate-800">
