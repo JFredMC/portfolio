@@ -21,6 +21,14 @@ describe('Services', () => {
       .toBe('Contáctame para conversar sobre tu proyecto');
   });
 
+  it('describes the verified frontend and backend stack', () => {
+    const frontendDescription = fixture.nativeElement.querySelector('article p').textContent;
+
+    expect(frontendDescription).toContain('Angular especializado');
+    expect(frontendDescription).toContain('NestJS o Ruby on Rails');
+    expect(frontendDescription).not.toMatch(/React|Vue|Next\.js/);
+  });
+
   it('scrolls to contact while respecting the reduced-motion preference', () => {
     spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
     const target = document.createElement('div');
