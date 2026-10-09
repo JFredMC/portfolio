@@ -1,0 +1,117 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6" novalidate aria-label="Formulario de contacto">
+  <div>
+    <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+      Nombre <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
+    </label>
+    <input
+      id="name"
+      formControlName="name"
+      type="text" autocomplete="name" placeholder="Tu nombre completo"
+      class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+      [class.border-red-500]="showError('name')"
+      required
+      aria-required="true"
+      [attr.aria-invalid]="showError('name')"
+      [attr.aria-describedby]="showError('name') ? 'name-error' : null"
+     />
+    @if (showError('name')) {
+      <p id="name-error" class="text-red-600 dark:text-red-400 text-sm mt-1" role="alert">
+        {{ getErrorMessage('name') }}
+      </p>
+    }
+  </div>
+  <div>
+    <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+      Email <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
+    </label>
+    <input
+      id="email"
+      formControlName="email"
+      type="email" autocomplete="email" placeholder="tu.email@example.com"
+      class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+      [class.border-red-500]="showError('email')"
+      required
+      aria-required="true"
+      [attr.aria-invalid]="showError('email')"
+      [attr.aria-describedby]="showError('email') ? 'email-error' : null"
+     />
+    @if (showError('email')) {
+      <p id="email-error" class="text-red-600 dark:text-red-400 text-sm mt-1" role="alert">
+        {{ getErrorMessage('email') }}
+      </p>
+    }
+  </div>
+  <div>
+    <label for="subject" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+      Asunto <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
+    </label>
+    <select id="subject" formControlName="subject" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors" required aria-required="true">
+      @for (subj of subjects; track subj) {
+        <option [value]="subj">{{ subj }}</option>
+      }
+    </select>
+  </div>
+  <div>
+    <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+      Mensaje <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
+    </label>
+    <textarea
+      id="message"
+      formControlName="message"
+      rows="5" placeholder="Cuéntame sobre tu proyecto o pregunta..."
+      class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+      [class.border-red-500]="showError('message')"
+      required
+      aria-required="true"
+      [attr.aria-invalid]="showError('message')"
+      [attr.aria-describedby]="showError('message') ? 'message-error' : null"
+    ></textarea>
+    @if (showError('message')) {
+      <p id="message-error" class="text-red-600 dark:text-red-400 text-sm mt-1" role="alert">
+        {{ getErrorMessage('message') }}
+      </p>
+    }
+  </div>
+
+  <div aria-live="polite">
+    @if (submitMessage()) {
+      <div
+        class="p-4 rounded-lg border"
+        [class]="submitSuccess()
+          ? 'bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800'
+          : 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800'"
+        role="status"
+      >
+        <p
+          class="font-medium"
+          [class]="submitSuccess() ? 'text-green-800 dark:text-green-200' : 'text-red-800 dark:text-red-200'"
+        >
+          {{ submitMessage() }}
+        </p>
+      </div>
+    }
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="isSubmitting()"
+    class="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-500 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg transition-[transform,box-shadow] shadow-md hover:shadow-lg active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
+    [attr.aria-busy]="isSubmitting()"
+  >
+    @if (isSubmitting()) {
+      <span class="flex items-center justify-center gap-2">
+        <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Enviando...
+      </span>
+    } @else {
+      Enviar mensaje
+    }
+  </button>
+
+  <p class="text-xs text-gray-600 dark:text-gray-400 text-center">
+    Respetamos tu privacidad. Tu información será usada solo para responderte.
+  </p>
+</form>
