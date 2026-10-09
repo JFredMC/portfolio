@@ -1,0 +1,14 @@
+.image-fade {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.image-fade-in {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-fade {
+    transition: none;
+  }
+}
