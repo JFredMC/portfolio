@@ -1,0 +1,50 @@
+<section id="support" class="relative py-20 md:py-24 bg-gradient-to-b from-white via-amber-50/60 to-cyan-50/60 dark:from-gray-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-amber-600 dark:text-amber-400 mb-4">Apoya mi trabajo</p>
+      <h2 class="text-4xl md:text-5xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-5">
+        Si este trabajo te sirve, puedes apoyar mi proceso.
+      </h2>
+      <p class="max-w-3xl mx-auto text-lg text-gray-700 dark:text-brand-muted">
+        Construyo soluciones útiles para negocios, comunidades y proyectos que necesitan tecnología que funcione en la práctica.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      @for (method of methods; track method.id) {
+        <button
+          type="button"
+          (click)="openDonation(method)"
+          class="group text-left rounded-3xl border border-gray-200/80 bg-white/80 p-6 shadow-lg shadow-slate-200/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-900/70 dark:shadow-none"
+          aria-label="Donar con {{ method.title }}"
+        >
+          <div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br {{ method.accent }} text-2xl shadow-lg shadow-slate-300/30 dark:shadow-none">
+            {{ method.badge }}
+          </div>
+
+          <div class="mb-3 flex items-center justify-between gap-3">
+            <h3 class="text-2xl font-display font-bold text-gray-900 dark:text-white">{{ method.title }}</h3>
+            <span class="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+              {{ method.currency }}
+            </span>
+          </div>
+
+          <p class="text-base leading-7 text-gray-700 dark:text-brand-muted">
+            {{ method.description }}
+          </p>
+
+          <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-amber-700 transition-colors group-hover:text-amber-600 dark:text-amber-300">
+            Donar con {{ method.title }}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </button>
+      }
+    </div>
+
+    <div class="mt-10 rounded-2xl border border-dashed border-amber-300 bg-amber-50/80 px-5 py-4 text-center text-sm font-medium text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
+      {{ note }}
+    </div>
+  </div>
+</section>

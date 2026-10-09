@@ -16,6 +16,7 @@ export class Footer implements AfterViewInit {
     { id: 'about', label: 'Sobre mí' },
     { id: 'experience', label: 'Experiencia' },
     { id: 'projects', label: 'Proyectos' },
+    { id: 'support', label: 'Apoya' },
     { id: 'contact', label: 'Contacto' },
   ];
   

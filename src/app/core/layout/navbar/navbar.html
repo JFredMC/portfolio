@@ -46,6 +46,14 @@
       </a>
 
       <a 
+        (click)="scrollTo('support')" 
+        class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300 group cursor-pointer"
+      >
+        Apoya
+        <span class="absolute -bottom-1 left-0 h-0.5 bg-amber-500 dark:bg-amber-400 w-0 group-hover:w-full transition-all duration-400 ease-out"></span>
+      </a>
+
+      <a 
         href="#contact"
         (click)="$event.preventDefault(); scrollTo('contact')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300 group cursor-pointer"
@@ -57,7 +65,7 @@
       <!-- Theme toggle en desktop -->
       <button 
         (click)="themeService.toggleTheme()" 
-        class="ml-4 p-2.5 rounded-full bg-gray-200/60 dark:bg-gray-700/50 hover:bg-gray-300/80 dark:hover:bg-gray-600/70 transition-all duration-300 shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-indigo-400/50"
+        class="ml-4 p-2.5 rounded-full bg-gray-200/60 dark:bg-gray-700/50 hover:bg-gray-300/80 dark:hover:bg-gray-600/70 transition-all duration-300 shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
         aria-label="Cambiar tema"
       >
         @if (themeService.isDarkMode()) {
@@ -145,6 +153,14 @@
               class="block py-3 px-4 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors cursor-pointer"
             >
               Proyectos
+            </a>
+          </li>
+          <li>
+            <a 
+              (click)="scrollTo('support'); toggleMenu()" 
+              class="block py-3 px-4 text-amber-700 dark:text-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/30 rounded-xl transition-colors cursor-pointer"
+            >
+              Apoya
             </a>
           </li>
           <li>
