@@ -94,4 +94,8 @@ export class Projects {
 
   readonly featuredProjects = this.projects.filter((project) => project.featured);
   readonly otherProjects = this.projects.filter((project) => !project.featured);
+
+  statusLabel(status: IProject['status']): string {
+    return this.statusLabels[status];
+  }
 }

@@ -172,7 +172,8 @@
         ¿Listo para transformar tu proyecto?
       </h3>
       <a 
-        (click)="scrollTo('contact')" 
+        href="#contact"
+        (click)="$event.preventDefault(); scrollTo('contact')"
         class="inline-block bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
       >
         Contáctame ahora

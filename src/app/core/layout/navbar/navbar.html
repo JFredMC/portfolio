@@ -15,7 +15,7 @@
     <nav class="hidden md:flex items-center gap-8 lg:gap-10">
       <a 
         href="#home"
-        (click)="scrollTo('home')" 
+        (click)="$event.preventDefault(); scrollTo('home')"
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 group cursor-pointer"
       >
         Inicio

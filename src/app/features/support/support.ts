@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
 import { WompiService } from '../../shared/services/wompi.service';
 
 type DonationMethod = {
@@ -24,6 +24,7 @@ type DonationMethod = {
 })
 export class Support {
   wompiService = inject(WompiService);
+  @ViewChild('donationDialog') donationDialog?: ElementRef<HTMLDivElement>;
 
   readonly methods: DonationMethod[] = [
     {
@@ -37,35 +38,17 @@ export class Support {
       amountOptions: [10000, 25000, 50000, 100000],
       isAvailable: true,
     },
-    {
-      id: 'stripe',
-      title: 'Stripe',
-      description: 'Ideal para donaciones internacionales con tarjeta de crédito y pagos globales.',
-      badge: '🌍',
-      currency: 'USD',
-      accent: 'from-cyan-400 to-indigo-500',
-      amountOptions: [5, 10, 25, 50],
-      isAvailable: false,
-    },
-    {
-      id: 'paypal',
-      title: 'PayPal',
-      description: 'Alternativa rápida para quienes prefieren PayPal o están fuera de Colombia.',
-      badge: '💳',
-      currency: 'USD',
-      accent: 'from-blue-500 to-indigo-600',
-      amountOptions: [5, 10, 25, 50],
-      isAvailable: false,
-    },
   ];
 
-  readonly note = 'El pago se procesa en Wompi. Este portafolio no puede confirmar el resultado de la transacción.';
+  readonly note = 'Tu aporte ayuda a mantener y seguir desarrollando proyectos personales. El pago se procesa en Wompi; este portafolio no puede confirmar el resultado de la transacción.';
 
   selectedMethodId = 'wompi';
   selectedAmount = 25000;
   customAmount = '';
+  amountError = '';
   showModal = false;
   isProcessing = false;
+  private donationTrigger: HTMLElement | null = null;
 
   get selectedMethod(): DonationMethod {
     return this.methods.find((method) => method.id === this.selectedMethodId) ?? this.methods[0];
@@ -76,12 +59,53 @@ export class Support {
     const method = this.selectedMethod;
     this.selectedAmount = method.amountOptions[1] ?? 0;
     this.customAmount = '';
+    this.amountError = '';
+    this.donationTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     this.showModal = true;
+    setTimeout(() => this.donationDialog?.nativeElement.focus());
   }
 
   closeDonationModal(): void {
     this.showModal = false;
     this.customAmount = '';
+    this.amountError = '';
+    const trigger = this.donationTrigger;
+    this.donationTrigger = null;
+    setTimeout(() => trigger?.focus());
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleDialogKeydown(event: KeyboardEvent): void {
+    if (!this.showModal) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeDonationModal();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const dialog = this.donationDialog?.nativeElement;
+    if (!dialog) return;
+
+    const focusableElements = Array.from(
+      dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    );
+    const first = focusableElements[0];
+    const last = focusableElements[focusableElements.length - 1];
+
+    if (!first || !last) {
+      event.preventDefault();
+    } else if (event.shiftKey && (document.activeElement === first || document.activeElement === dialog)) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   selectMethod(methodId: string): void {
@@ -94,44 +118,33 @@ export class Support {
   setPresetAmount(amount: number): void {
     this.selectedAmount = amount;
     this.customAmount = '';
+    this.amountError = '';
   }
 
   applyCustomAmount(): void {
     const parsed = Number(this.customAmount);
-    if (!Number.isFinite(parsed) || parsed <= 0) {
-      this.customAmount = '';
+    const minimum = this.selectedMethod.currency === 'COP' ? 1000 : 1;
+    if (!Number.isInteger(parsed) || parsed < minimum) {
+      this.amountError = `Ingresa un monto entero de al menos ${minimum.toLocaleString('es-CO')} ${this.selectedMethod.currency}.`;
       return;
     }
 
     this.selectedAmount = Math.round(parsed);
+    this.amountError = '';
   }
 
   donate(): void {
     const method = this.selectedMethod;
 
-    if (!method.isAvailable) {
-      alert(`${method.title} aún no está disponible. Por favor, usa Wompi o contáctame por WhatsApp.`);
+    const minimum = method.currency === 'COP' ? 1000 : 1;
+    if (!method.isAvailable || !Number.isInteger(this.selectedAmount) || this.selectedAmount < minimum) {
       return;
     }
 
     this.isProcessing = true;
 
-    if (method.id === 'wompi') {
-      this.wompiService.openCheckout(this.selectedAmount, method.currency);
-      this.closeDonationModal();
-      this.isProcessing = false;
-    } else {
-      const amountLabel =
-        method.currency === 'COP'
-          ? `${this.selectedAmount.toLocaleString('es-CO')} COP`
-          : `$${this.selectedAmount} USD`;
-      const message = encodeURIComponent(
-        `Hola Jhon, quiero apoyar a JFredDev con ${amountLabel} via ${method.title}.`
-      );
-
-      window.open(`https://wa.me/573106643807?text=${message}`, '_blank', 'noopener,noreferrer');
-      this.closeDonationModal();
-      this.isProcessing = false;
-    }
+    this.wompiService.openCheckout(this.selectedAmount, method.currency);
+    this.closeDonationModal();
+    this.isProcessing = false;
   }
 }

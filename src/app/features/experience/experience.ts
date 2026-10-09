@@ -15,15 +15,15 @@ export class Experience {
       company: 'MET GROUP SAS',
       location: 'Pereira · remoto',
       date: 'Mayo 2022 – presente',
-      description: 'Ascenso de Junior a Semi Senior en marzo de 2026.',
-      clients: 'Metrolínea, SI18/TransMilenio y Juárez Bus',
+      description: 'Desarrollador Full Stack en productos de movilidad con Angular, TypeScript, NestJS y Ruby on Rails. Ascenso de Junior a Semi Senior en marzo de 2026.',
+      clients: 'Operadores de transporte público',
       systems: [
-        { name: 'MET•PAY', description: 'Recaudo del servicio de transporte: el dinero del viaje tiene que cuadrar desde la validación hasta el cierre.' },
-        { name: 'MET•VOA', description: 'Gestión y control de flota. Lo que pasa en la calle tiene que verse en el sistema, no en una hoja aparte.' },
-        { name: 'VOASI18', description: 'Flota a la medida de SI18, operador de TransMilenio. Hecho en Ruby on Rails, no en una plantilla genérica.' },
-        { name: 'MDS', description: 'Mesa de servicios. El incidente de operación llega, se asigna y se cierra con trazabilidad.' },
-        { name: 'MET•SIU', description: 'Información al usuario. Lo que el pasajero ve tiene que salir del mismo sistema que opera la flota.' },
-        { name: 'MET•EOD', description: 'Entretenimiento bajo demanda. Otro canal del mismo ecosistema, no un proyecto aislado.' }
+        { name: 'Recaudo', description: 'Soluciones para registrar y gestionar pagos asociados al servicio de transporte.' },
+        { name: 'Gestión de flota', description: 'Herramientas para consultar y administrar información de operación vehicular.' },
+        { name: 'Operación de flota', description: 'Desarrollo de soluciones de gestión de flota con Ruby on Rails.' },
+        { name: 'Mesa de servicios', description: 'Herramientas para organizar y dar seguimiento a solicitudes e incidentes operativos.' },
+        { name: 'Información al usuario', description: 'Soluciones digitales para consultar información del servicio de transporte.' },
+        { name: 'Contenido a bordo', description: 'Funcionalidades digitales de entretenimiento para pasajeros.' }
       ],
       company_logo: 'https://www.metgroupsas.com/wp-content/uploads/elementor/thumbs/SIn-Foto-qearrze6pwgdqz5gl12lv6ckoqblim18uwf39d2igk.webp',
       technologies_used: ['Angular', 'TypeScript', 'NestJS', 'Ruby on Rails', 'PostgreSQL']

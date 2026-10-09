@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jfredmc.github.io/portfolio/sitemap.xml
