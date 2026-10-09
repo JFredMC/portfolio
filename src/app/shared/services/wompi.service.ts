@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
 
-export interface WompiDonation {
-  amount: number;
-  currency: 'COP' | 'USD';
-  reference: string;
-  description: string;
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -32,7 +25,4 @@ export class WompiService {
     return `JFD-${timestamp}-${random}`.toUpperCase();
   }
 
-  getMerchantEmail(): string {
-    return this.MERCHANT_EMAIL;
-  }
 }
