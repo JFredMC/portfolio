@@ -78,6 +78,7 @@ export class Projects {
       demoLink: 'https://jfredmc.github.io/digital-wallet-ledger/',
       status: 'completed',
       image: 'projects/digital-wallet-ledger.png',
+      featured: true,
     },
     {
       title: 'Pasarela de Pagos',
@@ -87,6 +88,10 @@ export class Projects {
       demoLink: 'https://jfredmc.github.io/payment-gateway-sim/',
       status: 'completed',
       image: 'projects/payment-gateway-sim.png',
+      featured: true,
     }
   ];
+
+  readonly featuredProjects = this.projects.filter((project) => project.featured);
+  readonly otherProjects = this.projects.filter((project) => !project.featured);
 }

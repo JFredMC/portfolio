@@ -1,117 +1,98 @@
 <section id="projects" class="py-20 md:py-28 bg-gradient-to-b from-white via-gray-50/80 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-700">
   <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-    <!-- Header -->
-    <div class="text-center mb-16 md:mb-20">
-      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-4">Proyectos propios</p>
+    <header class="text-center mb-16 md:mb-20">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-4">Proyectos personales y demos públicas</p>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-6">
-        El mismo criterio,<br class="hidden md:block" /> <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">fuera de la empresa.</span>
+        Ideas convertidas en <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">software funcional.</span>
       </h2>
-      <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
-        Sistemas en producción, usados por miles de personas. Desde detección de fraude hasta chat privado y logística.
+      <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-700 dark:text-gray-300">
+        Exploro problemas de pagos, finanzas, mapas y comunicación con proyectos propios. Cada ficha enlaza a su demo y código fuente; no implica uso comercial ni cifras de usuarios.
       </p>
-      <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 mx-auto rounded-full"></div>
-    </div>
+    </header>
 
-    <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-      @for (project of projects; track project.title; let idx = $index) {
-        <div 
-          class="group relative rounded-2xl overflow-hidden bg-white dark:bg-gray-800/50 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-200/50 dark:border-gray-700/50 flex flex-col h-full"
-          [style.animation-delay]="(idx * 100) + 'ms'"
-          style="animation: fadeIn 0.6s ease-out forwards; opacity: 0;"
-        >
-          <!-- Imagen + Overlay -->
-          <div class="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-700">
-            @if (project.image) {
-              <img 
-                [src]="project.image" 
-                [alt]="project.title"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1" 
-              />
-            } @else {
-              <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-600 dark:to-gray-700 flex items-center justify-center">
-                <span class="text-5xl opacity-30">🖼️</span>
-              </div>
-            }
+    <ng-template #projectCard let-project>
+      <article class="group rounded-2xl overflow-hidden bg-white dark:bg-gray-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 flex flex-col h-full">
+        <div class="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-700">
+          @if (project.image) {
+            <img
+              [src]="project.image"
+              [alt]="'Captura del proyecto ' + project.title"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          }
+        </div>
 
-            <!-- Overlay gradiente -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-            <!-- Botones -->
-            <div class="absolute inset-0 flex items-end justify-center gap-3 p-6 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-300">
-              <a
-                [href]="project.demoLink"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center justify-center px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white text-base font-semibold rounded-lg hover:shadow-lg hover:from-indigo-600 hover:to-indigo-700 transition-all"
-                [attr.aria-label]="'Ver demo de ' + project.title"
-              >
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                </svg>
-                Ver Demo
-              </a>
-              <a
-                [href]="project.codeLink"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center justify-center px-5 py-2.5 bg-gray-700/80 hover:bg-gray-600 text-white text-base font-semibold rounded-lg backdrop-blur transition-all"
-                [attr.aria-label]="'Ver código de ' + project.title"
-              >
-                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
-                </svg>
-                Código
-              </a>
-            </div>
+        <div class="p-6 md:p-7 flex flex-col flex-grow">
+          <div class="flex items-start justify-between gap-2 mb-3">
+            <h3 class="text-xl md:text-2xl font-display font-bold text-gray-900 dark:text-white">
+              {{ project.title }}
+              @if (project.featured) {
+                <span class="block mt-1 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Proyecto destacado</span>
+              }
+            </h3>
+            <span [ngClass]="{
+              'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300': project.status === 'completed',
+              'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300': project.status === 'in-progress',
+              'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300': project.status === 'planned'
+            }" class="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">
+              {{ statusLabels[project.status] }}
+            </span>
           </div>
 
-          <!-- Contenido -->
-          <div class="p-6 md:p-7 flex flex-col flex-grow">
-            <div class="flex items-start justify-between gap-2 mb-3">
-              <h3 class="text-xl md:text-2xl font-display font-bold text-gray-900 dark:text-white">
-                {{ project.title }}
-              </h3>
-              <span [ngClass]="{
-                'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300': project.status === 'completed',
-                'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300': project.status === 'in-progress',
-                'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300': project.status === 'planned'
-              }" class="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">
-                {{ statusLabels[project.status] }}
+          <p class="text-base text-gray-700 dark:text-gray-300 mb-5 flex-grow">
+            {{ project.description }}
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías">
+            @for (tech of project.tech; track tech) {
+              <span class="px-3 py-1 rounded-lg bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium">
+                {{ tech }}
               </span>
-            </div>
+            }
+          </div>
 
-            <p class="text-base text-gray-700 dark:text-gray-300 mb-5 line-clamp-2 flex-grow">
-              {{ project.description }}
-            </p>
-
-            <!-- Tech stack -->
-            <div class="flex flex-wrap gap-2">
-              @for (tech of project.tech; track tech) {
-                <span class="px-3 py-1 rounded-lg bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium">
-                  {{ tech }}
-                </span>
-              }
-            </div>
+          <div class="flex flex-wrap gap-3 mt-auto">
+            <a
+              [href]="project.demoLink"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors"
+              [attr.aria-label]="'Abrir demo de ' + project.title + ' en una pestaña nueva'"
+            >
+              Ver demo
+            </a>
+            <a
+              [href]="project.codeLink"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center px-4 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 text-sm font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              [attr.aria-label]="'Ver código de ' + project.title + ' en GitHub, en una pestaña nueva'"
+            >
+              Ver código
+            </a>
           </div>
         </div>
-      }
-    </div>
+      </article>
+    </ng-template>
+
+    <section aria-labelledby="featured-projects-heading">
+      <h3 id="featured-projects-heading" class="text-2xl md:text-3xl font-display font-bold text-gray-900 dark:text-white mb-8">Proyectos destacados</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        @for (project of featuredProjects; track project.title) {
+          <ng-container *ngTemplateOutlet="projectCard; context: { $implicit: project }"></ng-container>
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="other-projects-heading" class="mt-16">
+      <h3 id="other-projects-heading" class="text-2xl md:text-3xl font-display font-bold text-gray-900 dark:text-white mb-8">Otros proyectos</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (project of otherProjects; track project.title) {
+          <ng-container *ngTemplateOutlet="projectCard; context: { $implicit: project }"></ng-container>
+        }
+      </div>
+    </section>
   </div>
 </section>
-
-<style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>
