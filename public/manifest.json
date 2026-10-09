@@ -1,0 +1,25 @@
+{
+  "name": "JFredDev — Jhon Maquilon · Full Stack",
+  "short_name": "JFredDev",
+  "description": "Portafolio de Jhon Maquilon, desarrollador Full Stack Semi Senior: Angular, NestJS, Ruby on Rails y PostgreSQL.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#070d18",
+  "theme_color": "#070d18",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "434x283",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
