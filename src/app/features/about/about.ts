@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, signal } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -8,6 +8,8 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class About implements AfterViewInit {
 @ViewChild('profileVideo') profileVideo?: ElementRef<HTMLVideoElement>;
+
+videoEnded = signal(false);
 
 skills: string[] = [
   'Angular 13+',

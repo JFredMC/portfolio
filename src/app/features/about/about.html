@@ -21,15 +21,22 @@
             #profileVideo
             autoplay
             [muted]="true"
-            loop
             playsinline
             preload="auto"
             poster="images/profile.webp"
             aria-label="Video de perfil"
+            (ended)="videoEnded.set(true)"
             class="w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center transition-transform duration-1000 group-hover:scale-110"
           >
             <source src="video/profile.mp4" type="video/mp4" />
           </video>
+          @if (videoEnded()) {
+            <img
+              src="images/profile.webp"
+              alt="Foto de perfil"
+              class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110"
+            />
+          }
           <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 pointer-events-none"></div>
         </div>
 
