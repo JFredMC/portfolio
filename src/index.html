@@ -4,9 +4,13 @@
   <meta charset="utf-8">
   <title>JFredDev — Jhon Maquilon · Full Stack Semi Senior</title>
   <meta name="description" content="JFredDev es la marca de Jhon Maquilon, Full Stack Semi Senior: sistemas de recaudo, flota y producto con Angular, NestJS, Ruby on Rails y PostgreSQL. Turbo, Antioquia · remoto.">
+  <meta name="keywords" content="Jhon Maquilon, JFredDev, desarrollador full stack, Angular, NestJS, Ruby on Rails, PostgreSQL, TypeScript, portafolio, Colombia">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="Jhon Maquilon">
   <link rel="canonical" href="https://jfredmc.github.io/portfolio/">
   <meta name="theme-color" content="#070d18">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="images/logo.png">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
   <meta property="og:site_name" content="JFredDev">
@@ -17,30 +21,279 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="JFredDev — Sistemas que operan todos los días">
+  <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="JFredDev — Sistemas que operan todos los días">
   <meta name="twitter:title" content="JFredDev — Sistemas que operan todos los días">
   <meta name="twitter:description" content="JFredDev es la marca de Jhon Maquilon, Full Stack Semi Senior: sistemas de recaudo, flota y producto con Angular, NestJS, Ruby on Rails y PostgreSQL. Turbo, Antioquia · remoto.">
   <meta name="twitter:image" content="https://jfredmc.github.io/portfolio/images/og.jpg">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Jhon Maquilon",
-      "url": "https://jfredmc.github.io/portfolio/",
-      "image": "https://jfredmc.github.io/portfolio/images/profile.webp",
-      "jobTitle": "Desarrollador Full Stack Semi Senior",
-      "sameAs": [
-        "https://github.com/JFredMC",
-        "https://www.linkedin.com/in/jfredmc/"
-      ],
-      "knowsAbout": ["Angular", "NestJS", "TypeScript", "Ruby on Rails", "PostgreSQL"]
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://jfredmc.github.io/portfolio/#person",
+          "name": "Jhon Maquilon",
+          "alternateName": "JFredDev",
+          "url": "https://jfredmc.github.io/portfolio/",
+          "image": "https://jfredmc.github.io/portfolio/images/profile.webp",
+          "jobTitle": "Desarrollador Full Stack Semi Senior",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Turbo",
+            "addressRegion": "Antioquia",
+            "addressCountry": "CO"
+          },
+          "sameAs": [
+            "https://github.com/JFredMC",
+            "https://www.linkedin.com/in/jfredmc/"
+          ],
+          "knowsAbout": [
+            "Angular",
+            "NestJS",
+            "TypeScript",
+            "Ruby on Rails",
+            "PostgreSQL"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://jfredmc.github.io/portfolio/#website",
+          "url": "https://jfredmc.github.io/portfolio/",
+          "name": "JFredDev",
+          "inLanguage": "es",
+          "publisher": {
+            "@id": "https://jfredmc.github.io/portfolio/#person"
+          }
+        },
+        {
+          "@type": "ItemList",
+          "name": "Proyectos de Jhon Maquilon",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": [
+                  "SoftwareApplication",
+                  "CreativeWork"
+                ],
+                "name": "Ñapa",
+                "description": "Ofertas en Colombia: detecta descuentos inflados, compara tiendas y arma tu mercado",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Web",
+                "url": "https://jfredmc.github.io/napa/",
+                "image": "https://jfredmc.github.io/portfolio/projects/napa.webp",
+                "codeRepository": "https://github.com/JFredMC/napa",
+                "keywords": "Angular, NestJS, MapLibre, Playwright",
+                "author": {
+                  "@id": "https://jfredmc.github.io/portfolio/#person"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": [
+                  "SoftwareApplication",
+                  "CreativeWork"
+                ],
+                "name": "Plazo",
+                "description": "Simulador de créditos y CDT: cuota, amortización, abonos, retención y 4×1000",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Web",
+                "url": "https://jfredmc.github.io/plazo/",
+                "image": "https://jfredmc.github.io/portfolio/projects/plazo.webp",
+                "codeRepository": "https://github.com/JFredMC/plazo",
+                "keywords": "Angular, TypeScript, Vitest, Playwright",
+                "author": {
+                  "@id": "https://jfredmc.github.io/portfolio/#person"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": [
+                  "SoftwareApplication",
+                  "CreativeWork"
+                ],
+                "name": "Velo",
+                "description": "Chat privado para parejas: se autodestruye en 24 h, con PIN y fotos protegidas",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Web",
+                "url": "https://jfredmc.github.io/jf-chat/demo/",
+                "image": "https://jfredmc.github.io/portfolio/projects/velo.webp",
+                "codeRepository": "https://github.com/JFredMC/jf-chat",
+                "keywords": "Angular, NestJS, Socket.io, Web Push",
+                "author": {
+                  "@id": "https://jfredmc.github.io/portfolio/#person"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": [
+                  "SoftwareApplication",
+                  "CreativeWork"
+                ],
+                "name": "Rumbo",
+                "description": "Consola de flota en vivo: buses en el mapa, ETA e incidentes",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Web",
+                "url": "https://jfredmc.github.io/rumbo/",
+                "image": "https://jfredmc.github.io/portfolio/projects/rumbo.webp",
+                "codeRepository": "https://github.com/JFredMC/rumbo",
+                "keywords": "Angular, MapLibre, NestJS, Socket.io",
+                "author": {
+                  "@id": "https://jfredmc.github.io/portfolio/#person"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "item": {
+                "@type": [
+                  "SoftwareApplication",
+                  "CreativeWork"
+                ],
+                "name": "CENTINELA",
+                "description": "Detección de fraude en tiempo real con reglas, colas y alertas",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Web",
+                "url": "https://jfredmc.github.io/centinela/",
+                "image": "https://jfredmc.github.io/portfolio/projects/centinela.webp",
+                "codeRepository": "https://github.com/JFredMC/centinela",
+                "keywords": "Angular, NestJS, BullMQ, Socket.io",
+                "author": {
+                  "@id": "https://jfredmc.github.io/portfolio/#person"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "item": {
+                "@type": [
+                  "SoftwareApplication",
+                  "CreativeWork"
+                ],
+                "name": "Point Editor",
+                "description": "Mapa interactivo con búsqueda, filtros, medición y GeoJSON/CSV",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Web",
+                "url": "https://jfredmc.github.io/point-editor/",
+                "image": "https://jfredmc.github.io/portfolio/projects/point-editor.webp",
+                "codeRepository": "https://github.com/JFredMC/point-editor",
+                "keywords": "Angular, MapLibre, TypeScript",
+                "author": {
+                  "@id": "https://jfredmc.github.io/portfolio/#person"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "item": {
+                "@type": [
+                  "SoftwareApplication",
+                  "CreativeWork"
+                ],
+                "name": "Billetera Digital",
+                "description": "Billetera digital con libro contable de doble partida y transferencias idempotentes",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Web",
+                "url": "https://jfredmc.github.io/digital-wallet-ledger/",
+                "image": "https://jfredmc.github.io/portfolio/projects/digital-wallet-ledger.png",
+                "codeRepository": "https://github.com/JFredMC/digital-wallet-ledger",
+                "keywords": "Angular, NestJS, PostgreSQL, Docker",
+                "author": {
+                  "@id": "https://jfredmc.github.io/portfolio/#person"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "item": {
+                "@type": [
+                  "SoftwareApplication",
+                  "CreativeWork"
+                ],
+                "name": "Pasarela de Pagos",
+                "description": "Pasarela de pagos simulada: checkout con 3DS, PSE y Nequi, reembolsos y webhooks",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Web",
+                "url": "https://jfredmc.github.io/payment-gateway-sim/",
+                "image": "https://jfredmc.github.io/portfolio/projects/payment-gateway-sim.png",
+                "codeRepository": "https://github.com/JFredMC/payment-gateway-sim",
+                "keywords": "Angular, NestJS, PostgreSQL, Docker",
+                "author": {
+                  "@id": "https://jfredmc.github.io/portfolio/#person"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   </script>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://github.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap">
+  <link rel="prefetch" href="images/profile.webp" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="bg-white dark:bg-[#070d18] transition-colors duration-500">
