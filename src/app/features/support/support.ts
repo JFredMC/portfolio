@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, inject, signal, ViewChild } from '@angular/core';
 import { exitDuration } from '../../shared/utils/animation.util';
 import { WompiService } from '../../shared/services/wompi.service';
 
@@ -23,7 +23,7 @@ type DonationMethod = {
   templateUrl: './support.html',
   styleUrl: './support.scss',
 })
-export class Support {
+export class Support implements OnDestroy {
   wompiService = inject(WompiService);
   @ViewChild('donationDialog') donationDialog?: ElementRef<HTMLDivElement>;
   @ViewChild('firstDonationControl') firstDonationControl?: ElementRef<HTMLButtonElement>;
@@ -73,6 +73,7 @@ export class Support {
     }
     this.isClosing.set(false);
     this.showModal = true;
+    document.body.classList.add('overflow-hidden');
     setTimeout(() => {
       if (!this.showModal) return;
       this.setBackgroundInert(true);
@@ -91,6 +92,7 @@ export class Support {
     this.customAmount = '';
     this.amountError = '';
     this.setBackgroundInert(false);
+    document.body.classList.remove('overflow-hidden');
     const trigger = this.donationTrigger;
     this.donationTrigger = null;
     setTimeout(() => trigger?.focus());
@@ -174,6 +176,11 @@ export class Support {
     this.wompiService.openCheckout(this.selectedAmount, method.currency);
     this.closeDonationModal();
     this.isProcessing = false;
+  }
+
+  ngOnDestroy(): void {
+    if (this.closeTimer) clearTimeout(this.closeTimer);
+    if (this.showModal) document.body.classList.remove('overflow-hidden');
   }
 
   private setBackgroundInert(inert: boolean): void {

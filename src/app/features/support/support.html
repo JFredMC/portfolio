@@ -1,9 +1,9 @@
 <div>
-<section id="support" class="relative py-20 md:py-24 bg-gradient-to-b from-white via-amber-50/60 to-cyan-50/60 dark:from-gray-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500">
+<section id="support" class="relative py-14 sm:py-20 md:py-24 bg-gradient-to-b from-white via-amber-50/60 to-cyan-50/60 dark:from-gray-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500">
   <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
     <div class="text-center mb-14">
       <p class="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700 dark:text-amber-300 mb-4">Apoya mi trabajo</p>
-      <h2 class="text-4xl md:text-5xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-5">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-5">
         Si este trabajo te sirve, puedes apoyar mi proceso.
       </h2>
       <p class="max-w-3xl mx-auto text-lg text-gray-700 dark:text-brand-muted">
@@ -11,7 +11,7 @@
       </p>
     </div>
 
-    <div class="grid gap-6 md:grid-cols-3">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       @for (method of methods; track method.id) {
         <button
           type="button"
@@ -67,9 +67,19 @@
 </section>
 
 @if (showModal) {
-    <div #donationOverlay class="modal-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" [class.is-closing]="isClosing()" role="presentation" (click)="closeDonationModal()">
-      <div #donationDialog class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-slate-900" role="dialog" aria-modal="true" aria-labelledby="donation-dialog-title" aria-describedby="donation-dialog-description" tabindex="-1" (click)="$event.stopPropagation()">
-        <div class="mb-6">
+    <div #donationOverlay class="modal-overlay fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" [class.is-closing]="isClosing()" role="presentation" (click)="closeDonationModal()">
+      <div #donationDialog class="relative w-full max-w-md max-h-[90dvh] overflow-y-auto overscroll-contain rounded-3xl bg-white p-5 sm:p-8 shadow-2xl dark:bg-slate-900" role="dialog" aria-modal="true" aria-labelledby="donation-dialog-title" aria-describedby="donation-dialog-description" tabindex="-1" (click)="$event.stopPropagation()">
+        <button
+          type="button"
+          (click)="closeDonationModal()"
+          class="modal-close absolute right-2 top-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-slate-800"
+          aria-label="Cerrar"
+        >
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <div class="mb-6 pr-10">
           <h3 id="donation-dialog-title" class="text-2xl font-display font-bold text-gray-900 dark:text-white">Apoya con {{ selectedMethod.title }}</h3>
           <p id="donation-dialog-description" class="mt-2 text-sm text-gray-600 dark:text-brand-muted">{{ selectedMethod.description }}</p>
         </div>
@@ -86,7 +96,7 @@
                 [attr.aria-pressed]="selectedAmount === amount"
                 [class.ring-2]="selectedAmount === amount"
                 [class.ring-amber-500]="selectedAmount === amount"
-                class="rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-900 transition-[transform,box-shadow] duration-300 hover:bg-gray-100 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+                class="min-h-11 rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-900 transition-[transform,box-shadow] duration-300 hover:bg-gray-100 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
               >
                 {{ selectedMethod.currency === 'COP' ? (amount | number: '1.0-0') : '$' + amount }}
               </button>
@@ -99,19 +109,22 @@
           <div class="flex gap-2">
             <input
               type="text"
-              inputmode="decimal"
+              inputmode="numeric"
+              autocomplete="off"
+              autocapitalize="none"
+              spellcheck="false"
               id="donation-custom-amount"
               [(ngModel)]="customAmount"
               name="customAmount"
               [placeholder]="'Ej: ' + selectedMethod.amountOptions[1]"
               [attr.aria-invalid]="amountError ? 'true' : null"
               [attr.aria-describedby]="amountError ? 'donation-amount-hint donation-amount-error' : 'donation-amount-hint'"
-              class="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:placeholder-slate-400"
+              class="min-w-0 flex-1 rounded-lg border border-gray-300 px-4 py-3 text-base dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:placeholder-slate-400"
             />
             <button
               type="button"
               (click)="applyCustomAmount()"
-              class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
+              class="min-h-11 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
             >
               Aplicar
             </button>
