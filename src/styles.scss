@@ -128,6 +128,19 @@
   :focus-visible {
     outline: 3px solid #0891b2;
     outline-offset: 3px;
+    box-shadow: 0 0 0 2px #ffffff;
+  }
+
+  .dark :focus-visible {
+    outline-color: #67e8f9;
+    box-shadow: 0 0 0 2px #070d18;
+  }
+
+  .no-transitions,
+  .no-transitions *,
+  .no-transitions *::before,
+  .no-transitions *::after {
+    transition: none !important;
   }
 
   .skip-link {
