@@ -64,7 +64,6 @@
     </div>
   </div>
 
-  <!-- Modal de donación -->
   @if (showModal) {
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" (click)="closeDonationModal()">
       <div class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-slate-900" (click)="$event.stopPropagation()">
@@ -73,7 +72,6 @@
           <p class="mt-2 text-sm text-gray-600 dark:text-brand-muted">{{ selectedMethod.description }}</p>
         </div>
 
-        <!-- Selector de moneda -->
         <div class="mb-6">
           <p class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">Selecciona una cantidad:</p>
           <div class="grid grid-cols-2 gap-3">
@@ -91,7 +89,6 @@
           </div>
         </div>
 
-        <!-- Monto personalizado -->
         <div class="mb-6">
           <label class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">O ingresa un monto personalizado:</label>
           <div class="flex gap-2">
@@ -112,7 +109,6 @@
           </div>
         </div>
 
-        <!-- Resumen -->
         <div class="mb-6 rounded-xl bg-gray-50 p-4 dark:bg-slate-800">
           <p class="text-xs text-gray-600 dark:text-gray-400">Monto a donar:</p>
           <p class="text-2xl font-bold text-gray-900 dark:text-white">
@@ -120,7 +116,6 @@
           </p>
         </div>
 
-        <!-- Botones de acción -->
         <div class="flex gap-3">
           <button
             type="button"
@@ -147,7 +142,6 @@
     </div>
   }
 
-  <!-- Modal de agradecimiento -->
   @if (showThankYouModal) {
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" (click)="closeThankYouModal()">
       <div class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-slate-900 text-center" (click)="$event.stopPropagation()">

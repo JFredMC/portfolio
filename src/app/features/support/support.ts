@@ -23,7 +23,7 @@ type DonationMethod = {
   styleUrl: './support.scss',
 })
 export class Support implements OnInit, OnDestroy {
-  private wompiService = inject(WompiService);
+  wompiService = inject(WompiService);
 
   readonly methods: DonationMethod[] = [
     {

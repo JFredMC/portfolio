@@ -1,15 +1,12 @@
 <section id="home" class="pt-20 pb-16 relative min-h-screen flex items-center justify-center overflow-hidden">
-  <!-- Fondo con gradiente + partículas sutiles o efecto blur -->
   <div class="absolute inset-0 bg-gradient-to-br from-cyan-50 via-white to-indigo-50 dark:from-[#070d18] dark:via-[#070d18] dark:to-[#10192b] opacity-80"></div>
   
-  <!-- Opcional: capa de partículas o efecto ruido con CSS -->
   <div class="relative z-10 text-center max-w-5xl px-6">
     <div class="relative inline-block mb-10">
       <div class="w-40 h-40 md:w-52 md:h-52 rounded-full border-8 border-cyan-400/30 animate-pulse-slow overflow-hidden shadow-2xl">
         <img src="images/avatar.png" alt="Jhon Maquilon" class="w-full h-full object-cover scale-110 transition-transform duration-700 group-hover:scale-100" />
       </div>
-      <!-- Badge flotante: enlaza a contacto -->
-      <a href="#contact" (click)="$event.preventDefault(); scrollTo('contact')" class="absolute -bottom-4 -right-4 bg-cyan-500 hover:bg-cyan-400 text-[#070d18] text-sm font-bold px-4 py-2 rounded-full shadow-lg animate-float transition-colors" aria-label="Disponible: ir a contacto">
+      <a href="#contact" (click)="$event.preventDefault(); scrollTo('contact')" class="absolute -bottom-4 -right-4 bg-cyan-500 hover:bg-cyan-400 text-[#070d18] text-sm font-bold px-4 py-2 rounded-full shadow-lg transition-all hover:scale-110">
         Disponible
       </a>
     </div>
@@ -18,109 +15,56 @@
       JFredDev · Turbo, Antioquia · Remoto
     </p>
 
-    <h1 class="text-4xl sm:text-5xl md:text-7xl font-display font-extrabold tracking-tight mb-6 animate-fade-in-up text-gray-900 dark:text-brand-text">
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight mb-6 animate-fade-in-up text-gray-900 dark:text-brand-text">
       Sistemas que operan <span class="bg-gradient-to-r from-brand-cyan to-brand-indigo bg-clip-text text-transparent">todos los días.</span>
     </h1>
 
     <p class="text-xl md:text-2xl font-semibold text-gray-800 dark:text-brand-text mb-4 animate-fade-in-up">
-      Soy Jhon Maquilon, Full Stack Semi Senior.
+      Full Stack Semi Senior · Angular · NestJS · TypeScript
     </p>
 
     <p class="text-lg md:text-xl text-gray-700 dark:text-brand-muted mb-5 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
-      En MET GROUP construyo software de recaudo, flota e información al usuario para Metrolínea, SI18/TransMilenio y Juárez Bus.
+      En MET GROUP construyo software de recaudo, flota e información al usuario para Metrolínea, SI18/TransMilenio y Juárez Bus. Sistemas que operan en la calle, cada día, con miles de transacciones.
     </p>
 
-    <p class="text-sm md:text-base font-medium text-gray-600 dark:text-brand-muted mb-10 animate-fade-in-up">
-      Angular · NestJS · Ruby on Rails · PostgreSQL · TypeScript
-    </p>
-
-    <div class="flex flex-wrap justify-center gap-5 animate-fade-in-up animation-delay-500">
-      <a href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar." target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-[#070d18] font-semibold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 transform hover:-translate-y-1.5">
+    <div class="flex flex-wrap justify-center gap-5 animate-fade-in-up animation-delay-500 mb-10">
+      <a href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar." target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-[#070d18] font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
         Escribir por WhatsApp
       </a>
 
-      <a href="#projects" (click)="$event.preventDefault(); scrollTo('projects')" class="px-8 py-4 border-2 border-indigo-400 text-indigo-600 dark:text-brand-indigo font-semibold rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/30 transition-all hover:-translate-y-1">
+      <a href="#projects" (click)="$event.preventDefault(); scrollTo('projects')" class="px-8 py-4 border-2 border-indigo-400 text-indigo-600 dark:text-brand-indigo font-semibold rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-950/20 transition-all">
         Ver proyectos
       </a>
 
-      <a href="files/profile.pdf" download target="_blank" rel="noopener noreferrer" class="px-8 py-4 text-gray-700 dark:text-brand-muted font-semibold rounded-xl hover:text-cyan-600 dark:hover:text-brand-cyan underline underline-offset-4 transition-all hover:-translate-y-1">
+      <a href="files/profile.pdf" download target="_blank" rel="noopener noreferrer" class="px-8 py-4 text-gray-700 dark:text-brand-muted font-semibold rounded-xl hover:text-cyan-600 dark:hover:text-brand-cyan transition-colors">
         Descargar CV
       </a>
     </div>
 
-    <!-- Iconos sociales más grandes y con mejor hover -->
+    <!-- Iconos sociales -->
     <div class="flex justify-center gap-8 mt-12">
       <a href="https://github.com/JFredMC" target="_blank" rel="noopener noreferrer" class="group" aria-label="GitHub">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-6 transition-transform duration-400">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-            alt="GitHub"
-            class="w-6 h-6"
-          />
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="w-6 h-6" />
         </div>
       </a>
-      <!-- LinkedIn -->
-      <a
-        href="https://www.linkedin.com/in/jfredmc/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group"
-        aria-label="LinkedIn"
-      >
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-6 transition-transform duration-400">
-          <img
-          src="https://cdn-icons-png.flaticon.com/128/174/174857.png"
-          alt="LinkedIn"
-          class="w-6 h-6"
-          />
+      <a href="https://www.linkedin.com/in/jfredmc/" target="_blank" rel="noopener noreferrer" class="group" aria-label="LinkedIn">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
+          <img src="https://cdn-icons-png.flaticon.com/128/174/174857.png" alt="LinkedIn" class="w-6 h-6" />
         </div>
       </a>
-
-      <!-- Email -->
-      <a
-        href="mailto:maquiloncordoba@hotmail.com"
-        class="group"
-      >
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-6 transition-transform duration-400">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-6 h-6 text-gray-700 dark:text-gray-300"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="1.5"
-          >
-          <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M21.75 6.75v10.5a2.25 2.25 0 
-              0 1-2.25 2.25h-15a2.25 2.25 0 
-              0 1-2.25-2.25V6.75m19.5 0A2.25 
-              2.25 0 0 0 19.5 4.5h-15a2.25 
-              2.25 0 0 0-2.25 2.25m19.5 
-              0v.243a2.25 2.25 0 0 1-1.07 
-              1.916l-7.5 4.615a2.25 2.25 
-              0 0 1-2.36 0L3.32 8.91a2.25 
-              2.25 0 0 1-1.07-1.916V6.75"
-          />
+      <a href="mailto:maquiloncordoba@hotmail.com" class="group">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v-2.25a2.25 2.25 0 00-2.25-2.25h-15a2.25 2.25 0 00-2.25 2.25v2.25" />
           </svg>
         </div>
       </a>
-
-      <!-- WhatsApp -->
-      <a
-        href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar."
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group"
-        aria-label="WhatsApp"
-      >
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:rotate-6 transition-transform duration-400">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-            alt="WhatsApp"
-            class="w-6 h-6"
-          />
+      <a href="https://wa.me/573106643807?text=Hola%20Jhon%2C%20vi%20JFredDev%20y%20quiero%20hablar." target="_blank" rel="noopener noreferrer" class="group" aria-label="WhatsApp">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all">
+          <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.934 1.479c-.339.195-.659.475-.92.779-1.51 1.884-1.884 4.46-.477 6.744 1.407 2.284 3.88 3.685 6.514 3.685.955 0 1.888-.195 2.748-.56l.405-.163 3.958 1.037-1.06-3.9.195-.309a9.816 9.816 0 001.946-5.411c0-5.519-4.506-10.009-10.049-10.009z" />
+          </svg>
         </div>
       </a>
     </div>
