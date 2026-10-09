@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { shouldReduceMotion } from '../../shared/utils/accessibility';
 
 @Component({
   selector: 'app-services',
@@ -10,8 +11,7 @@ export class Services {
   scrollTo(sectionId: string) {
     const el = document.getElementById(sectionId);
     if (el) {
-      // Desplazamiento suave al elemento con el ID dado
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: shouldReduceMotion() ? 'instant' : 'smooth', block: 'start' });
     }
   }
 }

@@ -1,5 +1,6 @@
 import { Component, HostListener, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { shouldReduceMotion } from '../../../shared/utils/accessibility';
 
 @Component({
   selector: 'app-footer',
@@ -49,7 +50,7 @@ export class Footer implements AfterViewInit {
 
     const navbarHeight = document.querySelector('header')?.getBoundingClientRect().height || 80;
     const y = element.getBoundingClientRect().top + window.scrollY - (navbarHeight + 16);
-    window.scrollTo({ top: y, behavior: 'smooth' });
+    window.scrollTo({ top: y, behavior: shouldReduceMotion() ? 'instant' : 'smooth' });
   }
 
   // Acción del botón
@@ -58,13 +59,13 @@ export class Footer implements AfterViewInit {
       // Estamos arriba → ir abajo (al footer)
       window.scrollTo({
         top: document.body.scrollHeight,
-        behavior: 'smooth'
+        behavior: shouldReduceMotion() ? 'instant' : 'smooth'
       });
     } else {
       // Estamos abajo o en medio → ir arriba
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: shouldReduceMotion() ? 'instant' : 'smooth'
       });
     }
   }

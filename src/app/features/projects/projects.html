@@ -3,7 +3,7 @@
     <header class="text-center mb-16 md:mb-20">
       <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-4">Proyectos personales y demos públicas</p>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-6">
-        Ideas convertidas en <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">software funcional.</span>
+        Ideas convertidas en <span class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-300 dark:to-purple-300 bg-clip-text text-transparent">software funcional.</span>
       </h2>
       <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-700 dark:text-gray-300">
         Exploro problemas de pagos, finanzas, mapas y comunicación con proyectos propios. Cada ficha enlaza a su demo y código fuente; no implica uso comercial ni cifras de usuarios.
@@ -16,7 +16,7 @@
           @if (project.image) {
             <app-image-optimized
               [src]="project.image"
-              [alt]="'Captura del proyecto ' + project.title"
+              [alt]="'Captura de ' + project.title + ': ' + project.description"
               [imgTitle]="project.title"
               [priority]="!!project.featured"
               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"

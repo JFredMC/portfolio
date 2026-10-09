@@ -34,6 +34,34 @@ describe('Support', () => {
     expect(support.amountError).toContain('monto entero');
   });
 
+  it('validates a custom amount on form submission and exposes selected presets', async () => {
+    const openButton: HTMLButtonElement = fixture.nativeElement.querySelector('section button');
+    openButton.click();
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    fixture.detectChanges();
+    const support = fixture.componentInstance;
+
+    const presetButtons: HTMLButtonElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('[role="dialog"] button[aria-pressed]')
+    );
+    expect(presetButtons[1].getAttribute('aria-pressed')).toBe('true');
+    expect(document.activeElement).toBe(presetButtons[0]);
+    expect(fixture.nativeElement.querySelector('#support').inert).toBeTrue();
+
+    support.customAmount = '999';
+    const form: HTMLFormElement = fixture.nativeElement.querySelector('[role="dialog"] form');
+    form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    await fixture.whenStable();
+
+    expect(support.amountError).toContain('1.000 COP');
+    expect(fixture.nativeElement.querySelector('#donation-custom-amount').getAttribute('aria-invalid')).toBe('true');
+    expect(openCheckout).not.toHaveBeenCalled();
+
+    support.closeDonationModal();
+    expect(fixture.nativeElement.querySelector('#support').inert).toBeFalse();
+  });
+
   it('opens the checkout for a valid amount', () => {
     fixture.componentInstance.donate();
 
