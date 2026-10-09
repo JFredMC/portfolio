@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { shouldReduceMotion } from '../../shared/utils/accessibility';
+import { scrollBehavior } from '../../shared/utils/animation.util';
 
 @Component({
   selector: 'app-services',
@@ -11,7 +11,7 @@ export class Services {
   scrollTo(sectionId: string) {
     const el = document.getElementById(sectionId);
     if (el) {
-      el.scrollIntoView({ behavior: shouldReduceMotion() ? 'instant' : 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
     }
   }
 }

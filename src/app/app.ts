@@ -7,6 +7,7 @@ import { Home } from './features/home/home';
 import { Experience } from './features/experience/experience';
 import { Contact } from './features/contact/contact';
 import { Support } from './features/support/support';
+import { Services } from './features/services/services';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { Support } from './features/support/support';
     Projects,
     Support,
     Contact,
+    Services,
   ],
 })
 export class App {
