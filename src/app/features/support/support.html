@@ -142,36 +142,4 @@
     </div>
   }
 
-  @if (showThankYouModal) {
-    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" (click)="closeThankYouModal()">
-      <div class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-slate-900 text-center" (click)="$event.stopPropagation()">
-        <div class="mb-6">
-          <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-emerald-500 text-4xl shadow-lg">
-            ✓
-          </div>
-        </div>
-
-        <h3 class="text-2xl font-display font-bold text-gray-900 dark:text-white mb-3">
-          ¡Gracias por apoyar!
-        </h3>
-
-        <p class="text-base text-gray-700 dark:text-brand-muted mb-6">
-          Tu apoyo significa mucho y me ayuda a continuar construyendo soluciones que funcionan en la práctica.
-        </p>
-
-        <div class="space-y-3 mb-6 text-sm text-gray-600 dark:text-brand-muted">
-          <p>📧 Recibirás una confirmación en <strong>{{ wompiService.getMerchantEmail() }}</strong></p>
-          <p>🔄 El dinero llegará de forma segura a mi cuenta de recaudos</p>
-        </div>
-
-        <button
-          type="button"
-          (click)="closeThankYouModal()"
-          class="w-full rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 px-4 py-3 font-semibold text-white transition-all hover:shadow-lg hover:-translate-y-0.5"
-        >
-          Continuar al portfolio
-        </button>
-      </div>
-    </div>
-  }
 </section>
