@@ -8,7 +8,7 @@
 
 @if (failed()) {
   <div class="absolute inset-0 flex items-center justify-center text-sm text-gray-500 dark:text-gray-300" role="img" [attr.aria-label]="alt()">
-    Imagen no disponible
+    {{ 'Imagen no disponible' | t }}
   </div>
 } @else if (inView()) {
   <picture>

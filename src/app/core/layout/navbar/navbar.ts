@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
+import { I18nService } from '../../../shared/i18n/i18n.service';
+import { TPipe } from '../../../shared/i18n/t.pipe';
 import { ThemeService } from '../../../shared/services/theme.service';
 import { exitDuration, scrollBehavior } from '../../../shared/utils/animation.util';
 
@@ -7,19 +9,23 @@ import { exitDuration, scrollBehavior } from '../../../shared/utils/animation.ut
   selector: 'app-navbar',
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
-  imports: [CommonModule],
+  imports: [CommonModule, TPipe],
 })
 export class Navbar {
   public themeService = inject(ThemeService);
+  public i18n = inject(I18nService);
   @ViewChild('menuButton') menuButton?: ElementRef<HTMLButtonElement>;
   isMenuOpen = false;
   isMenuClosing = signal(false);
   themeLabel = computed(() => {
     const mode = this.themeService.mode();
-    if (mode === 'light') return 'Tema claro activo. Cambiar al tema oscuro';
-    if (mode === 'dark') return 'Tema oscuro activo. Cambiar al tema del sistema';
-    return 'Tema del sistema activo. Cambiar al tema claro';
+    if (mode === 'light') return this.i18n.t('Tema claro activo. Cambiar al tema oscuro');
+    if (mode === 'dark') return this.i18n.t('Tema oscuro activo. Cambiar al tema del sistema');
+    return this.i18n.t('Tema del sistema activo. Cambiar al tema claro');
   });
+  languageLabel = computed(() =>
+    this.i18n.lang() === 'es' ? 'Cambiar idioma a inglés (Switch to English)' : 'Switch language to Spanish (Cambiar a español)'
+  );
   private closeTimer: ReturnType<typeof setTimeout> | null = null;
 
   toggleMenu() {

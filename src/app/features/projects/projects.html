@@ -1,12 +1,12 @@
 <section id="projects" class="py-14 sm:py-20 md:py-28 bg-gradient-to-b from-white via-gray-50/80 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-700">
   <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
     <header class="text-center mb-16 md:mb-20">
-      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-4">Proyectos personales y demos públicas</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-4">{{ 'Proyectos personales y demos públicas' | t }}</p>
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-6">
-        Ideas convertidas en <span class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-300 dark:to-purple-300 bg-clip-text text-transparent">software funcional.</span>
+        {{ 'Ideas convertidas en' | t }} <span class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-300 dark:to-purple-300 bg-clip-text text-transparent">{{ 'software funcional.' | t }}</span>
       </h2>
       <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-700 dark:text-gray-300">
-        Exploro problemas de pagos, finanzas, mapas y comunicación con proyectos propios. Cada ficha enlaza a su demo y código fuente; no implica uso comercial ni cifras de usuarios.
+        {{ 'Exploro problemas de pagos, finanzas, mapas y comunicación con proyectos propios. Cada ficha enlaza a su demo y código fuente; no implica uso comercial ni cifras de usuarios.' | t }}
       </p>
     </header>
 
@@ -16,8 +16,8 @@
           @if (project.image) {
             <app-image-optimized
               [src]="project.image"
-              [alt]="'Captura de ' + project.title + ': ' + project.description"
-              [imgTitle]="project.title"
+              [alt]="'Captura de {title}: {description}' | t: { title: (project.title | t), description: (project.description | t) }"
+              [imgTitle]="project.title | t"
               [priority]="!!project.featured"
               [responsive]="true"
               [widths]="[480, 960]"
@@ -31,9 +31,9 @@
         <div class="p-6 md:p-7 flex flex-col flex-grow">
           <div class="flex items-start justify-between gap-2 mb-3">
             <h3 class="text-xl md:text-2xl font-display font-bold text-gray-900 dark:text-white">
-              {{ project.title }}
+              {{ project.title | t }}
               @if (project.featured) {
-                <span class="block mt-1 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Proyecto destacado</span>
+                <span class="block mt-1 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">{{ 'Proyecto destacado' | t }}</span>
               }
             </h3>
             <span [ngClass]="{
@@ -41,15 +41,15 @@
               'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300': project.status === 'in-progress',
               'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300': project.status === 'planned'
             }" class="px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">
-              {{ statusLabel(project.status) }}
+              {{ statusLabel(project.status) | t }}
             </span>
           </div>
 
           <p class="text-base text-gray-700 dark:text-gray-300 mb-5 flex-grow">
-            {{ project.description }}
+            {{ project.description | t }}
           </p>
 
-          <div class="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías">
+          <div class="flex flex-wrap gap-2 mb-6" [attr.aria-label]="'Tecnologías' | t">
             @for (tech of project.tech; track tech) {
               <span class="px-3 py-1 rounded-lg bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium">
                 {{ tech }}
@@ -63,18 +63,18 @@
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center justify-center min-h-11 px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors"
-              [attr.aria-label]="'Abrir demo de ' + project.title + ' en una pestaña nueva'"
+              [attr.aria-label]="'Abrir demo de {title} en una pestaña nueva' | t: { title: (project.title | t) }"
             >
-              Ver demo
+              {{ 'Ver demo' | t }}
             </a>
             <a
               [href]="project.codeLink"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center justify-center min-h-11 px-4 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 text-sm font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-              [attr.aria-label]="'Ver código de ' + project.title + ' en GitHub, en una pestaña nueva'"
+              [attr.aria-label]="'Ver código de {title} en GitHub, en una pestaña nueva' | t: { title: (project.title | t) }"
             >
-              Ver código
+              {{ 'Ver código' | t }}
             </a>
           </div>
         </div>
@@ -82,7 +82,7 @@
     </ng-template>
 
     <section aria-labelledby="featured-projects-heading">
-      <h3 id="featured-projects-heading" class="text-2xl md:text-3xl font-display font-bold text-gray-900 dark:text-white mb-8">Proyectos destacados</h3>
+      <h3 id="featured-projects-heading" class="text-2xl md:text-3xl font-display font-bold text-gray-900 dark:text-white mb-8">{{ 'Proyectos destacados' | t }}</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
         @for (project of featuredProjects; track project.title) {
           <ng-container *ngTemplateOutlet="projectCard; context: { $implicit: project }"></ng-container>
@@ -91,7 +91,7 @@
     </section>
 
     <section aria-labelledby="other-projects-heading" class="mt-16">
-      <h3 id="other-projects-heading" class="text-2xl md:text-3xl font-display font-bold text-gray-900 dark:text-white mb-8">Otros proyectos</h3>
+      <h3 id="other-projects-heading" class="text-2xl md:text-3xl font-display font-bold text-gray-900 dark:text-white mb-8">{{ 'Otros proyectos' | t }}</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         @for (project of otherProjects; track project.title) {
           <ng-container *ngTemplateOutlet="projectCard; context: { $implicit: project }"></ng-container>

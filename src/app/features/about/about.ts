@@ -1,8 +1,9 @@
+import { TPipe } from '../../shared/i18n/t.pipe';
 import { AfterViewInit, Component, ElementRef, ViewChild, signal } from '@angular/core';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [TPipe],
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })

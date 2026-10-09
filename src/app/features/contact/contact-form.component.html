@@ -1,12 +1,12 @@
-<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6" novalidate aria-label="Formulario de contacto">
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6" novalidate [attr.aria-label]="'Formulario de contacto' | t">
   <div>
     <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-      Nombre <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
+      {{ 'Nombre' | t }} <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
     </label>
     <input
       id="name"
       formControlName="name"
-      type="text" autocomplete="name" autocapitalize="words" spellcheck="false" placeholder="Tu nombre completo"
+      type="text" autocomplete="name" autocapitalize="words" spellcheck="false" [attr.placeholder]="'Tu nombre completo' | t"
       class="w-full px-4 py-3 text-base min-h-11 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
       [class.!border-red-500]="showError('name')"
       required
@@ -43,22 +43,22 @@
   </div>
   <div>
     <label for="subject" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-      Asunto <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
+      {{ 'Asunto' | t }} <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
     </label>
     <select id="subject" formControlName="subject" class="w-full px-4 py-3 text-base min-h-11 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors" required aria-required="true">
       @for (subj of subjects; track subj) {
-        <option [value]="subj">{{ subj }}</option>
+        <option [value]="subj">{{ subj | t }}</option>
       }
     </select>
   </div>
   <div>
     <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-      Mensaje <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
+      {{ 'Mensaje' | t }} <span class="text-red-600 dark:text-red-400" aria-hidden="true">*</span>
     </label>
     <textarea
       id="message"
       formControlName="message"
-      rows="5" autocapitalize="sentences" spellcheck="true" placeholder="Cuéntame sobre tu proyecto o pregunta..."
+      rows="5" autocapitalize="sentences" spellcheck="true" [attr.placeholder]="'Cuéntame sobre tu proyecto o pregunta...' | t"
       class="w-full px-4 py-3 text-base min-h-11 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
       [class.!border-red-500]="showError('message')"
       required
@@ -86,7 +86,7 @@
           class="font-medium"
           [class]="submitSuccess() ? 'text-green-800 dark:text-green-200' : 'text-red-800 dark:text-red-200'"
         >
-          {{ submitMessage() }}
+          {{ submitMessage() | t }}
         </p>
       </div>
     }
@@ -104,14 +104,14 @@
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        Enviando...
+        {{ 'Enviando...' | t }}
       </span>
     } @else {
-      Enviar mensaje
+      {{ 'Enviar mensaje' | t }}
     }
   </button>
 
   <p class="text-xs text-gray-600 dark:text-gray-400 text-center">
-    Respetamos tu privacidad. Tu información será usada solo para responderte.
+    {{ 'Respetamos tu privacidad. Tu información será usada solo para responderte.' | t }}
   </p>
 </form>

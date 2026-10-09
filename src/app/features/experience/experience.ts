@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { TPipe } from '../../shared/i18n/t.pipe';
 import { IExperience } from './interfaces/experience.interface';
 
 @Component({
   selector: 'app-experience',
-  imports: [CommonModule],
+  imports: [CommonModule, TPipe],
   templateUrl: './experience.html',
   styleUrl: './experience.scss'
 })

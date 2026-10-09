@@ -5,10 +5,10 @@
   <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
     <div class="text-center mb-20 relative">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-5 animate-fade-in-up">
-        Sobre mí
+        {{ 'Sobre mí' | t }}
       </h2>
       <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 200ms;">
-        Ingeniero de Software especializado en fintech y sistemas de transporte masivo
+        {{ 'Ingeniero de Software especializado en fintech y sistemas de transporte masivo' | t }}
       </p>
       <div class="w-32 h-1.5 bg-gradient-to-r from-cyan-400 to-indigo-400 mx-auto mt-8 rounded-full animate-fade-in-up" style="animation-delay: 300ms;"></div>
     </div>
@@ -24,7 +24,7 @@
             playsinline
             preload="auto"
             poster="images/profile.webp"
-            aria-label="Video de perfil"
+            [attr.aria-label]="'Video de perfil' | t"
             (ended)="videoEnded.set(true)"
             class="w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center transition-transform duration-1000 group-hover:scale-110"
           >
@@ -33,7 +33,7 @@
           @if (videoEnded()) {
             <img
               src="images/profile.webp"
-              alt="Foto de perfil"
+              [alt]="'Foto de perfil' | t"
               class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110"
             />
           }
@@ -47,20 +47,20 @@
       <div class="space-y-10">
         <div class="bg-white/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 transition-shadow duration-500 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 500ms;">
           <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
-            Soy <span class="font-bold text-indigo-600 dark:text-indigo-400">Ingeniero de Software</span> con
-            <span class="font-bold text-indigo-600 dark:text-indigo-400">5 años de experiencia</span> (desde octubre de 2021) diseñando, desarrollando y desplegando aplicaciones web con Angular, NestJS, TypeScript y JavaScript.
+            {{ 'Soy' | t }} <span class="font-bold text-indigo-600 dark:text-indigo-400">{{ 'Ingeniero de Software' | t }}</span> {{ 'con' | t }}
+            <span class="font-bold text-indigo-600 dark:text-indigo-400">{{ '5 años de experiencia' | t }}</span> {{ '(desde octubre de 2021) diseñando, desarrollando y desplegando aplicaciones web con Angular, NestJS, TypeScript y JavaScript.' | t }}
           </p>
           <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
-            Actualmente trabajo en MET GROUP como Desarrollador Full Stack Semi Senior, ascendido en marzo de 2026. Participo en la creación de MET•PAY, MET•VOA, MET•MDS, MET•SIU y MET•SYS, aportando en análisis, desarrollo, soporte y evolución de productos.
+            {{ 'Actualmente trabajo en MET GROUP como Desarrollador Full Stack Semi Senior, ascendido en marzo de 2026. Participo en la creación de MET•PAY, MET•VOA, MET•MDS, MET•SIU y MET•SYS, aportando en análisis, desarrollo, soporte y evolución de productos.' | t }}
           </p>
           <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            Mis fortalezas son el análisis de requisitos con clientes, el diseño de APIs RESTful escalables, las arquitecturas limpias, las pruebas de calidad y la documentación técnica.
+            {{ 'Mis fortalezas son el análisis de requisitos con clientes, el diseño de APIs RESTful escalables, las arquitecturas limpias, las pruebas de calidad y la documentación técnica.' | t }}
           </p>
         </div>
 
         <div class="animate-fade-in-up" style="animation-delay: 600ms;">
           <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center lg:text-left">
-            Tecnologías principales
+            {{ 'Tecnologías principales' | t }}
           </h3>
           <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
             @for (skill of skills; track skill) {
@@ -83,7 +83,7 @@
               </div>
               <div>
                 <h4 class="text-4xl font-bold text-gray-900 dark:text-white">5</h4>
-                <p class="text-gray-600 dark:text-gray-400">Productos MET</p>
+                <p class="text-gray-600 dark:text-gray-400">{{ 'Productos MET' | t }}</p>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
               </div>
               <div>
                 <h4 class="text-4xl font-bold text-gray-900 dark:text-white">5+</h4>
-                <p class="text-gray-600 dark:text-gray-400">Años de experiencia</p>
+                <p class="text-gray-600 dark:text-gray-400">{{ 'Años de experiencia' | t }}</p>
               </div>
             </div>
           </div>
@@ -108,33 +108,33 @@
     <section class="mt-16 sm:mt-20" aria-labelledby="about-education-title">
       <div class="text-center mb-10">
         <h3 id="about-education-title" class="text-2xl sm:text-3xl font-display font-extrabold text-gray-900 dark:text-white">
-          Formación, certificación e idiomas
+          {{ 'Formación, certificación e idiomas' | t }}
         </h3>
       </div>
       <div class="grid gap-6 md:grid-cols-3">
         <article class="bg-white/70 dark:bg-gray-800/50 rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-          <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-4">Educación</h4>
+          <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-4">{{ 'Educación' | t }}</h4>
           <ul class="space-y-4 text-gray-700 dark:text-gray-300">
             <li>
-              <p class="font-semibold">Ingeniería de Software</p>
-              <p>Corporación Universitaria Iberoamericana · 2022–2024</p>
+              <p class="font-semibold">{{ 'Ingeniería de Software' | t }}</p>
+              <p>{{ 'Corporación Universitaria Iberoamericana · 2022–2024' | t }}</p>
             </li>
             <li>
-              <p class="font-semibold">Diplomado en Análisis de Datos con Python</p>
-              <p>Corporación Universitaria Iberoamericana</p>
+              <p class="font-semibold">{{ 'Diplomado en Análisis de Datos con Python' | t }}</p>
+              <p>{{ 'Corporación Universitaria Iberoamericana' | t }}</p>
             </li>
           </ul>
         </article>
         <article class="bg-white/70 dark:bg-gray-800/50 rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-          <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-4">Certificaciones</h4>
-          <p class="font-semibold text-gray-800 dark:text-gray-200">Angular — Verified by Talently</p>
-          <p class="text-gray-700 dark:text-gray-300">Mayo de 2025</p>
+          <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-4">{{ 'Certificaciones' | t }}</h4>
+          <p class="font-semibold text-gray-800 dark:text-gray-200">{{ 'Angular — Verified by Talently' | t }}</p>
+          <p class="text-gray-700 dark:text-gray-300">{{ 'Mayo de 2025' | t }}</p>
         </article>
         <article class="bg-white/70 dark:bg-gray-800/50 rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-          <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-4">Idiomas</h4>
+          <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-4">{{ 'Idiomas' | t }}</h4>
           <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-            <li><span class="font-semibold">Español:</span> Nativo</li>
-            <li><span class="font-semibold">Inglés:</span> A2 certificado · Preparando nivel B1</li>
+            <li><span class="font-semibold">{{ 'Español:' | t }}</span> {{ 'Nativo' | t }}</li>
+            <li><span class="font-semibold">{{ 'Inglés:' | t }}</span> {{ 'A2 certificado · Preparando nivel B1' | t }}</li>
           </ul>
         </article>
       </div>

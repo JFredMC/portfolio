@@ -1,11 +1,12 @@
 import { ChangeDetectorRef, Component, inject, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TPipe } from '../../../shared/i18n/t.pipe';
 import { scrollBehavior, throttle } from '../../../shared/utils/animation.util';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TPipe],
   templateUrl: './footer.html',
   styleUrl: './footer.scss'
 })

@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Component, ElementRef, HostListener, OnDestroy, inject, signal, ViewChild } from '@angular/core';
 import { exitDuration } from '../../shared/utils/animation.util';
+import { I18nService } from '../../shared/i18n/i18n.service';
+import { TPipe } from '../../shared/i18n/t.pipe';
 import { WompiService } from '../../shared/services/wompi.service';
 
 type DonationMethod = {
@@ -19,12 +21,13 @@ type DonationMethod = {
 @Component({
   selector: 'app-support',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TPipe],
   templateUrl: './support.html',
   styleUrl: './support.scss',
 })
 export class Support implements OnDestroy {
   wompiService = inject(WompiService);
+  private readonly i18n = inject(I18nService);
   @ViewChild('donationDialog') donationDialog?: ElementRef<HTMLDivElement>;
   @ViewChild('firstDonationControl') firstDonationControl?: ElementRef<HTMLButtonElement>;
   @ViewChild('donationOverlay') donationOverlay?: ElementRef<HTMLDivElement>;
@@ -149,7 +152,7 @@ export class Support implements OnDestroy {
     const parsed = Number(this.customAmount);
     const minimum = this.selectedMethod.currency === 'COP' ? 1000 : 1;
     if (!Number.isInteger(parsed) || parsed < minimum) {
-      this.amountError = `Ingresa un monto entero de al menos ${minimum.toLocaleString('es-CO')} ${this.selectedMethod.currency}.`;
+      this.amountError = this.i18n.t('Ingresa un monto entero de al menos {amount}.', { amount: `${minimum.toLocaleString('es-CO')} ${this.selectedMethod.currency}` });
       return;
     }
 
@@ -167,7 +170,7 @@ export class Support implements OnDestroy {
     }
 
     if (!method.isAvailable || !Number.isInteger(this.selectedAmount) || this.selectedAmount < minimum) {
-      this.amountError = `Ingresa un monto entero de al menos ${minimum.toLocaleString('es-CO')} ${method.currency}.`;
+      this.amountError = this.i18n.t('Ingresa un monto entero de al menos {amount}.', { amount: `${minimum.toLocaleString('es-CO')} ${method.currency}` });
       return;
     }
 
