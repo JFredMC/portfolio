@@ -22,7 +22,8 @@
       </a>
 
       <a 
-        (click)="scrollTo('about')" 
+        href="#about"
+        (click)="$event.preventDefault(); scrollTo('about')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 group cursor-pointer"
       >
         Sobre mí
@@ -30,7 +31,8 @@
       </a>
 
       <a 
-        (click)="scrollTo('experience')" 
+        href="#experience"
+        (click)="$event.preventDefault(); scrollTo('experience')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 group cursor-pointer"
       >
         Experiencia
@@ -38,7 +40,8 @@
       </a>
 
       <a 
-        (click)="scrollTo('projects')" 
+        href="#projects"
+        (click)="$event.preventDefault(); scrollTo('projects')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 group cursor-pointer"
       >
         Proyectos
@@ -46,7 +49,8 @@
       </a>
 
       <a 
-        (click)="scrollTo('support')" 
+        href="#support"
+        (click)="$event.preventDefault(); scrollTo('support')" 
         class="relative text-base lg:text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300 group cursor-pointer"
       >
         Apoya
@@ -125,7 +129,8 @@
         <ul class="flex flex-col gap-5 text-lg font-medium">
           <li>
             <a 
-              (click)="scrollTo('home'); toggleMenu()" 
+              href="#home"
+              (click)="$event.preventDefault(); scrollTo('home'); toggleMenu()" 
               class="block py-3 px-4 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors cursor-pointer"
             >
               Inicio
@@ -133,7 +138,8 @@
           </li>
           <li>
             <a 
-              (click)="scrollTo('about'); toggleMenu()" 
+              href="#about"
+              (click)="$event.preventDefault(); scrollTo('about'); toggleMenu()" 
               class="block py-3 px-4 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors cursor-pointer"
             >
               Sobre mí
@@ -141,7 +147,8 @@
           </li>
           <li>
             <a 
-              (click)="scrollTo('experience'); toggleMenu()" 
+              href="#experience"
+              (click)="$event.preventDefault(); scrollTo('experience'); toggleMenu()" 
               class="block py-3 px-4 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors cursor-pointer"
             >
               Experiencia
@@ -149,7 +156,8 @@
           </li>
           <li>
             <a 
-              (click)="scrollTo('projects'); toggleMenu()" 
+              href="#projects"
+              (click)="$event.preventDefault(); scrollTo('projects'); toggleMenu()" 
               class="block py-3 px-4 text-gray-800 dark:text-gray-100 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-xl transition-colors cursor-pointer"
             >
               Proyectos
@@ -157,7 +165,8 @@
           </li>
           <li>
             <a 
-              (click)="scrollTo('support'); toggleMenu()" 
+              href="#support"
+              (click)="$event.preventDefault(); scrollTo('support'); toggleMenu()" 
               class="block py-3 px-4 text-amber-700 dark:text-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/30 rounded-xl transition-colors cursor-pointer"
             >
               Apoya
