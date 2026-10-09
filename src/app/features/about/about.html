@@ -18,17 +18,19 @@
         <div class="relative rounded-[2rem] overflow-hidden shadow-[0_25px_80px_rgba(79,70,229,0.22)] border border-white/40 dark:border-white/10 bg-black ring-1 ring-indigo-200/60 dark:ring-indigo-500/20 transition-all duration-500 group-hover:scale-[1.01] group-hover:shadow-[0_30px_90px_rgba(79,70,229,0.28)]">
           <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-cyan-500/10 z-10 pointer-events-none"></div>
           <video
-            src="/video/profile.mp4"
+            #profileVideo
             autoplay
-            muted
+            [muted]="true"
             loop
             playsinline
-            preload="metadata"
-            poster="/images/profile.webp"
+            preload="auto"
+            poster="images/profile.webp"
             aria-label="Video de perfil"
             class="w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center transition-transform duration-1000 group-hover:scale-110"
-          ></video>
-          <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+          >
+            <source src="video/profile.mp4" type="video/mp4" />
+          </video>
+          <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 pointer-events-none"></div>
         </div>
 
         <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-indigo-500/20 dark:bg-indigo-600/20 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
