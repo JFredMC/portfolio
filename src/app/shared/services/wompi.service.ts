@@ -19,22 +19,36 @@ export class WompiService {
 
   /**
    * Abre el checkout de Wompi con monto especificado
+   * Wompi permite pasar el monto como parámetro en la URL
    */
   openCheckout(amount: number, currency: 'COP' | 'USD'): void {
-    const amountInCents = Math.round(amount * 100);
     const reference = this.generateReference();
     const description = `Apoyo a JFredDev - ${amount} ${currency}`;
 
-    // Construir URL de pago con parámetros
+    // Wompi soporta parámetro 'amount' en centavos para COP
+    const amountInCents = Math.round(amount * (currency === 'COP' ? 1 : 100));
+
+    // Construir URL del checkout con parámetros
     const checkoutUrl = new URL(this.CHECKOUT_LINK);
     checkoutUrl.searchParams.append('amount', amountInCents.toString());
     checkoutUrl.searchParams.append('reference', reference);
-    checkoutUrl.searchParams.append('currency', currency);
+    checkoutUrl.searchParams.append('currency', currency === 'COP' ? 'COP' : 'USD');
+    checkoutUrl.searchParams.append('email', this.MERCHANT_EMAIL);
 
-    // Guardar en sessionStorage para tracking
-    sessionStorage.setItem('wompi_donation', JSON.stringify({ amount, currency, reference, description }));
+    // Guardar en sessionStorage para tracking post-pago
+    sessionStorage.setItem('wompi_donation', JSON.stringify({
+      amount,
+      currency,
+      reference,
+      description,
+      timestamp: Date.now(),
+    }));
 
-    // Abrir en nueva ventana
+    // Log para debugging
+    console.log('Wompi Checkout URL:', checkoutUrl.toString());
+    console.log('Donation:', { amount, currency, reference });
+
+    // Abrir checkout en nueva ventana
     window.open(checkoutUrl.toString(), '_blank', 'noopener,noreferrer');
   }
 
@@ -48,15 +62,22 @@ export class WompiService {
   }
 
   /**
-   * Verifica el estado de un pago (opcional, requiere backend)
+   * Verifica si hay un pago pendiente de confirmación
    */
-  async checkPaymentStatus(reference: string): Promise<any> {
-    // Esto es opcional y requeriría un backend para consultar la API de Wompi
-    console.log(`Verificando pago: ${reference}`);
+  getPendingDonation(): WompiDonation | null {
+    const stored = sessionStorage.getItem('wompi_donation');
+    return stored ? JSON.parse(stored) : null;
   }
 
   /**
-   * Obtiene la clave pública para cliente
+   * Limpia el registro de donación pendiente
+   */
+  clearPendingDonation(): void {
+    sessionStorage.removeItem('wompi_donation');
+  }
+
+  /**
+   * Obtiene la clave pública
    */
   getPublicKey(): string {
     return this.PUBLIC_KEY;

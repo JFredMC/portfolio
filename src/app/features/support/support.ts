@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { WompiService } from '../../shared/services/wompi.service';
 
 type DonationMethod = {
@@ -22,7 +22,7 @@ type DonationMethod = {
   templateUrl: './support.html',
   styleUrl: './support.scss',
 })
-export class Support {
+export class Support implements OnInit, OnDestroy {
   private wompiService = inject(WompiService);
 
   readonly methods: DonationMethod[] = [
@@ -65,10 +65,27 @@ export class Support {
   selectedAmount = 25000;
   customAmount = '';
   showModal = false;
+  showThankYouModal = false;
   isProcessing = false;
 
   get selectedMethod(): DonationMethod {
     return this.methods.find((method) => method.id === this.selectedMethodId) ?? this.methods[0];
+  }
+
+  ngOnInit(): void {
+    // Verificar si hay una donación pendiente de confirmación
+    const pending = this.wompiService.getPendingDonation();
+    if (pending) {
+      setTimeout(() => {
+        this.showThankYouModal = true;
+        this.wompiService.clearPendingDonation();
+      }, 1000);
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Limpiar al destruir componente
+    this.wompiService.clearPendingDonation();
   }
 
   openDonationModal(methodId: string): void {
@@ -82,6 +99,10 @@ export class Support {
   closeDonationModal(): void {
     this.showModal = false;
     this.customAmount = '';
+  }
+
+  closeThankYouModal(): void {
+    this.showThankYouModal = false;
   }
 
   selectMethod(methodId: string): void {
@@ -117,12 +138,14 @@ export class Support {
     this.isProcessing = true;
 
     if (method.id === 'wompi') {
+      // Usar Wompi Service para abrir checkout con monto correcto
       this.wompiService.openCheckout(this.selectedAmount, method.currency);
       setTimeout(() => {
         this.closeDonationModal();
         this.isProcessing = false;
       }, 500);
     } else {
+      // Fallback para otros métodos por WhatsApp
       const amountLabel =
         method.currency === 'COP'
           ? `${this.selectedAmount.toLocaleString('es-CO')} COP`
