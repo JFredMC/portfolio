@@ -21,7 +21,7 @@ describe('Navbar', () => {
     expect(homeLink).toBeTruthy();
   });
 
-  it('announces the mobile menu state and closes it with Escape', () => {
+  it('announces the mobile menu state and closes it with Escape', async () => {
     const menuButton: HTMLButtonElement = fixture.nativeElement.querySelector(
       'button[aria-controls="mobile-navigation"]'
     );
@@ -37,8 +37,14 @@ describe('Navbar', () => {
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
     fixture.detectChanges();
 
+    const menu: HTMLElement = fixture.nativeElement.querySelector('#mobile-navigation').parentElement;
     expect(menuButton.getAttribute('aria-expanded')).toBe('false');
-    expect(fixture.nativeElement.querySelector('#mobile-navigation').parentElement.classList.contains('hidden')).toBeTrue();
+    expect(menu.classList.contains('animate-fade-out-up')).toBeTrue();
+    expect(menu.classList.contains('hidden')).toBeFalse();
     expect(document.activeElement).toBe(menuButton);
+
+    await new Promise((resolve) => setTimeout(resolve, 350));
+    fixture.detectChanges();
+    expect(menu.classList.contains('hidden')).toBeTrue();
   });
 });

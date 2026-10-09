@@ -90,6 +90,10 @@ describe('Support', () => {
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
     await fixture.whenStable();
 
+    expect(support.isClosing()).toBeTrue();
+    expect(support.showModal).toBeTrue();
+
+    await new Promise((resolve) => setTimeout(resolve, 350));
     expect(support.showModal).toBeFalse();
   });
 });

@@ -20,7 +20,7 @@
           <li class="flex flex-col md:flex-row items-start">
             <!-- Contenedor de fecha con efecto -->
             <div class="w-full md:w-1/2 mb-4 md:mb-0 md:pr-16 md:text-right">
-              <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg inline-block max-w-xs transform hover:-translate-y-1 transition-transform duration-300">
+              <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg inline-block max-w-xs transform hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] transition-transform duration-300">
                 <p class="text-sm font-semibold text-indigo-500 dark:text-indigo-400">{{ exp.date }}</p>
               </div>
             </div>
@@ -34,7 +34,7 @@
             
             <!-- Contenido de la experiencia -->
             <div class="w-full md:w-1/2 md:pl-16">
-              <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+              <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-[transform,box-shadow] duration-300 relative overflow-hidden">
                 <!-- Elemento decorativo -->
                 <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-100 dark:bg-indigo-900/20 rounded-bl-full z-0"></div>
                 
@@ -84,7 +84,7 @@
           </div>
           <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-label="Ámbitos de producto en MET">
             @for (system of exp.systems; track system.name) {
-              <li class="system-card rounded-2xl p-6 bg-white dark:bg-brand-surface border border-gray-200 dark:border-cyan-400/20 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-cyan-400/60 transition-all duration-300">
+              <li class="system-card rounded-2xl p-6 bg-white dark:bg-brand-surface border border-gray-200 dark:border-cyan-400/20 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] hover:border-cyan-400/60 transition-[transform,box-shadow] duration-300">
                 <h4 class="text-xl font-display font-bold bg-gradient-to-r from-cyan-700 to-indigo-700 dark:from-brand-cyan dark:to-brand-indigo bg-clip-text text-transparent mb-3">{{ system.name }}</h4>
                 <p class="text-gray-700 dark:text-brand-muted leading-relaxed">{{ system.description }}</p>
               </li>

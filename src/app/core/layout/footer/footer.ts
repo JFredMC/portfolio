@@ -1,6 +1,6 @@
-import { Component, HostListener, AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { shouldReduceMotion } from '../../../shared/utils/accessibility';
+import { scrollBehavior, throttle } from '../../../shared/utils/animation.util';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +9,8 @@ import { shouldReduceMotion } from '../../../shared/utils/accessibility';
   templateUrl: './footer.html',
   styleUrl: './footer.scss'
 })
-export class Footer implements AfterViewInit {
+export class Footer implements OnInit, AfterViewInit, OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
   date = new Date();
 
   readonly links = [
@@ -32,15 +33,20 @@ export class Footer implements AfterViewInit {
     this.checkScrollPosition();
   }
 
-  // Escuchar el evento de scroll en toda la ventana
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this.checkScrollPosition();
+  private readonly onWindowScroll = throttle(() => this.checkScrollPosition(), 100);
+
+  ngOnInit() {
+    window.addEventListener('scroll', this.onWindowScroll, { passive: true });
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('scroll', this.onWindowScroll);
   }
 
   private checkScrollPosition() {
     const scrollPosition = window.scrollY || document.documentElement.scrollTop;
     this.isAtTop = scrollPosition < this.TOP_THRESHOLD;
+    this.cdr.markForCheck();
   }
 
   scrollTo(sectionId: string, event?: Event) {
@@ -50,7 +56,7 @@ export class Footer implements AfterViewInit {
 
     const navbarHeight = document.querySelector('header')?.getBoundingClientRect().height || 80;
     const y = element.getBoundingClientRect().top + window.scrollY - (navbarHeight + 16);
-    window.scrollTo({ top: y, behavior: shouldReduceMotion() ? 'instant' : 'smooth' });
+    window.scrollTo({ top: y, behavior: scrollBehavior() });
   }
 
   // Acción del botón
@@ -59,13 +65,13 @@ export class Footer implements AfterViewInit {
       // Estamos arriba → ir abajo (al footer)
       window.scrollTo({
         top: document.body.scrollHeight,
-        behavior: shouldReduceMotion() ? 'instant' : 'smooth'
+        behavior: scrollBehavior()
       });
     } else {
       // Estamos abajo o en medio → ir arriba
       window.scrollTo({
         top: 0,
-        behavior: shouldReduceMotion() ? 'instant' : 'smooth'
+        behavior: scrollBehavior()
       });
     }
   }
