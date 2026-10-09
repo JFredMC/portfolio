@@ -59,7 +59,7 @@ export class Navbar {
     const element = document.getElementById(sectionId);
     if (!element) return;
 
-    const navbarHeight = document.querySelector('header')?.getBoundingClientRect().height || 80;
+    const navbarHeight = document.querySelector('header')?.getBoundingClientRect().height || 64;
     const extraOffset = 16;
 
     const yOffset = - (navbarHeight + extraOffset);

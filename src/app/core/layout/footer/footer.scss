@@ -1,5 +1,11 @@
+.footer-fab {
+  bottom: max(1rem, calc(env(safe-area-inset-bottom) + 0.5rem));
+  right: max(1rem, calc(env(safe-area-inset-right) + 0.5rem));
+}
 
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.9s ease-out forwards;
+@media (min-width: 40rem) {
+  .footer-fab {
+    bottom: max(2rem, calc(env(safe-area-inset-bottom) + 0.5rem));
+    right: max(2rem, calc(env(safe-area-inset-right) + 0.5rem));
+  }
 }

@@ -96,14 +96,32 @@
 }
 
 .dark {
+  color-scheme: dark;
   --color-brand-cyan: #22d3ee;
   --color-brand-indigo: #a5b4fc;
 }
 
 /* Scroll global (ya lo tienes bien) */
 @layer base {
+  :root {
+    --nav-h: 4rem;
+  }
+
+  @media (min-width: 40rem) {
+    :root {
+      --nav-h: 5rem;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    :root {
+      --nav-h: 6rem;
+    }
+  }
+
   html {
-    scroll-padding-top: 6rem;
+    color-scheme: light;
+    scroll-padding-top: calc(var(--nav-h) + 1rem);
     scroll-behavior: smooth;
   }
 
@@ -128,6 +146,10 @@
 
   .skip-link:focus {
     transform: translateY(0);
+  }
+
+  section[id] {
+    scroll-margin-top: calc(var(--nav-h) + 1rem);
   }
 
   header nav a {
