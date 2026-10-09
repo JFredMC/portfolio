@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
 import { ThemeService } from '../../../shared/services/theme.service';
+import { shouldReduceMotion } from '../../../shared/utils/accessibility';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ import { ThemeService } from '../../../shared/services/theme.service';
 })
 export class Navbar {
   public themeService = inject(ThemeService);
+  @ViewChild('menuButton') menuButton?: ElementRef<HTMLButtonElement>;
   isMenuOpen = false;
   darkMode = false;
 
@@ -19,7 +21,14 @@ export class Navbar {
 
   @HostListener('document:keydown.escape')
   closeMenuOnEscape() {
+    if (!this.isMenuOpen) return;
     this.isMenuOpen = false;
+    this.menuButton?.nativeElement.focus();
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
+    this.menuButton?.nativeElement.focus();
   }
 
   toggleTheme() {
@@ -38,7 +47,7 @@ export class Navbar {
 
     window.scrollTo({
       top: y,
-      behavior: 'smooth'
+      behavior: shouldReduceMotion() ? 'instant' : 'smooth'
     });
   }
 }

@@ -41,7 +41,7 @@
                 <!-- Icono de empresa -->
                 <div class="relative z-10 flex items-center mb-4">
                   <div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center mr-4">
-                    <img src="{{ exp.company_logo }}" alt="{{ exp.company }}" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8 object-contain">
+                    <img src="{{ exp.company_logo }}" alt="" aria-hidden="true" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8 object-contain">
                   </div>
                   <div>
                     <h3 class="text-xl font-bold text-gray-800 dark:text-white">{{ exp.title }}</h3>
@@ -79,13 +79,13 @@
       @if (exp.systems?.length) {
         <div class="mt-20">
           <div class="text-center mb-10">
-            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-600 dark:text-brand-cyan mb-3">{{ exp.company }}</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-700 dark:text-brand-cyan mb-3">{{ exp.company }}</p>
             <h3 class="text-2xl md:text-3xl font-display font-extrabold text-gray-900 dark:text-white">Ámbitos de producto</h3>
           </div>
           <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-label="Ámbitos de producto en MET">
             @for (system of exp.systems; track system.name) {
               <li class="system-card rounded-2xl p-6 bg-white dark:bg-brand-surface border border-gray-200 dark:border-cyan-400/20 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:border-cyan-400/60 transition-all duration-300">
-                <h4 class="text-xl font-display font-bold bg-gradient-to-r from-cyan-500 to-indigo-500 dark:from-brand-cyan dark:to-brand-indigo bg-clip-text text-transparent mb-3">{{ system.name }}</h4>
+                <h4 class="text-xl font-display font-bold bg-gradient-to-r from-cyan-700 to-indigo-700 dark:from-brand-cyan dark:to-brand-indigo bg-clip-text text-transparent mb-3">{{ system.name }}</h4>
                 <p class="text-gray-700 dark:text-brand-muted leading-relaxed">{{ system.description }}</p>
               </li>
             }

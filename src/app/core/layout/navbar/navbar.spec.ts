@@ -32,11 +32,13 @@ describe('Navbar', () => {
     fixture.detectChanges();
     expect(menuButton.getAttribute('aria-expanded')).toBe('true');
     expect(fixture.nativeElement.querySelector('#mobile-navigation')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#mobile-navigation').parentElement.classList.contains('hidden')).toBeFalse();
 
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
     fixture.detectChanges();
 
     expect(menuButton.getAttribute('aria-expanded')).toBe('false');
-    expect(fixture.nativeElement.querySelector('#mobile-navigation')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#mobile-navigation').parentElement.classList.contains('hidden')).toBeTrue();
+    expect(document.activeElement).toBe(menuButton);
   });
 });

@@ -34,7 +34,7 @@ import { CommonModule } from '@angular/common';
           </div>
         </div>
 
-        <p class="text-gray-400 text-lg animate-pulse">
+        <p class="text-gray-300 text-lg animate-pulse">
           Cargando experiencia...
         </p>
       </div>

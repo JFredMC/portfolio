@@ -25,6 +25,8 @@ type DonationMethod = {
 export class Support {
   wompiService = inject(WompiService);
   @ViewChild('donationDialog') donationDialog?: ElementRef<HTMLDivElement>;
+  @ViewChild('firstDonationControl') firstDonationControl?: ElementRef<HTMLButtonElement>;
+  @ViewChild('donationOverlay') donationOverlay?: ElementRef<HTMLDivElement>;
 
   readonly methods: DonationMethod[] = [
     {
@@ -49,6 +51,7 @@ export class Support {
   showModal = false;
   isProcessing = false;
   private donationTrigger: HTMLElement | null = null;
+  private backgroundInertState = new Map<HTMLElement, boolean>();
 
   get selectedMethod(): DonationMethod {
     return this.methods.find((method) => method.id === this.selectedMethodId) ?? this.methods[0];
@@ -62,13 +65,18 @@ export class Support {
     this.amountError = '';
     this.donationTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     this.showModal = true;
-    setTimeout(() => this.donationDialog?.nativeElement.focus());
+    setTimeout(() => {
+      if (!this.showModal) return;
+      this.setBackgroundInert(true);
+      this.firstDonationControl?.nativeElement.focus();
+    });
   }
 
   closeDonationModal(): void {
     this.showModal = false;
     this.customAmount = '';
     this.amountError = '';
+    this.setBackgroundInert(false);
     const trigger = this.donationTrigger;
     this.donationTrigger = null;
     setTimeout(() => trigger?.focus());
@@ -137,7 +145,13 @@ export class Support {
     const method = this.selectedMethod;
 
     const minimum = method.currency === 'COP' ? 1000 : 1;
+    if (this.customAmount.trim()) {
+      this.applyCustomAmount();
+      if (this.amountError) return;
+    }
+
     if (!method.isAvailable || !Number.isInteger(this.selectedAmount) || this.selectedAmount < minimum) {
+      this.amountError = `Ingresa un monto entero de al menos ${minimum.toLocaleString('es-CO')} ${method.currency}.`;
       return;
     }
 
@@ -146,5 +160,27 @@ export class Support {
     this.wompiService.openCheckout(this.selectedAmount, method.currency);
     this.closeDonationModal();
     this.isProcessing = false;
+  }
+
+  private setBackgroundInert(inert: boolean): void {
+    if (!inert) {
+      this.backgroundInertState.forEach((wasInert, element) => {
+        element.inert = wasInert;
+      });
+      this.backgroundInertState.clear();
+      return;
+    }
+
+    let current: HTMLElement | null = this.donationOverlay?.nativeElement ?? null;
+    while (current?.parentElement && current.parentElement !== document.body) {
+      const parent = current.parentElement;
+      Array.from(parent.children).forEach((sibling) => {
+        if (sibling !== current && sibling instanceof HTMLElement && !this.backgroundInertState.has(sibling)) {
+          this.backgroundInertState.set(sibling, sibling.inert);
+          sibling.inert = true;
+        }
+      });
+      current = parent;
+    }
   }
 }
