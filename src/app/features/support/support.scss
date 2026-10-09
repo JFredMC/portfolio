@@ -2,8 +2,7 @@ section {
   scroll-margin-top: 7rem;
 }
 
-// Animación de fade-in para el modal
-@keyframes fadeIn {
+@keyframes modalIn {
   from {
     opacity: 0;
     transform: scale(0.95);
@@ -14,22 +13,40 @@ section {
   }
 }
 
-@keyframes fadeInBg {
+@keyframes modalOut {
   from {
-    background-color: transparent;
+    opacity: 1;
+    transform: scale(1);
   }
   to {
-    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: scale(0.95);
   }
 }
 
-// Aplicar animación al modal
-:host ::ng-deep {
-  .fixed.inset-0 {
-    animation: fadeInBg 0.3s ease-out;
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes overlayOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.modal-overlay {
+  animation: overlayIn 0.3s ease-out both;
+
+  > div {
+    animation: modalIn 0.3s ease-out both;
   }
 
-  .fixed.inset-0 > div {
-    animation: fadeIn 0.3s ease-out;
+  &.is-closing {
+    pointer-events: none;
+    animation: overlayOut 0.3s ease-in both;
+
+    > div {
+      animation: modalOut 0.3s ease-in both;
+    }
   }
 }

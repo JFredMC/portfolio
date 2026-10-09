@@ -17,7 +17,7 @@
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <!-- Foto con efecto tilt + decoraciones -->
       <div class="relative group animate-fade-in-up" style="animation-delay: 400ms;">
-        <div class="relative rounded-3xl overflow-hidden shadow-2xl transition-all duration-700 group-hover:shadow-3xl group-hover:scale-[1.02]">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl transition-[transform,box-shadow] duration-300 duration-700 group-hover:shadow-3xl group-hover:scale-[1.02]">
           <img
             src="images/profile.webp"
             alt="Jhon Maquilon - Desarrollador Full Stack"
@@ -36,7 +36,7 @@
       <div class="space-y-10">
         <!-- Bio principal (con glass card) -->
         <div class="bg-white/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 
-                    transition-all duration-500 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 500ms;">
+                    transition-shadow duration-500 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 500ms;">
           <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
             Soy <span class="font-bold text-indigo-600 dark:text-indigo-400">Ingeniero de Software</span> con más de 
             <span class="font-bold text-indigo-600 dark:text-indigo-400">4 años de experiencia</span> diseñando, desarrollando y desplegando 
@@ -59,7 +59,7 @@
             @for (skill of skills; track skill) {
               <span class="px-5 py-2.5 rounded-full text-sm font-medium bg-indigo-100/80 dark:bg-indigo-900/40 
                            text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/50 
-                           transition-all duration-300 hover:bg-indigo-500 hover:text-white hover:scale-105 hover:shadow-md cursor-default">
+                           transition-[transform,box-shadow] duration-300 hover:bg-indigo-500 hover:text-white hover:scale-105 hover:shadow-md cursor-default">
                 {{ skill }}
               </span>
             }
@@ -69,7 +69,7 @@
         <!-- Métricas (cards con iconos animados) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-fade-in-up" style="animation-delay: 700ms;">
           <div class="bg-white/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 
-                      transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group">
+                      transition-[transform,box-shadow] duration-500 hover:shadow-xl hover:-translate-y-2 group">
             <div class="flex items-center">
               <div class="p-4 bg-indigo-100 dark:bg-indigo-900/50 rounded-full mr-5 group-hover:rotate-12 transition-transform">
                 <svg aria-hidden="true" class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +84,7 @@
           </div>
 
           <div class="bg-white/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 
-                      transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group">
+                      transition-[transform,box-shadow] duration-500 hover:shadow-xl hover:-translate-y-2 group">
             <div class="flex items-center">
               <div class="p-4 bg-purple-100 dark:bg-purple-900/50 rounded-full mr-5 group-hover:rotate-12 transition-transform">
                 <svg aria-hidden="true" class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

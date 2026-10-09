@@ -19,14 +19,18 @@
   --color-brand-muted: #9aabc4;
   --color-accent: #22d3ee;
 
-  /* Animaciones personalizadas - aquí va todo lo que necesitas */
-  --animate-fade-in-up: fade-in-up 0.9s ease-out forwards;
-  --animate-float-slow: float-slow 7s ease-in-out infinite;
+  /* Escala de duraciones: rápida 150ms · estándar 300ms · lenta 500ms (contenido 600ms) */
+  --duration-fast: 150ms;
+  --duration-standard: 300ms;
+  --duration-slow: 500ms;
+
+  /* Animaciones personalizadas */
+  --animate-fade-in-up: fade-in-up 0.6s ease-out both;
+  --animate-fade-in-down: fade-in-down 0.3s ease-out both;
+  --animate-fade-out-up: fade-out-up 0.3s ease-in both;
   --animate-shimmer: shimmer 2.5s linear infinite;
   --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
-  --animate-draw-line: draw-line 2s ease-out forwards;
 
-  /* Definir los @keyframes dentro del mismo @theme */
   @keyframes fade-in-up {
     0% {
       opacity: 0;
@@ -38,12 +42,25 @@
     }
   }
 
-  @keyframes float-slow {
-    0%, 100% {
+  @keyframes fade-in-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    100% {
+      opacity: 1;
       transform: translateY(0);
     }
-    50% {
-      transform: translateY(-15px);
+  }
+
+  @keyframes fade-out-up {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-12px);
     }
   }
 
@@ -64,29 +81,18 @@
       opacity: 0.7;
     }
   }
+}
 
-  @keyframes draw-line {
-    0% {
-      transform: scaleY(0);
-      transform-origin: top;
-    }
-    100% {
-      transform: scaleY(1);
-      transform-origin: top;
-    }
-  }
+@utility animation-delay-300 {
+  animation-delay: 300ms;
+}
 
-  --animate-bounce-slow: bounce-slow 3s infinite;
-  @keyframes bounce-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-25px); }
-  }
+@utility animation-delay-500 {
+  animation-delay: 500ms;
+}
 
-  --animate-rotate-slow: rotate-slow 20s linear infinite;
-  @keyframes rotate-slow {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
+@utility animation-delay-700 {
+  animation-delay: 700ms;
 }
 
 .dark {

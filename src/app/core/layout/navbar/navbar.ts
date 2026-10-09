@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
 import { ThemeService } from '../../../shared/services/theme.service';
-import { shouldReduceMotion } from '../../../shared/utils/accessibility';
+import { exitDuration, scrollBehavior } from '../../../shared/utils/animation.util';
 
 @Component({
   selector: 'app-navbar',
@@ -14,21 +14,41 @@ export class Navbar {
   @ViewChild('menuButton') menuButton?: ElementRef<HTMLButtonElement>;
   isMenuOpen = false;
   darkMode = false;
+  isMenuClosing = signal(false);
+  private closeTimer: ReturnType<typeof setTimeout> | null = null;
 
   toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+    if (this.isMenuOpen) {
+      this.closeMenu();
+      return;
+    }
+    this.clearCloseTimer();
+    this.isMenuClosing.set(false);
+    this.isMenuOpen = true;
   }
 
   @HostListener('document:keydown.escape')
   closeMenuOnEscape() {
     if (!this.isMenuOpen) return;
-    this.isMenuOpen = false;
-    this.menuButton?.nativeElement.focus();
+    this.closeMenu();
   }
 
   closeMenu() {
     this.isMenuOpen = false;
     this.menuButton?.nativeElement.focus();
+    this.clearCloseTimer();
+    this.isMenuClosing.set(true);
+    this.closeTimer = setTimeout(() => {
+      this.closeTimer = null;
+      this.isMenuClosing.set(false);
+    }, exitDuration());
+  }
+
+  private clearCloseTimer() {
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer);
+      this.closeTimer = null;
+    }
   }
 
   toggleTheme() {
@@ -47,7 +67,7 @@ export class Navbar {
 
     window.scrollTo({
       top: y,
-      behavior: shouldReduceMotion() ? 'instant' : 'smooth'
+      behavior: scrollBehavior()
     });
   }
 }

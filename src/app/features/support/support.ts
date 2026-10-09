@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
+import { exitDuration } from '../../shared/utils/animation.util';
 import { WompiService } from '../../shared/services/wompi.service';
 
 type DonationMethod = {
@@ -50,6 +51,8 @@ export class Support {
   amountError = '';
   showModal = false;
   isProcessing = false;
+  isClosing = signal(false);
+  private closeTimer: ReturnType<typeof setTimeout> | null = null;
   private donationTrigger: HTMLElement | null = null;
   private backgroundInertState = new Map<HTMLElement, boolean>();
 
@@ -64,6 +67,11 @@ export class Support {
     this.customAmount = '';
     this.amountError = '';
     this.donationTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer);
+      this.closeTimer = null;
+    }
+    this.isClosing.set(false);
     this.showModal = true;
     setTimeout(() => {
       if (!this.showModal) return;
@@ -73,7 +81,13 @@ export class Support {
   }
 
   closeDonationModal(): void {
-    this.showModal = false;
+    if (!this.showModal || this.isClosing()) return;
+    this.isClosing.set(true);
+    this.closeTimer = setTimeout(() => {
+      this.closeTimer = null;
+      this.showModal = false;
+      this.isClosing.set(false);
+    }, exitDuration());
     this.customAmount = '';
     this.amountError = '';
     this.setBackgroundInert(false);

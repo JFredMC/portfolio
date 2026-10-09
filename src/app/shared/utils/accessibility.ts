@@ -1,3 +1,1 @@
-export function shouldReduceMotion(): boolean {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
+export { shouldReduceMotion } from './animation.util';
