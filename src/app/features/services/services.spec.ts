@@ -15,18 +15,19 @@ describe('Services', () => {
     fixture.detectChanges();
   });
 
-  it('renders all four service cards and an accessible contact link', () => {
-    expect(fixture.nativeElement.querySelectorAll('article').length).toBe(4);
+  it('renders all three service cards and an accessible contact link', () => {
+    expect(fixture.nativeElement.querySelectorAll('article').length).toBe(3);
     expect(fixture.nativeElement.querySelector('a[href="#contact"]').getAttribute('aria-label'))
       .toBe('Contáctame para conversar sobre tu proyecto');
   });
 
-  it('describes the verified frontend and backend stack', () => {
-    const frontendDescription = fixture.nativeElement.querySelector('article p').textContent;
+  it('describes the verified full stack and backend stack', () => {
+    const articles = fixture.nativeElement.querySelectorAll('article');
+    const fullStackDescription = articles[0].querySelector('p').textContent;
 
-    expect(frontendDescription).toContain('Angular especializado');
-    expect(frontendDescription).toContain('NestJS o Ruby on Rails');
-    expect(frontendDescription).not.toMatch(/React|Vue|Next\.js/);
+    expect(fullStackDescription).toContain('Angular');
+    expect(fullStackDescription).toContain('NestJS');
+    expect(fixture.nativeElement.textContent).not.toMatch(/React|Vue|Next\.js/);
   });
 
   it('scrolls to contact while respecting the reduced-motion preference', () => {
