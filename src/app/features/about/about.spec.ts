@@ -18,7 +18,7 @@ describe('About', () => {
   it('shows the profile, verified education, certification, and languages', () => {
     const content = fixture.nativeElement.textContent;
 
-    expect(content).toContain('5 años de experiencia');
+    expect(content.match(/5 años de experiencia/g)).toBeNull();
     expect(content).toContain('5+');
     expect(content).toContain('MET•PAY');
     expect(content).toContain('Ingeniería de Software');
@@ -28,22 +28,13 @@ describe('About', () => {
     expect(content).toContain('Inglés: A2 certificado');
   });
 
-  it('lists the verified technical skills without unrelated frontend frameworks', () => {
+  it('lists the most differentiating technical skills without unrelated frontend frameworks', () => {
     expect(fixture.componentInstance.skills).toEqual([
-      'Angular 13+',
+      'Angular',
       'NestJS',
       'TypeScript',
-      'JavaScript ES6+',
       'Node.js',
-      'Ruby on Rails',
       'PostgreSQL',
-      'APIs RESTful',
-      'Git',
-      'Scrum',
-      'Kanban',
-      'Testing/QA',
-      'Tailwind CSS',
-      'HTML5/CSS3',
     ]);
   });
 });

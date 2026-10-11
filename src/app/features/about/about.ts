@@ -13,20 +13,11 @@ export class About implements AfterViewInit {
 videoEnded = signal(false);
 
 skills: string[] = [
-  'Angular 13+',
+  'Angular',
   'NestJS',
   'TypeScript',
-  'JavaScript ES6+',
   'Node.js',
-  'Ruby on Rails',
-  'PostgreSQL',
-  'APIs RESTful',
-  'Git',
-  'Scrum',
-  'Kanban',
-  'Testing/QA',
-  'Tailwind CSS',
-  'HTML5/CSS3'
+  'PostgreSQL'
 ];
 
 ngAfterViewInit(): void {
