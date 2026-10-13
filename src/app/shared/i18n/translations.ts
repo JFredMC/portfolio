@@ -148,6 +148,11 @@ export const EN_TRANSLATIONS: Record<string, string> = {
 
   // Apoya
   'Apoya mi trabajo': 'Support my work',
+  '¿Te sirvió alguna demo? Invítame un café ☕': 'Found a demo useful? Buy me a coffee ☕',
+  'Ayuda a mantener mis proyectos abiertos. Pago seguro con Wompi.': 'It helps keep my projects open. Secure payment via Wompi.',
+  'Apoyar con Wompi': 'Support via Wompi',
+  'Invítame un café ☕': 'Buy me a coffee ☕',
+  '¿Te sirvió alguna demo?': 'Found a demo useful?',
   'Si este trabajo te sirve, puedes apoyar mi proceso.': 'If this work is useful to you, you can support my process.',
   'Tu aporte me ayuda a mantener y seguir desarrollando proyectos personales y demos públicas.': 'Your contribution helps me maintain and keep developing personal projects and public demos.',
   'La mejor opción para apoyar desde Colombia con pagos locales y transferencias seguras.': 'The best option to support from Colombia with local payments and secure transfers.',
