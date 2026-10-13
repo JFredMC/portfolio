@@ -16,10 +16,10 @@ describe('Services', () => {
     fixture.detectChanges();
   });
 
-  it('renders all three service cards and an accessible contact link', () => {
+  it('renders the three service cards without an intro or closing CTA', () => {
     expect(fixture.nativeElement.querySelectorAll('article').length).toBe(3);
-    expect(fixture.nativeElement.querySelector('a[href="#contact"]').getAttribute('aria-label'))
-      .toBe('Contáctame ahora para conversar sobre tu proyecto');
+    expect(fixture.nativeElement.querySelector('a[href="#contact"]')).toBeNull();
+    expect(fixture.nativeElement.textContent).not.toMatch(/Listo para transformar|Soluciones tecnológicas/);
   });
 
   it('describes the verified full stack and backend stack', () => {
@@ -29,18 +29,5 @@ describe('Services', () => {
     expect(fullStackDescription).toContain('Angular');
     expect(fullStackDescription).toContain('NestJS');
     expect(fixture.nativeElement.textContent).not.toMatch(/React|Vue|Next\.js/);
-  });
-
-  it('scrolls to contact while respecting the reduced-motion preference', () => {
-    spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
-    const target = document.createElement('div');
-    target.id = 'contact';
-    document.body.appendChild(target);
-    const scrollIntoView = spyOn(target, 'scrollIntoView');
-
-    fixture.nativeElement.querySelector('a[href="#contact"]').click();
-
-    expect(scrollIntoView).toHaveBeenCalledOnceWith({ behavior: 'auto', block: 'start' });
-    target.remove();
   });
 });

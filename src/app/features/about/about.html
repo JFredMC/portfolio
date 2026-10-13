@@ -7,9 +7,6 @@
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white mb-5 animate-fade-in-up">
         {{ 'Sobre mí' | t }}
       </h2>
-      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 200ms;">
-        {{ 'Ingeniero de Software y desarrollador full stack: de la interfaz a la API, la base de datos y la nube.' | t }}
-      </p>
       <div class="w-32 h-1.5 bg-gradient-to-r from-cyan-400 to-indigo-400 mx-auto mt-8 rounded-full animate-fade-in-up" style="animation-delay: 300ms;"></div>
     </div>
 
@@ -26,23 +23,25 @@
               poster="images/profile.webp"
               [attr.aria-label]="'Video de perfil' | t"
               (ended)="videoEnded.set(true)"
-              class="w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center transition-transform duration-1000 group-hover:scale-110"
+              [class.opacity-0]="videoEnded()"
+              class="profile-media w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center group-hover:scale-110"
             >
               <source src="video/profile.webm" type="video/webm" />
               <source src="video/profile.mp4" type="video/mp4" />
             </video>
           }
-          @if (reducedMotion || videoEnded()) {
-            <img
-              src="images/profile.webp"
-              [alt]="'Foto de perfil' | t"
-              width="800"
-              height="1074"
-              [class.absolute]="!reducedMotion"
-              [class.inset-0]="!reducedMotion"
-              class="w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center transition-transform duration-1000 group-hover:scale-110"
-            />
-          }
+          <!-- La foto queda encima del video y aparece con un fundido al terminar. -->
+          <img
+            src="images/profile.webp"
+            [alt]="'Foto de perfil' | t"
+            width="800"
+            height="1074"
+            [class.absolute]="!reducedMotion"
+            [class.inset-0]="!reducedMotion"
+            [class.opacity-0]="!reducedMotion && !videoEnded()"
+            [attr.aria-hidden]="!reducedMotion && !videoEnded() ? 'true' : null"
+            class="profile-photo profile-media w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center group-hover:scale-110"
+          />
           <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 pointer-events-none"></div>
         </div>
 
@@ -96,39 +95,5 @@
       </div>
     </div>
 
-    <section class="mt-16 sm:mt-20" aria-labelledby="about-education-title">
-      <div class="text-center mb-10">
-        <h3 id="about-education-title" class="text-2xl sm:text-3xl font-display font-extrabold text-gray-900 dark:text-white">
-          {{ 'Formación, certificación e idiomas' | t }}
-        </h3>
-      </div>
-      <div class="grid gap-6 md:grid-cols-3">
-        <article class="bg-white/70 dark:bg-gray-800/50 rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-          <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-4">{{ 'Educación' | t }}</h4>
-          <ul class="space-y-4 text-gray-700 dark:text-gray-300">
-            <li>
-              <p class="font-semibold">{{ 'Ingeniería de Software' | t }}</p>
-              <p>{{ 'Corporación Universitaria Iberoamericana · 2022–2024' | t }}</p>
-            </li>
-            <li>
-              <p class="font-semibold">{{ 'Diplomado en Análisis de Datos con Python' | t }}</p>
-              <p>{{ 'Corporación Universitaria Iberoamericana' | t }}</p>
-            </li>
-          </ul>
-        </article>
-        <article class="bg-white/70 dark:bg-gray-800/50 rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-          <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-4">{{ 'Certificaciones' | t }}</h4>
-          <p class="font-semibold text-gray-800 dark:text-gray-200">{{ 'Angular — Verified by Talently' | t }}</p>
-          <p class="text-gray-700 dark:text-gray-300">{{ 'Mayo de 2025' | t }}</p>
-        </article>
-        <article class="bg-white/70 dark:bg-gray-800/50 rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-          <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-300 mb-4">{{ 'Idiomas' | t }}</h4>
-          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-            <li><span class="font-semibold">{{ 'Español:' | t }}</span> {{ 'Nativo' | t }}</li>
-            <li><span class="font-semibold">{{ 'Inglés:' | t }}</span> {{ 'A2 certificado · Preparando nivel B1' | t }}</li>
-          </ul>
-        </article>
-      </div>
-    </section>
   </div>
 </section>
