@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, ElementRef, HostListener, OnDestroy, inject, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, effect, inject, input, signal, untracked, ViewChild } from '@angular/core';
+import { DonationLauncherService } from '../../shared/services/donation-launcher.service';
 import { exitDuration } from '../../shared/utils/animation.util';
 import { I18nService } from '../../shared/i18n/i18n.service';
 import { TPipe } from '../../shared/i18n/t.pipe';
@@ -28,6 +29,12 @@ type DonationMethod = {
 export class Support implements OnDestroy {
   wompiService = inject(WompiService);
   private readonly i18n = inject(I18nService);
+  /** full: sección completa · compact: tarjeta centrada · modal: solo el modal (se abre desde otros enlaces). */
+  readonly variant = input<'full' | 'compact' | 'modal'>('full');
+  private readonly launcher = inject(DonationLauncherService);
+  private readonly launchEffect = effect(() => {
+    if (this.launcher.requests() > 0) untracked(() => this.openDonationModal('wompi'));
+  });
   @ViewChild('donationDialog') donationDialog?: ElementRef<HTMLDivElement>;
   @ViewChild('firstDonationControl') firstDonationControl?: ElementRef<HTMLButtonElement>;
   @ViewChild('donationOverlay') donationOverlay?: ElementRef<HTMLDivElement>;

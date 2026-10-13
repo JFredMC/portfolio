@@ -58,6 +58,7 @@ describe('About profile video', () => {
       constructor(cb: IntersectionObserverCallback) { callback = cb; }
       observe(el: Element) { observed.push(el); }
       disconnect() {}
+      unobserve() {}
     };
     spyOn(HTMLMediaElement.prototype, 'play').and.returnValue(Promise.resolve());
     await TestBed.configureTestingModule({
@@ -85,6 +86,33 @@ describe('About profile video', () => {
 
     callback([{ isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver);
     expect(HTMLMediaElement.prototype.play).toHaveBeenCalledTimes(1);
+  });
+
+  it('replays from the start on every entry, pauses on exit, and hides the photo', () => {
+    stubMotion(false);
+    const pause = spyOn(HTMLMediaElement.prototype, 'pause');
+    const fixture = TestBed.createComponent(About);
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+    const video: HTMLVideoElement = el.querySelector('video')!;
+    const io = {} as IntersectionObserver;
+    const enter = () => callback([{ isIntersecting: true } as IntersectionObserverEntry], io);
+    const leave = () => callback([{ isIntersecting: false } as IntersectionObserverEntry], io);
+
+    enter();
+    video.dispatchEvent(new Event('ended'));
+    fixture.detectChanges();
+    expect(el.querySelector('img[src="images/profile.webp"]')).not.toBeNull();
+
+    leave();
+    expect(pause).toHaveBeenCalledTimes(1);
+
+    Object.defineProperty(video, 'currentTime', { value: 4, writable: true, configurable: true });
+    enter();
+    fixture.detectChanges();
+    expect(video.currentTime).toBe(0);
+    expect(HTMLMediaElement.prototype.play).toHaveBeenCalledTimes(2);
+    expect(el.querySelector('img[src="images/profile.webp"]')).toBeNull();
   });
 
   it('offers WebM before MP4', () => {
