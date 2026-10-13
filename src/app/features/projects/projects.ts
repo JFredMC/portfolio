@@ -23,7 +23,7 @@ export class Projects {
       description: 'Ofertas en Colombia: detecta descuentos inflados, compara tiendas y arma tu mercado',
       tech: ['Angular', 'NestJS', 'MapLibre', 'Playwright'],
       codeLink: 'https://github.com/JFredMC/napa',
-      demoLink: 'https://jfredmc.github.io/napa/',
+      demoLink: 'https://napaofertas.com/',
       status: 'completed',
       image: 'projects/napa.webp',
     },
