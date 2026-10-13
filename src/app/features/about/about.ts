@@ -33,13 +33,18 @@ export class About implements AfterViewInit, OnDestroy {
       this.play(video);
       return;
     }
-    // Solo se descarga y reproduce cuando la sección entra en pantalla.
+    // Cada vez que la sección entra en pantalla, el video vuelve a empezar;
+    // al salir se pausa. Al terminar se muestra la foto.
     this.observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          this.observer?.disconnect();
-          this.observer = undefined;
+        const entry = entries[entries.length - 1];
+        if (!entry) return;
+        if (entry.isIntersecting) {
+          this.videoEnded.set(false);
+          video.currentTime = 0;
           this.play(video);
+        } else {
+          video.pause();
         }
       },
       { threshold: 0.35 }
