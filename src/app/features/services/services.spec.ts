@@ -6,6 +6,7 @@ describe('Services', () => {
   let fixture: ComponentFixture<Services>;
 
   beforeEach(async () => {
+    localStorage.removeItem('user-lang');
     await TestBed.configureTestingModule({
       imports: [Services],
       providers: [provideZonelessChangeDetection()],
@@ -18,7 +19,7 @@ describe('Services', () => {
   it('renders all three service cards and an accessible contact link', () => {
     expect(fixture.nativeElement.querySelectorAll('article').length).toBe(3);
     expect(fixture.nativeElement.querySelector('a[href="#contact"]').getAttribute('aria-label'))
-      .toBe('Contáctame para conversar sobre tu proyecto');
+      .toBe('Contáctame ahora para conversar sobre tu proyecto');
   });
 
   it('describes the verified full stack and backend stack', () => {

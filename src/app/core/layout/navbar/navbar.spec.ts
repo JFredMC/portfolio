@@ -6,6 +6,7 @@ describe('Navbar', () => {
   let fixture: ComponentFixture<Navbar>;
 
   beforeEach(async () => {
+    localStorage.removeItem('user-lang');
     await TestBed.configureTestingModule({
       imports: [Navbar],
       providers: [provideZonelessChangeDetection()],

@@ -17,24 +17,30 @@
       <div class="relative group animate-fade-in-up" style="animation-delay: 400ms;">
         <div class="relative rounded-[2rem] overflow-hidden shadow-[0_25px_80px_rgba(79,70,229,0.22)] border border-white/40 dark:border-white/10 bg-black ring-1 ring-indigo-200/60 dark:ring-indigo-500/20 transition-all duration-500 group-hover:scale-[1.01] group-hover:shadow-[0_30px_90px_rgba(79,70,229,0.28)]">
           <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-cyan-500/10 z-10 pointer-events-none"></div>
-          <video
-            #profileVideo
-            autoplay
-            [muted]="true"
-            playsinline
-            preload="auto"
-            poster="images/profile.webp"
-            [attr.aria-label]="'Video de perfil' | t"
-            (ended)="videoEnded.set(true)"
-            class="w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center transition-transform duration-1000 group-hover:scale-110"
-          >
-            <source src="video/profile.mp4" type="video/mp4" />
-          </video>
-          @if (videoEnded()) {
+          @if (!reducedMotion) {
+            <video
+              #profileVideo
+              [muted]="true"
+              playsinline
+              preload="none"
+              poster="images/profile.webp"
+              [attr.aria-label]="'Video de perfil' | t"
+              (ended)="videoEnded.set(true)"
+              class="w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center transition-transform duration-1000 group-hover:scale-110"
+            >
+              <source src="video/profile.webm" type="video/webm" />
+              <source src="video/profile.mp4" type="video/mp4" />
+            </video>
+          }
+          @if (reducedMotion || videoEnded()) {
             <img
               src="images/profile.webp"
               [alt]="'Foto de perfil' | t"
-              class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110"
+              width="800"
+              height="1074"
+              [class.absolute]="!reducedMotion"
+              [class.inset-0]="!reducedMotion"
+              class="w-full h-[420px] sm:h-[520px] md:h-[620px] object-cover object-center transition-transform duration-1000 group-hover:scale-110"
             />
           }
           <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 pointer-events-none"></div>

@@ -6,6 +6,7 @@ describe('About', () => {
   let fixture: ComponentFixture<About>;
 
   beforeEach(async () => {
+    localStorage.removeItem('user-lang');
     await TestBed.configureTestingModule({
       imports: [About],
       providers: [provideZonelessChangeDetection()],
@@ -36,5 +37,81 @@ describe('About', () => {
       'Node.js',
       'PostgreSQL',
     ]);
+  });
+});
+
+describe('About profile video', () => {
+  let observed: Element[];
+  let callback: IntersectionObserverCallback;
+  let originalIO: typeof IntersectionObserver;
+
+  function stubMotion(reduce: boolean): void {
+    spyOn(window, 'matchMedia').and.callFake(
+      (q: string) => ({ matches: reduce && q.includes('reduce'), media: q } as MediaQueryList)
+    );
+  }
+
+  beforeEach(async () => {
+    observed = [];
+    originalIO = window.IntersectionObserver;
+    (window as any).IntersectionObserver = class {
+      constructor(cb: IntersectionObserverCallback) { callback = cb; }
+      observe(el: Element) { observed.push(el); }
+      disconnect() {}
+    };
+    spyOn(HTMLMediaElement.prototype, 'play').and.returnValue(Promise.resolve());
+    await TestBed.configureTestingModule({
+      imports: [About],
+      providers: [provideZonelessChangeDetection()],
+    }).compileComponents();
+  });
+
+  afterEach(() => {
+    (window as any).IntersectionObserver = originalIO;
+  });
+
+  it('loads lazily and only plays muted once the video is visible', () => {
+    stubMotion(false);
+    const fixture = TestBed.createComponent(About);
+    fixture.detectChanges();
+    const video: HTMLVideoElement = fixture.nativeElement.querySelector('video');
+
+    expect(video.getAttribute('preload')).toBe('none');
+    expect(video.muted).toBeTrue();
+    expect(video.playsInline).toBeTrue();
+    expect(video.getAttribute('poster')).toBe('images/profile.webp');
+    expect(observed).toEqual([video]);
+    expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();
+
+    callback([{ isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver);
+    expect(HTMLMediaElement.prototype.play).toHaveBeenCalledTimes(1);
+  });
+
+  it('offers WebM before MP4', () => {
+    stubMotion(false);
+    const fixture = TestBed.createComponent(About);
+    fixture.detectChanges();
+    const types = [...fixture.nativeElement.querySelectorAll('video source')].map((s: Element) => s.getAttribute('type'));
+    expect(types).toEqual(['video/webm', 'video/mp4']);
+  });
+
+  it('shows the photo when the video ends', () => {
+    stubMotion(false);
+    const fixture = TestBed.createComponent(About);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('img[src="images/profile.webp"]')).toBeNull();
+
+    fixture.nativeElement.querySelector('video').dispatchEvent(new Event('ended'));
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('img[src="images/profile.webp"]')).not.toBeNull();
+  });
+
+  it('shows only the photo with prefers-reduced-motion', () => {
+    stubMotion(true);
+    const fixture = TestBed.createComponent(About);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('video')).toBeNull();
+    expect(fixture.nativeElement.querySelector('img[src="images/profile.webp"]')).not.toBeNull();
+    expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();
   });
 });
