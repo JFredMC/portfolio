@@ -1,37 +1,19 @@
 {
-  "name": "JFredDev — Jhon Maquilon · Full Stack",
+  "name": "JFredDev",
   "short_name": "JFredDev",
-  "description": "Portafolio de Jhon Maquilon, desarrollador Full Stack Semi Senior: Angular, NestJS, Ruby on Rails y PostgreSQL.",
+  "description": "Portafolio de Jhon Maquilon (JFredDev), desarrollador Full Stack Semi Senior: Angular, NestJS, Ruby on Rails, PostgreSQL y AWS.",
+  "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#070d18",
-  "theme_color": "#070d18",
+  "theme_color": "#4f46e5",
   "lang": "es",
   "icons": [
-    {
-      "src": "images/logo.png",
-      "sizes": "434x283",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "images/logo.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "images/icon-192-maskable.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "images/icon-512-maskable.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
+    { "src": "images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "images/icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "images/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "images/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]
 }

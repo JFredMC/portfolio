@@ -26,7 +26,6 @@ export const EN_TRANSLATIONS: Record<string, string> = {
 
   // Home
   'Disponible': 'Available',
-  'Jhon Maquilon · Desarrollador Full Stack · Turbo, Antioquia · Remoto': 'Jhon Maquilon · Full Stack Developer · Turbo, Antioquia · Remote',
   'Sistemas que operan': 'Systems that run',
   'todos los días.': 'every day.',
   'Desarrollador Full Stack Semi Senior · Angular · NestJS · Ruby on Rails': 'Semi Senior Full Stack Developer · Angular · NestJS · Ruby on Rails',
@@ -36,7 +35,6 @@ export const EN_TRANSLATIONS: Record<string, string> = {
   'Correo': 'Email',
 
   // Sobre mí
-  'Ingeniero de Software y desarrollador full stack: de la interfaz a la API, la base de datos y la nube.': 'Software Engineer and full stack developer: from the interface to the API, the database and the cloud.',
   'Video de perfil': 'Profile video',
   'Foto de perfil': 'Profile photo',
   'Soy': 'I am a',
@@ -46,24 +44,9 @@ export const EN_TRANSLATIONS: Record<string, string> = {
   'Me importa que el software funcione hoy y se pueda mantener mañana: entiendo los requisitos contigo, diseño APIs REST claras, escribo pruebas, configuro integración continua y documento lo que entrego. Además, tengo formación en análisis de datos con Python.': 'I care about software that works today and can be maintained tomorrow: I work through the requirements with you, design clear REST APIs, write tests, set up continuous integration and document what I deliver. I also have training in data analysis with Python.',
   'Tecnologías principales': 'Main technologies',
   'Años de experiencia': 'Years of experience',
-  'Formación, certificación e idiomas': 'Education, certification and languages',
-  'Educación': 'Education',
-  'Ingeniería de Software': 'Software Engineering',
-  'Corporación Universitaria Iberoamericana · 2022–2024': 'Corporación Universitaria Iberoamericana · 2022–2024',
-  'Diplomado en Análisis de Datos con Python': 'Diploma in Data Analysis with Python',
-  'Corporación Universitaria Iberoamericana': 'Corporación Universitaria Iberoamericana',
-  'Certificaciones': 'Certifications',
-  'Angular — Verified by Talently': 'Angular — Verified by Talently',
-  'Mayo de 2025': 'May 2025',
-  'Idiomas': 'Languages',
-  'Español:': 'Spanish:',
-  'Nativo': 'Native',
-  'Inglés:': 'English:',
-  'A2 certificado · Preparando nivel B1': 'A2 certified · Preparing for B1',
 
   // Experiencia
   'Trayectoria': 'Career',
-  'Dónde construyo y qué queda operando': 'Where I build and what keeps running',
   'Clientes:': 'Clients:',
   'Tecnologías utilizadas:': 'Technologies used:',
   'Ámbitos de producto': 'Product areas',
@@ -98,7 +81,6 @@ export const EN_TRANSLATIONS: Record<string, string> = {
 
   // Servicios
   'Servicios Profesionales': 'Professional Services',
-  'Soluciones tecnológicas personalizadas para transformar tu visión digital': 'Custom technology solutions to transform your digital vision',
   'Componentes reutilizables': 'Reusable components',
   'Rendimiento optimizado': 'Optimized performance',
   'Desarrollo Backend': 'Backend Development',
@@ -113,9 +95,6 @@ export const EN_TRANSLATIONS: Record<string, string> = {
   'Revisión de arquitectura, optimización de procesos y mantenimiento continuo de tus aplicaciones.': 'Architecture review, process optimization and ongoing maintenance of your applications.',
   'Auditoría técnica': 'Technical audit',
   'Soporte continuo': 'Ongoing support',
-  '¿Listo para transformar tu proyecto?': 'Ready to transform your project?',
-  'Contáctame ahora': 'Contact me now',
-  'Contáctame ahora para conversar sobre tu proyecto': 'Contact me now to discuss your project',
 
   // Proyectos
   'Proyectos personales y demos públicas': 'Personal projects and public demos',

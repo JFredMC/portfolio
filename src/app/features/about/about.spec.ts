@@ -27,11 +27,7 @@ describe('About', () => {
     expect(content).not.toContain('Del front end a la nube');
     expect(content).toContain('APIs en NestJS o Ruby on Rails;');
     expect(content).toContain('S3, ECS, Amplify, RDS e IAM');
-    expect(content).toContain('Ingeniería de Software');
-    expect(content).toContain('Diplomado en Análisis de Datos con Python');
-    expect(content).toContain('Angular — Verified by Talently');
-    expect(content).toContain('Español: Nativo');
-    expect(content).toContain('Inglés: A2 certificado');
+    expect(content).not.toMatch(/Talently|Iberoamericana|Idiomas|Certificaciones/);
   });
 
   it('lists the most differentiating technical skills without unrelated frontend frameworks', () => {
@@ -108,7 +104,7 @@ describe('About profile video', () => {
     enter();
     video.dispatchEvent(new Event('ended'));
     fixture.detectChanges();
-    expect(el.querySelector('img[src="images/profile.webp"]')).not.toBeNull();
+    expect(el.querySelector('img[src="images/profile.webp"]')!.classList).not.toContain('opacity-0');
 
     leave();
     expect(pause).toHaveBeenCalledTimes(1);
@@ -118,7 +114,8 @@ describe('About profile video', () => {
     fixture.detectChanges();
     expect(video.currentTime).toBe(0);
     expect(HTMLMediaElement.prototype.play).toHaveBeenCalledTimes(2);
-    expect(el.querySelector('img[src="images/profile.webp"]')).toBeNull();
+    expect(el.querySelector('img[src="images/profile.webp"]')!.classList).toContain('opacity-0');
+    expect(video.classList).not.toContain('opacity-0');
   });
 
   it('offers WebM before MP4', () => {
@@ -133,11 +130,19 @@ describe('About profile video', () => {
     stubMotion(false);
     const fixture = TestBed.createComponent(About);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('img[src="images/profile.webp"]')).toBeNull();
+    const photo = () => fixture.nativeElement.querySelector('img[src="images/profile.webp"]') as HTMLImageElement;
+    const video = () => fixture.nativeElement.querySelector('video') as HTMLVideoElement;
+    expect(photo().classList).toContain('opacity-0');
+    expect(photo().getAttribute('aria-hidden')).toBe('true');
+    expect(video().classList).not.toContain('opacity-0');
 
-    fixture.nativeElement.querySelector('video').dispatchEvent(new Event('ended'));
+    video().dispatchEvent(new Event('ended'));
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('img[src="images/profile.webp"]')).not.toBeNull();
+    // Fundido cruzado: la foto aparece y el video se desvanece (transición de opacidad).
+    expect(photo().classList).not.toContain('opacity-0');
+    expect(photo().getAttribute('aria-hidden')).toBeNull();
+    expect(video().classList).toContain('opacity-0');
+    expect(photo().classList).toContain('profile-media');
   });
 
   it('shows only the photo with prefers-reduced-motion', () => {

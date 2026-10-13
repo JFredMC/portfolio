@@ -6,9 +6,6 @@
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 animate-fade-in-up">
         {{ 'Servicios Profesionales' | t }}
       </h2>
-      <p class="text-base sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 150ms;">
-        {{ 'Soluciones tecnológicas personalizadas para transformar tu visión digital' | t }}
-      </p>
       <div class="w-24 h-1 bg-indigo-500 dark:bg-indigo-400 mx-auto mt-6 rounded-full animate-fade-in-up" style="animation-delay: 300ms;"></div>
     </div>
 
@@ -122,19 +119,5 @@
       </article>
     </div>
 
-    <!-- CTA al final -->
-    <div class="mt-16 sm:mt-20 text-center animate-fade-in-up" style="animation-delay: 750ms;">
-      <h3 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-6">
-        {{ '¿Listo para transformar tu proyecto?' | t }}
-      </h3>
-      <a 
-        href="#contact"
-        (click)="$event.preventDefault(); scrollTo('contact')"
-        [attr.aria-label]="'Contáctame ahora para conversar sobre tu proyecto' | t"
-        class="inline-block bg-indigo-700 hover:bg-indigo-800 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-[transform,box-shadow] duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] cursor-pointer"
-      >
-        {{ 'Contáctame ahora' | t }}
-      </a>
-    </div>
   </div>
 </section>
