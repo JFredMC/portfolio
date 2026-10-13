@@ -16,8 +16,6 @@ export const EN_TRANSLATIONS: Record<string, string> = {
   'Tema claro activo. Cambiar al tema oscuro': 'Light theme active. Switch to dark theme',
   'Tema oscuro activo. Cambiar al tema del sistema': 'Dark theme active. Switch to system theme',
   'Tema del sistema activo. Cambiar al tema claro': 'System theme active. Switch to light theme',
-  'Cambiar idioma a inglés (Switch to English)': 'Switch to English',
-  'Switch language to Spanish (Cambiar a español)': 'Cambiar a español',
 
   // Footer
   'Sistemas que operan todos los días.': 'Systems that run every day.',
@@ -118,7 +116,7 @@ export const EN_TRANSLATIONS: Record<string, string> = {
   'Soporte continuo': 'Ongoing support',
   '¿Listo para transformar tu proyecto?': 'Ready to transform your project?',
   'Contáctame ahora': 'Contact me now',
-  'Contáctame para conversar sobre tu proyecto': 'Contact me to discuss your project',
+  'Contáctame ahora para conversar sobre tu proyecto': 'Contact me now to discuss your project',
 
   // Proyectos
   'Proyectos personales y demos públicas': 'Personal projects and public demos',
@@ -137,8 +135,8 @@ export const EN_TRANSLATIONS: Record<string, string> = {
   'En progreso': 'In progress',
   'Planeado': 'Planned',
   'Captura de {title}: {description}': 'Screenshot of {title}: {description}',
-  'Abrir demo de {title} en una pestaña nueva': 'Open {title} demo in a new tab',
-  'Ver código de {title} en GitHub, en una pestaña nueva': 'View {title} code on GitHub, in a new tab',
+  'Ver demo de {title} (se abre en una pestaña nueva)': 'View demo of {title} (opens in a new tab)',
+  'Ver código de {title} en GitHub (se abre en una pestaña nueva)': 'View code of {title} on GitHub (opens in a new tab)',
   'Ofertas en Colombia: detecta descuentos inflados, compara tiendas y arma tu mercado': 'Deals in Colombia: spot inflated discounts, compare stores and build your grocery list',
   'Simulador de créditos y CDT: cuota, amortización, abonos, retención y 4×1000': 'Loan and CD simulator: installments, amortization, extra payments, withholding and 4×1000 tax',
   'Chat privado para parejas: se autodestruye en 24 h, con PIN y fotos protegidas': 'Private chat for couples: self-destructs in 24 h, with PIN and protected photos',

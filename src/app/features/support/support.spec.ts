@@ -8,6 +8,7 @@ describe('Support', () => {
   let openCheckout: jasmine.Spy;
 
   beforeEach(async () => {
+    localStorage.removeItem('user-lang');
     openCheckout = jasmine.createSpy('openCheckout');
     await TestBed.configureTestingModule({
       imports: [Support],

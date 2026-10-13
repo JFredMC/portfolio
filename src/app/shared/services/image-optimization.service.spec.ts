@@ -6,6 +6,7 @@ describe('ImageOptimizationService', () => {
   let service: ImageOptimizationService;
 
   beforeEach(() => {
+    localStorage.removeItem('user-lang');
     TestBed.configureTestingModule({ providers: [provideZonelessChangeDetection()] });
     service = TestBed.inject(ImageOptimizationService);
   });

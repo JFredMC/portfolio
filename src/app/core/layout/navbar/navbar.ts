@@ -24,7 +24,7 @@ export class Navbar {
     return this.i18n.t('Tema del sistema activo. Cambiar al tema claro');
   });
   languageLabel = computed(() =>
-    this.i18n.lang() === 'es' ? 'Cambiar idioma a inglés (Switch to English)' : 'Switch language to Spanish (Cambiar a español)'
+    this.i18n.lang() === 'es' ? 'EN, cambiar idioma a inglés (Switch to English)' : 'ES, switch language to Spanish (Cambiar a español)'
   );
   private closeTimer: ReturnType<typeof setTimeout> | null = null;
 
