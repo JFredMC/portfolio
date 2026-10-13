@@ -23,7 +23,9 @@ describe('About', () => {
     expect(content).toContain('5+');
     expect(content).not.toContain('MET');
     expect(content).not.toContain('transporte');
-    expect(content).toContain('Ruby on Rails 5+');
+    expect(content).not.toMatch(/Angular 13\+|Rails 5\+/);
+    expect(content).not.toContain('Del front end a la nube');
+    expect(content).toContain('APIs en NestJS o Ruby on Rails;');
     expect(content).toContain('S3, ECS, Amplify, RDS e IAM');
     expect(content).toContain('Ingeniería de Software');
     expect(content).toContain('Diplomado en Análisis de Datos con Python');
