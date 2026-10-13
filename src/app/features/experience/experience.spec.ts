@@ -6,6 +6,7 @@ describe('Experience', () => {
   let fixture: ComponentFixture<Experience>;
 
   beforeEach(async () => {
+    localStorage.removeItem('user-lang');
     await TestBed.configureTestingModule({
       imports: [Experience],
       providers: [provideZonelessChangeDetection()],
