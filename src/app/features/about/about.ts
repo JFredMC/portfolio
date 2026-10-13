@@ -18,7 +18,7 @@ export class About implements AfterViewInit, OnDestroy {
     typeof window.matchMedia === 'function' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  skills: string[] = ['Angular', 'NestJS', 'TypeScript', 'Node.js', 'PostgreSQL'];
+  skills: string[] = ['Angular', 'TypeScript', 'NestJS', 'Ruby on Rails', 'PostgreSQL', 'AWS'];
 
   private observer?: IntersectionObserver;
   private removeRetry?: () => void;

@@ -21,7 +21,10 @@ describe('About', () => {
 
     expect(content.match(/5 años de experiencia/g)).toBeNull();
     expect(content).toContain('5+');
-    expect(content).toContain('MET•PAY');
+    expect(content).not.toContain('MET');
+    expect(content).not.toContain('transporte');
+    expect(content).toContain('Ruby on Rails 5+');
+    expect(content).toContain('S3, ECS, Amplify, RDS e IAM');
     expect(content).toContain('Ingeniería de Software');
     expect(content).toContain('Diplomado en Análisis de Datos con Python');
     expect(content).toContain('Angular — Verified by Talently');
@@ -32,10 +35,11 @@ describe('About', () => {
   it('lists the most differentiating technical skills without unrelated frontend frameworks', () => {
     expect(fixture.componentInstance.skills).toEqual([
       'Angular',
-      'NestJS',
       'TypeScript',
-      'Node.js',
+      'NestJS',
+      'Ruby on Rails',
       'PostgreSQL',
+      'AWS',
     ]);
   });
 });
