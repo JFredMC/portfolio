@@ -26,6 +26,16 @@ jobs:
       - name: Run tests
         run: yarn test --watch=false --browsers=ChromeHeadless
 
+      - name: Inject Wompi public key
+        env:
+          WOMPI_PUBLIC_KEY: ${{ vars.WOMPI_PUBLIC_KEY }}
+        run: |
+          if [ -n "$WOMPI_PUBLIC_KEY" ]; then
+            [[ "$WOMPI_PUBLIC_KEY" =~ ^pub_(prod|test)_[A-Za-z0-9]+$ ]] || { echo "WOMPI_PUBLIC_KEY inválida"; exit 1; }
+            sed -i -E "s#publicKey: 'pub_[a-z]+_[A-Za-z0-9]+'#publicKey: '$WOMPI_PUBLIC_KEY'#" src/environments/environment.ts
+          fi
+          grep -q "publicKey: 'pub_" src/environments/environment.ts
+
       - name: Build app
         run: yarn run build -- --base-href /portfolio/
       

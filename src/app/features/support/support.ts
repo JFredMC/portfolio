@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, ElementRef, HostListener, OnDestroy, effect, inject, input, signal, untracked, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, effect, inject, input, signal, untracked, ViewChild } from '@angular/core';
 import { DonationLauncherService } from '../../shared/services/donation-launcher.service';
 import { exitDuration } from '../../shared/utils/animation.util';
 import { I18nService } from '../../shared/i18n/i18n.service';
@@ -29,6 +29,7 @@ type DonationMethod = {
 export class Support implements OnDestroy {
   wompiService = inject(WompiService);
   private readonly i18n = inject(I18nService);
+  private readonly cdr = inject(ChangeDetectorRef);
   /** full: sección completa · compact: tarjeta centrada · modal: solo el modal (se abre desde otros enlaces). */
   readonly variant = input<'full' | 'compact' | 'modal'>('full');
   private readonly launcher = inject(DonationLauncherService);
@@ -167,7 +168,8 @@ export class Support implements OnDestroy {
     this.amountError = '';
   }
 
-  donate(): void {
+  async donate(): Promise<void> {
+    if (this.isProcessing) return;
     const method = this.selectedMethod;
 
     const minimum = method.currency === 'COP' ? 1000 : 1;
@@ -182,10 +184,14 @@ export class Support implements OnDestroy {
     }
 
     this.isProcessing = true;
-
-    this.wompiService.openCheckout(this.selectedAmount, method.currency);
-    this.closeDonationModal();
-    this.isProcessing = false;
+    this.cdr.markForCheck();
+    try {
+      await this.wompiService.openCheckout(this.selectedAmount, method.currency);
+    } finally {
+      this.isProcessing = false;
+      this.closeDonationModal();
+      this.cdr.markForCheck();
+    }
   }
 
   ngOnDestroy(): void {
