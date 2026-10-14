@@ -63,16 +63,16 @@ describe('Support', () => {
     expect(fixture.nativeElement.querySelector('#support').inert).toBeFalse();
   });
 
-  it('opens the checkout for a valid amount', () => {
-    fixture.componentInstance.donate();
+  it('opens the checkout for a valid amount', async () => {
+    await fixture.componentInstance.donate();
 
     expect(openCheckout).toHaveBeenCalledOnceWith(25000, 'COP');
     expect(fixture.componentInstance.showModal).toBeFalse();
   });
 
-  it('does not start checkout for an invalid selected amount', () => {
+  it('does not start checkout for an invalid selected amount', async () => {
     fixture.componentInstance.selectedAmount = 999;
-    fixture.componentInstance.donate();
+    await fixture.componentInstance.donate();
 
     expect(openCheckout).not.toHaveBeenCalled();
     expect(fixture.componentInstance.isProcessing).toBeFalse();
