@@ -129,6 +129,10 @@ export class ImageOptimizationService {
     if (options.sizes) {
       link.setAttribute('imagesizes', options.sizes);
     }
+    const existing = this.document.head.querySelectorAll('link[rel="preload"][as="image"]');
+    if (Array.from(existing).some((el) => (el as HTMLLinkElement).href === link.href)) {
+      return;
+    }
     this.document.head.appendChild(link);
   }
 
