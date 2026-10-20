@@ -61,7 +61,9 @@ export function buildDigest({ date, total, pages = [], refs = [], countries = []
 }
 
 async function gc(path, { code, token, start, end }) {
-  const url = `https://${code}.goatcounter.com/api/v0${path}?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}&limit=10`;
+  // /stats/total no acepta `limit` (responde 400); solo se envía a los listados.
+  const limit = path === '/stats/total' ? '' : '&limit=10';
+  const url = `https://${code}.goatcounter.com/api/v0${path}?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}${limit}`;
   const res = await fetch(url, {
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
   });
