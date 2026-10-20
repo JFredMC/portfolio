@@ -14,8 +14,7 @@ export const EN_TRANSLATIONS: Record<string, string> = {
   'Abrir menú móvil': 'Open mobile menu',
   'Cerrar menú móvil': 'Close mobile menu',
   'Tema claro activo. Cambiar al tema oscuro': 'Light theme active. Switch to dark theme',
-  'Tema oscuro activo. Cambiar al tema del sistema': 'Dark theme active. Switch to system theme',
-  'Tema del sistema activo. Cambiar al tema claro': 'System theme active. Switch to light theme',
+  'Tema oscuro activo. Cambiar al tema claro': 'Dark theme active. Switch to light theme',
 
   // Footer
   'Sistemas que operan todos los días.': 'Systems that run every day.',

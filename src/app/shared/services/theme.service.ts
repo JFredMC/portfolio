@@ -45,13 +45,9 @@ export class ThemeService {
     this.applyTheme(true);
   }
 
+  /** Cambia en un solo toque al tema opuesto al que se ve ahora y lo guarda. */
   toggleTheme() {
     this.setMode(this.darkMode() ? 'light' : 'dark');
-  }
-
-  cycleTheme() {
-    const order: ThemeMode[] = ['light', 'dark', 'system'];
-    this.setMode(order[(order.indexOf(this.mode()) + 1) % order.length]);
   }
 
   isDarkMode() {
@@ -64,7 +60,12 @@ export class ThemeService {
 
   private readStoredMode(): ThemeMode {
     try {
-      return this.parseMode(localStorage.getItem(this.THEME_KEY));
+      const stored = localStorage.getItem(this.THEME_KEY);
+      const mode = this.parseMode(stored);
+      // Migración: valores antiguos como 'system' (o inválidos) se descartan
+      // para que el tema vuelva a seguir al dispositivo.
+      if (stored !== null && mode === 'system') localStorage.removeItem(this.THEME_KEY);
+      return mode;
     } catch {
       return 'system';
     }
