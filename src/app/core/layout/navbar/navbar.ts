@@ -17,12 +17,11 @@ export class Navbar {
   @ViewChild('menuButton') menuButton?: ElementRef<HTMLButtonElement>;
   isMenuOpen = false;
   isMenuClosing = signal(false);
-  themeLabel = computed(() => {
-    const mode = this.themeService.mode();
-    if (mode === 'light') return this.i18n.t('Tema claro activo. Cambiar al tema oscuro');
-    if (mode === 'dark') return this.i18n.t('Tema oscuro activo. Cambiar al tema del sistema');
-    return this.i18n.t('Tema del sistema activo. Cambiar al tema claro');
-  });
+  themeLabel = computed(() =>
+    this.themeService.darkMode()
+      ? this.i18n.t('Tema oscuro activo. Cambiar al tema claro')
+      : this.i18n.t('Tema claro activo. Cambiar al tema oscuro')
+  );
   languageLabel = computed(() =>
     this.i18n.lang() === 'es' ? 'EN, cambiar idioma a inglés (Switch to English)' : 'ES, switch language to Spanish (Cambiar a español)'
   );
@@ -63,7 +62,7 @@ export class Navbar {
   }
 
   toggleTheme() {
-    this.themeService.cycleTheme();
+    this.themeService.toggleTheme();
   }
 
   scrollTo(sectionId: string) {
