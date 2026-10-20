@@ -322,5 +322,22 @@
 </head>
 <body class="bg-white dark:bg-[#070d18] transition-colors duration-500">
   <app-root></app-root>
+  <!--
+    Analítica de visitas con GoatCounter (sin cookies).
+    El código de sitio se configura al crear la cuenta en goatcounter.com.
+    Valor esperado: jfredmc  ->  https://jfredmc.goatcounter.com
+    Si al registrarte eliges otro código, cambia MYCODE en las dos URLs de abajo.
+  -->
+  <script data-goatcounter="https://jfredmc.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  <script>
+    // Cuenta también la navegación por secciones (#projects, #about, ...)
+    // como páginas virtuales, sin cookies ni identificadores del visitante.
+    window.addEventListener('hashchange', function () {
+      if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+        window.goatcounter.count({ path: location.pathname + location.hash });
+      }
+    });
+  </script>
 </body>
 </html>

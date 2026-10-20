@@ -20,6 +20,7 @@ export const EN_TRANSLATIONS: Record<string, string> = {
   // Footer
   'Sistemas que operan todos los días.': 'Systems that run every day.',
   'Turbo, Antioquia.': 'Turbo, Antioquia.',
+  'Privacidad: este sitio usa GoatCounter, analítica sin cookies. Solo se cuentan visitas, secciones vistas, país y sitio de origen, de forma agregada; no se guarda tu IP ni se te rastrea en otros sitios.': 'Privacy: this site uses GoatCounter, cookie-free analytics. It only counts visits, viewed sections, country and referring site in aggregate; your IP is not stored and you are not tracked across other sites.',
   'Enlaces del pie de página': 'Footer links',
   'Ir al final': 'Go to bottom',
   'Volver arriba': 'Back to top',

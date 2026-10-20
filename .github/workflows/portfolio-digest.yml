@@ -1,0 +1,45 @@
+name: Portfolio daily digest
+
+# 12:00 UTC = 7:00 a. m. en America/Bogota (UTC-5, sin horario de verano).
+# Envía por Amazon SES el resumen de visitas del día anterior (GoatCounter).
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Solo imprimir el resumen, sin enviar correo'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Send daily digest
+        env:
+          # Secrets a configurar en Settings -> Secrets and variables -> Actions
+          GOATCOUNTER_SITE_CODE: ${{ secrets.GOATCOUNTER_SITE_CODE }}
+          GOATCOUNTER_API_TOKEN: ${{ secrets.GOATCOUNTER_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SES_AWS_REGION: ${{ secrets.SES_AWS_REGION }}
+          SES_FROM_EMAIL: ${{ secrets.SES_FROM_EMAIL }}
+          STATS_EMAIL_TO: ${{ secrets.STATS_EMAIL_TO }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            node scripts/portfolio-digest.mjs --dry-run
+          else
+            node scripts/portfolio-digest.mjs
+          fi
