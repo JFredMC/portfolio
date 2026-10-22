@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: '22'
       - name: Test digest script
-        run: node --test scripts/
+        run: node --test scripts/portfolio-digest.test.mjs
       - name: Send daily digest
         env:
           # Secrets a configurar en Settings -> Secrets and variables -> Actions
