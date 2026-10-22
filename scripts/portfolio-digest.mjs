@@ -34,41 +34,102 @@ export function dayRangeUtc(dateStr) {
   return { start: start.toISOString(), end: end.toISOString() };
 }
 
-export function buildDigest({ date, total, pages = [], refs = [], countries = [], browsers = [] }) {
+const QUERIES = [
+  { key: 'total', path: '/stats/total', label: 'total de visitas' },
+  { key: 'hits', path: '/stats/hits', label: 'páginas más vistas' },
+  { key: 'refs', path: '/stats/toprefs', label: 'referentes' },
+  { key: 'locations', path: '/stats/locations', label: 'países' },
+  { key: 'browsers', path: '/stats/browsers', label: 'navegadores' },
+];
+
+export function failureHint(status) {
+  if (status === 401 || status === 403) return 'revisa el token de GoatCounter (puede estar revocado o sin permisos)';
+  if (status === 404) return 'revisa GOATCOUNTER_SITE_CODE';
+  if (status === 429) return 'límite de consultas de GoatCounter; se reintentó sin éxito';
+  if (status >= 500) return 'GoatCounter tuvo un error interno; se reintentó sin éxito';
+  if (!status) return 'no hubo respuesta (error de red)';
+  return 'respuesta inesperada de GoatCounter';
+}
+
+export function formatFailure(f) {
+  return `- ${f.label} (${f.path}): ${f.status ? `${f.status}: ` : ''}${failureHint(f.status)}`;
+}
+
+export function buildDigest({ date, total, pages = [], refs = [], countries = [], browsers = [], failures = [] }) {
   const list = (items, empty) =>
     items.length ? items.slice(0, 5).map((i) => `- ${i.name}: ${i.count}`).join('\n') : `- ${empty}`;
+  const failed = new Set(failures.map((f) => f.key));
+  const sec = (key, items, empty) => (failed.has(key) ? '- No disponible (falló la consulta)' : list(items, empty));
+  const warning = failures.length
+    ? ['⚠️ Atención: algunas consultas a GoatCounter fallaron y el resumen está incompleto:', ...failures.map(formatFailure), '']
+    : [];
   const text = [
     `Visitas a tu portfolio — ${date} (America/Bogota)`,
     '',
-    `Páginas vistas / visitas: ${total}`,
+    ...warning,
+    `Páginas vistas / visitas: ${failed.has('total') ? 'No disponible' : total}`,
     '',
     'Secciones y páginas más vistas:',
-    list(pages, 'Sin datos'),
+    sec('hits', pages, 'Sin datos'),
     '',
     'Desde dónde llegaron:',
-    list(refs, 'Sin datos (puede ser tráfico directo)'),
+    sec('refs', refs, 'Sin datos (puede ser tráfico directo)'),
     '',
     'Países:',
-    list(countries, 'Sin datos'),
+    sec('locations', countries, 'Sin datos'),
     '',
     'Navegadores:',
-    list(browsers, 'Sin datos'),
+    sec('browsers', browsers, 'Sin datos'),
     '',
     'Panel completo: https://' + (process.env.GOATCOUNTER_SITE_CODE || 'jfredmc') + '.goatcounter.com',
     'Nota: GoatCounter no guarda IPs ni usa cookies; “quién” es país/referente/dispositivo agregado.',
   ].join('\n');
-  return { subject: `Portfolio: ${total} visitas el ${date}`, text };
+  const head = failed.has('total') ? 'visitas no disponibles' : `${total} visitas`;
+  return { subject: `Portfolio: ${head} el ${date}${failures.length ? ' (incompleto)' : ''}`, text };
 }
 
-async function gc(path, { code, token, start, end }) {
+export function buildFailureEmail({ date, failures }) {
+  return {
+    subject: `Portfolio: no se pudo generar el resumen del ${date}`,
+    text: [
+      `No se pudo obtener ningún dato de GoatCounter para el ${date} (America/Bogota).`,
+      '',
+      'Consultas fallidas:',
+      ...failures.map(formatFailure),
+      '',
+      'Revisa el token en GoatCounter -> [tu usuario] -> API y actualiza el secret GOATCOUNTER_API_TOKEN en GitHub.',
+    ].join('\n'),
+  };
+}
+
+export class HttpError extends Error {
+  constructor(path, status) {
+    super(`GoatCounter ${path} respondió ${status}`);
+    this.status = status;
+  }
+}
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const retryable = (status) => !status || status === 429 || status >= 500;
+
+export async function gc(path, { code, token, start, end, fetchImpl = fetch, retries = 2, delayMs = 2000 }) {
   // /stats/total no acepta `limit` (responde 400); solo se envía a los listados.
   const limit = path === '/stats/total' ? '' : '&limit=10';
   const url = `https://${code}.goatcounter.com/api/v0${path}?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}${limit}`;
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-  });
-  if (!res.ok) throw new Error(`GoatCounter ${path} respondió ${res.status}`);
-  return res.json();
+  for (let attempt = 0; ; attempt++) {
+    let status = 0;
+    try {
+      const res = await fetchImpl(url, {
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      });
+      if (res.ok) return await res.json();
+      status = res.status;
+    } catch (e) {
+      if (e instanceof HttpError) throw e;
+    }
+    if (attempt >= retries || !retryable(status)) throw new HttpError(path, status);
+    await sleep(delayMs * (attempt + 1));
+  }
 }
 
 const names = (json, key) =>
@@ -77,22 +138,27 @@ const names = (json, key) =>
     count: x.count ?? 0,
   }));
 
-export async function fetchStats({ code, token, date }) {
+export async function fetchStats({ code, token, date, fetchImpl, delayMs }) {
   const { start, end } = dayRangeUtc(date);
-  const [total, hits, refs, locations, browsers] = await Promise.all([
-    gc('/stats/total', { code, token, start, end }),
-    gc('/stats/hits', { code, token, start, end }),
-    gc('/stats/toprefs', { code, token, start, end }).catch(() => ({})),
-    gc('/stats/locations', { code, token, start, end }).catch(() => ({})),
-    gc('/stats/browsers', { code, token, start, end }).catch(() => ({})),
-  ]);
+  // Cada consulta va por separado (en serie, para no provocar 429) y sus fallos no tumban a las demás.
+  const data = {};
+  const failures = [];
+  for (const q of QUERIES) {
+    try {
+      data[q.key] = await gc(q.path, { code, token, start, end, fetchImpl, delayMs });
+    } catch (e) {
+      failures.push({ key: q.key, path: q.path, label: q.label, status: e.status ?? 0 });
+    }
+  }
   return {
     date,
-    total: total?.total ?? total?.total_events ?? 0,
-    pages: names(hits, 'hits'),
-    refs: names(refs, 'refs'),
-    countries: names(locations, 'stats'),
-    browsers: names(browsers, 'stats'),
+    total: data.total?.total ?? data.total?.total_events ?? 0,
+    pages: names(data.hits, 'hits'),
+    refs: names(data.refs, 'refs'),
+    countries: names(data.locations, 'stats'),
+    browsers: names(data.browsers, 'stats'),
+    failures,
+    allFailed: failures.length === QUERIES.length,
   };
 }
 
@@ -162,16 +228,26 @@ async function main() {
   if (!token) throw new Error('Falta GOATCOUNTER_API_TOKEN (créalo en GoatCounter -> [tu usuario] -> API)');
   const date = previousDayInBogota();
   const stats = await fetchStats({ code, token, date });
-  const digest = buildDigest(stats);
+  for (const f of stats.failures) {
+    // Anotación visible en GitHub Actions (no incluye secretos).
+    console.log(`::warning title=GoatCounter::${formatFailure(f).slice(2)}`);
+  }
+  const digest = stats.allFailed ? buildFailureEmail(stats) : buildDigest(stats);
   if (args.has('--dry-run')) {
     console.log(`Subject: ${digest.subject}\n\n${digest.text}`);
-    return;
+  } else {
+    await sendSesEmail({
+      from: process.env.SES_FROM_EMAIL, to: process.env.STATS_EMAIL_TO,
+      subject: digest.subject, text: digest.text,
+    });
+    console.log(stats.allFailed
+      ? `Aviso de fallo ${date} enviado a STATS_EMAIL_TO.`
+      : `Resumen ${date} enviado a STATS_EMAIL_TO (${stats.failures.length} consulta(s) fallida(s)).`);
   }
-  await sendSesEmail({
-    from: process.env.SES_FROM_EMAIL, to: process.env.STATS_EMAIL_TO,
-    subject: digest.subject, text: digest.text,
-  });
-  console.log(`Resumen ${date} enviado a STATS_EMAIL_TO (${stats.total} visitas).`);
+  if (stats.allFailed) {
+    console.error('Todas las consultas a GoatCounter fallaron.');
+    process.exitCode = 1;
+  }
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
